@@ -1,10 +1,10 @@
 import React from "react";
-import {Image, Container} from "semantic-ui-react";
+import Intro from "./home-components/Intro";
 
 const HomePage = () => (
-    <Container>
-        <Image src="/img/home.jpg" fluid />
-    </Container>
+    <div>
+        <Intro />
+    </div>
 )
 
 export default HomePage;

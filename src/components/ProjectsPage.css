@@ -1,0 +1,4 @@
+.ui.search>.results {
+    position: inherit !important;
+    margin: 0 auto;
+}

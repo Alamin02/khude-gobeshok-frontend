@@ -1,23 +1,72 @@
 import React from 'react';
 import Navbar from './components/Navbar'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import LoginForm from './components/LoginPage';
 import SignupForm from './components/SignupPage';
 import HomePage from './components/HomePage';
+import ProjectsPage from './components/ProjectsPage';
+import ProjectEditor from "./components/ProjectEditor";
+import ProjectDetailsEditor from "./components/ProjectDetailsEditor";
+import ProjectView from "./components/ProjectViewer";
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Route path="/" exact component={HomePage} />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signup" component={SignupForm} />
-      </Router>
-      
-    </div>
-  );
+import Footer from "./components/Footer";
+
+import { userActions, editorActions } from './_actions';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props.initEditor();
+  }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Navbar />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/projects" exact component={ProjectsPage} />
+          <Route path="/new-project" component={ProjectEditor} />
+          <Route path="/new-project-description" component={ProjectDetailsEditor} />
+          <Route path="/projects/:id/" component={ProjectView} />
+          <Route path="/login" render={() => (
+            this.props.loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+                <LoginForm />
+              )
+          )} />
+          <Route path="/signup" render={() => (
+            this.props.loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+                <SignupForm />
+              )
+          )} />
+          <Route path="/logout" render={() => {
+            this.props.logout();
+            return (<Redirect to="/" />)
+          }} />
+          <Footer />
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { loggedIn } = state.authentication;
+  return {
+    loggedIn
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    initEditor: () => { dispatch(editorActions.init()) },
+    logout: () => { dispatch(userActions.logout()) },
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
