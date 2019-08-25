@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Popup, Segment, Form, Button } from "semantic-ui-react"
+import { Popup, Form, Button } from "semantic-ui-react"
 
 export default class AddVideo extends Component {
     constructor(props) {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Container, Form, Header } from "semantic-ui-react";
-import { Link, withRouter } from "react-router-dom";
+import { Container, Form, Header } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
 

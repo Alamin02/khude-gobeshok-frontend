@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
+
+.container {
+    min-height: 90vh;
+}
+
+.signupForm {
+    max-width: 450px;
+}
+
+.headerStyle {
+    font-family: 'Red Hat Display', sans-serif !important;
+}
+
+.formValidationError {
+    text-align: left;
+    font-size: .75em;
+}

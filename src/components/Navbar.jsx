@@ -3,17 +3,6 @@ import { Menu, Container, Button, Popup, Header, Image } from "semantic-ui-react
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-const userPopUp = (
-    <Popup trigger={<Button>Show flowing popup</Button>} flowing hoverable>
-        <Header as='h4'>Basic Plan</Header>
-        <p>
-            <b>2</b> projects, $10 a month
-        </p>
-        <Button>Choose</Button>
-
-    </Popup>
-)
-
 class Navbar extends React.Component {
     constructor(props) {
         super(props);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Popup, Segment, Form, Button, Tab } from "semantic-ui-react"
+import { Popup, Form, Button, Tab } from "semantic-ui-react"
 
 import ImageDnD from "../ImageDragnDrop";
 

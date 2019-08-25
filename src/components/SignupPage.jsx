@@ -4,6 +4,8 @@ import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom"
 
+import styles from "./SignupPage.module.css"
+
 class SignupPage extends React.Component {
   constructor(props) {
     super(props);
@@ -35,29 +37,62 @@ class SignupPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ submitted: true });
+
     const { user } = this.state;
-    const { dispatch } = this.props;
-    if (user.username && user.email && user.password1 && user.password2) {
-      dispatch(userActions.register(user));
+    this.setState({
+      user: {
+        ...user,
+        submitted: true,
+      }
+    });
+    if (user.username && user.email && user.password1 && user.password2 && (user.password1 === user.password2)) {
+      this.props.submit(user);
     }
   }
 
   render() {
     const { username, email, password1, password2, submitted } = this.state.user;
     const { alert } = this.props;
+
+    const error_list = [];
+
+    const errors = alert.message && JSON.parse(alert.message, (key, value) => {
+      if (typeof value === "string")
+        error_list.push(value);
+    });
+    console.log(error_list)
+
     return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'>
-            Create New account
+      <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
+        <Grid.Column className={styles.signupForm}>
+          <Header as='h2' textAlign='center' className={styles.headerStyle} >
+            Create New Account
           </Header>
-          {alert.message && <p>{alert.message}</p>}
+          {alert.message && <Message error header="Request Errors" list={error_list} />}
           <Form size='large' onSubmit={this.handleSubmit}>
 
             <Segment stacked>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' name="username" value={username} onChange={this.handleChange} />
-              <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' name="email" value={email} onChange={this.handleChange} />
+              <Form.Input
+                fluid
+                icon='user'
+                iconPosition='left'
+                placeholder='Username'
+                name="username"
+                value={username}
+                onChange={this.handleChange}
+              />
+              {!username && submitted && <p className={styles.formValidationError}>Username is important..</p>}
+
+              <Form.Input
+                fluid
+                icon='mail'
+                iconPosition='left'
+                placeholder='E-mail address'
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+              />
+              {!email && submitted && <p className={styles.formValidationError}>Email is important..</p>}
               <Form.Input
                 fluid
                 icon='lock'
@@ -67,6 +102,7 @@ class SignupPage extends React.Component {
                 name="password1"
                 value={password1} onChange={this.handleChange}
               />
+              {!password1 && submitted && <p className={styles.formValidationError}>Password is important..</p>}
               <Form.Input
                 fluid
                 icon='lock'
@@ -76,8 +112,9 @@ class SignupPage extends React.Component {
                 name="password2"
                 value={password2} onChange={this.handleChange}
               />
+              {password1 && (password1 !== password2) && submitted && <p className={styles.formValidationError}>Passwords did not match...</p>}
 
-              <Button color='teal' fluid size='large'>
+              <Button color='blue' fluid size='large'>
                 Signup
               </Button>
             </Segment>
@@ -101,4 +138,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(SignupPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    submit: (user) => dispatch(userActions.register(user)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);

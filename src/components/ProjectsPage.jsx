@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Icon, Search, Header, Container } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Search, Header, Container } from "semantic-ui-react";
 
 import { projectActions } from '../_actions';
 

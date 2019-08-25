@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import { imageService } from "../_services";
-import { editorActions } from "../_actions";
 
 const thumbsContainer = {
     display: 'flex',

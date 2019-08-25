@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import Particles from 'react-particles-js';
 
 import "./Intro.css";

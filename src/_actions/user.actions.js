@@ -50,6 +50,7 @@ function register(user) {
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
+                    console.log(error);
                     dispatch(failure(error));
                     dispatch(alertActions.error(error));
                 }
