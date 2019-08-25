@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { editorActions, projectActions } from "../_actions";
+import { editorActions, projectActions } from "../../_actions";
 import './ProjectDetails.css'
 
 import { convertToRaw } from 'draft-js'
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText, composeDecorators } from 'draft-js-plugins-editor';
+
+
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
-import createImagePlugin from 'draft-js-image-plugin'
+import createImagePlugin from 'draft-js-image-plugin';
 import 'draft-js-image-plugin/lib/plugin.css';
 import createVideoPlugin from 'draft-js-video-plugin';
 import 'draft-js-video-plugin/lib/plugin.css';
+import createFocusPlugin from 'draft-js-focus-plugin';
+import 'draft-js-focus-plugin/lib/plugin.css';
+import createResizePlugin from 'draft-js-resizeable-plugin';
+import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import 'draft-js-alignment-plugin/lib/plugin.css';
 import {
     ItalicButton,
     BoldButton,
@@ -24,32 +31,37 @@ import {
     UnorderedListButton,
     OrderedListButton,
     BlockquoteButton,
-    CodeBlockButton,
 } from 'draft-js-buttons';
 
-import AddImage from "./editor-components/AddImage";
-import AddVideo from "./editor-components/AddVideo";
-import { Popup, Button, Segment, Grid, Form, Divider } from "semantic-ui-react";
-import ProjectDetailsEditor from './ProjectDetailsEditor';
+import AddImage from "./AddImage";
+import AddVideo from "./AddVideo";
+import { Button, } from "semantic-ui-react";
 
 const toolbarPlugin = createToolbarPlugin();
+const focusPlugin = createFocusPlugin();
+const resizePlugin = createResizePlugin();
+const alignmentPlugin = createAlignmentPlugin();
+
+const { AlignmentTool } = alignmentPlugin;
+
+const decorator = composeDecorators(
+    focusPlugin.decorator,
+    resizePlugin.decorator,
+    alignmentPlugin.decorator,
+);
+
 const imagePlugin = createImagePlugin({
+    decorator,
     theme: {
         image: "editor-image-content"
     }
 });
-const videoPlugin = createVideoPlugin({});
+const videoPlugin = createVideoPlugin();
 
 const { Toolbar } = toolbarPlugin;
-const plugins = [toolbarPlugin, imagePlugin, videoPlugin];
+const plugins = [toolbarPlugin, imagePlugin, videoPlugin, focusPlugin, resizePlugin, alignmentPlugin];
 const text = 'Start Typing your project details from here...';
 
-const contents = (<Segment placeholder>
-    <Form>
-        <Form.Input icon='linkify' iconPosition='left' label='URL' placeholder='URL' />
-        <Button content='Add' primary />
-    </Form>
-</Segment>)
 
 class ProjectDetails extends Component {
 
@@ -84,6 +96,7 @@ class ProjectDetails extends Component {
                         plugins={plugins}
                         ref={(element) => { this.editor = element; }}
                     />
+                    <AlignmentTool />
                     <Toolbar>
                         {
                             // may be use React.Fragment instead of div to improve perfomance after React 16
@@ -104,7 +117,9 @@ class ProjectDetails extends Component {
                                 </div>
                             )
                         }
+
                     </Toolbar>
+
                 </div>
                 <AddImage editorState={this.state.editorState} onChange={this.onChange} modifier={imagePlugin.addImage} />
                 <AddVideo editorState={this.state.editorState} onChange={this.onChange} modifier={videoPlugin.addVideo} />

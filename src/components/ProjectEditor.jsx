@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import Previews from "./ImageDragnDrop";
-import ProjectDetails from "./ProjectDetails";
+import ProjectDetails from "./editor-components/ProjectDetails";
 
 import DatePicker from "react-datepicker";
 
