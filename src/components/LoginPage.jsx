@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { userActions } from '../_actions';
+
+import styles from "./LoginPage.module.css";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -37,18 +39,37 @@ class LoginPage extends Component {
 
   render() {
     const { username, password, submitted } = this.state;
-    const { alert } = this.props;
+    const { alert, error } = this.props;
+    const error_list = [];
+
+    const errors = error && JSON.parse(error, (key, value) => {
+      if (typeof value === "string")
+        error_list.push(value);
+    });
+
     return (
       <div>
-        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
-              Log-in to your account
+        <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
+          <Grid.Column className={styles.loginForm}>
+            <Header as='h2' textAlign='center' className={styles.headerStyle}>
+              Login to your account
       </Header>
+            {error && <Message error header="Request Errors" content={error_list} />}
             <Form size='large' onSubmit={this.handleSubmit}>
-              {alert.message && <p>{alert.message}</p>}
+
               <Segment stacked>
-                <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name="username" value={username} onChange={this.handleChange} />
+                <Form.Input
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='E-mail address / username'
+                  name="username"
+                  value={username}
+                  onChange={this.handleChange}
+                />
+                {submitted && !username &&
+                  <p className={styles.formValidationError}>Username is important..</p>
+                }
                 <Form.Input
                   fluid
                   icon='lock'
@@ -59,10 +80,10 @@ class LoginPage extends Component {
                   name="password" value={password} onChange={this.handleChange}
                 />
                 {submitted && !password &&
-                  <div className="help-block">Password is required</div>
+                  <p className={styles.formValidationError}>Password is important..</p>
                 }
 
-                <Button color='teal' fluid size='large'>
+                <Button color='blue' fluid size='large'>
                   Login
                 </Button>
               </Segment>
@@ -78,11 +99,12 @@ class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
+  const { loggingIn, error } = state.authentication;
   const { alert } = state;
   return {
     loggingIn,
-    alert
+    alert,
+    error
   };
 }
 

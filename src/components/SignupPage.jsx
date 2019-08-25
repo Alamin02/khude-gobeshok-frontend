@@ -52,23 +52,22 @@ class SignupPage extends React.Component {
 
   render() {
     const { username, email, password1, password2, submitted } = this.state.user;
-    const { alert } = this.props;
+    const { alert, error } = this.props;
 
     const error_list = [];
 
-    const errors = alert.message && JSON.parse(alert.message, (key, value) => {
+    const errors = error && JSON.parse(error, (key, value) => {
       if (typeof value === "string")
         error_list.push(value);
     });
-    console.log(error_list)
 
     return (
       <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
         <Grid.Column className={styles.signupForm}>
           <Header as='h2' textAlign='center' className={styles.headerStyle} >
-            Create New Account
+            Create new account
           </Header>
-          {alert.message && <Message error header="Request Errors" list={error_list} />}
+          {error && <Message error header="Request Errors" list={error_list} />}
           <Form size='large' onSubmit={this.handleSubmit}>
 
             <Segment stacked>
@@ -130,11 +129,12 @@ class SignupPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { registering } = state.registration;
-  const { alert } = state;
+  const { registering, error } = state.registration;
+  const { alert, } = state;
   return {
     registering,
-    alert
+    alert,
+    error
   };
 }
 

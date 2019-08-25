@@ -1,0 +1,16 @@
+.container {
+    min-height: 90vh;
+}
+
+.loginForm {
+    max-width: 450px;
+}
+
+.headerStyle {
+    font-family: 'Red Hat Display', sans-serif !important;
+}
+
+.formValidationError {
+    text-align: left;
+    font-size: .75em;
+}
