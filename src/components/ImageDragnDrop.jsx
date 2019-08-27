@@ -5,8 +5,9 @@ import { useDropzone } from 'react-dropzone';
 const thumbsContainer = {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: "center",
     flexWrap: 'wrap',
-    marginTop: 16
+    marginTop: 5
 };
 
 const thumb = {
@@ -15,8 +16,8 @@ const thumb = {
     border: '1px solid #eaeaea',
     marginBottom: 8,
     marginRight: 8,
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 150,
     padding: 4,
     boxSizing: 'border-box'
 };
@@ -66,10 +67,9 @@ export default function Previews(props) {
     return (
         <section className="container" >
             <div style={{
-                minHeight: "50px",
-                background: "ash",
-                border: "dashed",
-                margin: "10px",
+                minHeight: "100px",
+                background: "#e3f2fd",
+                padding: "10px",
                 textAlign: "center",
             }} {...getRootProps({ className: 'dropzone' })} >
                 <input {...getInputProps()} />

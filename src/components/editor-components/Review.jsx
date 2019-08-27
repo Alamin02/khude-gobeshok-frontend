@@ -1,0 +1,64 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { EditorState, convertFromRaw } from 'draft-js';
+
+import { projectActions } from '../_actions';
+
+import { Container } from 'semantic-ui-react'
+
+import Editor from 'draft-js-plugins-editor';
+import createImagePlugin from 'draft-js-image-plugin'
+import 'draft-js-image-plugin/lib/plugin.css';
+import createVideoPlugin from 'draft-js-video-plugin';
+import 'draft-js-video-plugin/lib/plugin.css';
+
+const imagePlugin = createImagePlugin({
+    theme: {
+        image: "editor-image-content"
+    }
+});
+const videoPlugin = createVideoPlugin({});
+
+const plugins = [imagePlugin, videoPlugin];
+
+class ProjectViewer extends Component {
+    constructor(props) {
+        super(props);
+        const { id } = this.props.match.params;
+        this.props.get_project(id);
+    }
+
+    render() {
+        const { description } = this.props.project;
+        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
+        console.log(this.props.project);
+        return (
+            <div style={{ minHeight: '100vh' }}>
+                <Container text style={{ marginTop: '5em' }}>
+                    <Editor
+                        editorState={editorState}
+                        plugins={plugins}
+                        readOnly
+                    />
+                </Container>
+            </div>
+        )
+    }
+}
+
+function mapStateToProps(state) {
+    let { project_loaded, project } = state.project;
+    return {
+        project,
+        project_loaded,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        get_project: (project_id) => dispatch(projectActions.get_project(project_id)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectViewer);

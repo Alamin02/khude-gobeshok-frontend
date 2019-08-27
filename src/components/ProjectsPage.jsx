@@ -7,7 +7,7 @@ import { projectActions } from '../_actions';
 
 import ProjectListTiles from './ProjectListTiles';
 
-import "./ProjectsPage.css"
+import styles from "./ProjectsPage.module.css";
 
 class ProjectsPage extends Component {
     constructor(props) {
@@ -20,15 +20,15 @@ class ProjectsPage extends Component {
     render() {
         return (
             <div style={{
-                paddingTop: "100px",
                 minHeight: "80vh",
                 textAlign: "center"
             }}>
+                <Container className={styles.pageHeaderContainer}>
+                    <Header as='h1' className={styles.pageHeader}>Project Library</Header>
+
+                    <Search placeholder={"Search"} className={styles.projectSearch} />
+                </Container>
                 <Container>
-                    <Header as='h1'>PROJECT EXPLORER</Header>
-                    <Search placeholder={"Search"} >
-                        <Search.Results style={{ position: "inherit", margin: "0 auto" }} />
-                    </Search>
                     <ProjectListTiles projects={this.props.project_list} />
                 </Container>
             </div>

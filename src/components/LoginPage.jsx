@@ -57,7 +57,7 @@ class LoginPage extends Component {
             {error && <Message error header="Request Errors" content={error_list} />}
             <Form size='large' onSubmit={this.handleSubmit}>
 
-              <Segment stacked>
+              <Segment raised>
                 <Form.Input
                   fluid
                   icon='user'

@@ -12,6 +12,7 @@ import ProjectView from "./components/ProjectViewer";
 
 import Footer from "./components/Footer";
 
+import "./App.css";
 import { userActions, editorActions } from './_actions';
 
 class App extends React.Component {

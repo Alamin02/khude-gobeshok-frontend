@@ -70,7 +70,7 @@ class SignupPage extends React.Component {
           {error && <Message error header="Request Errors" list={error_list} />}
           <Form size='large' onSubmit={this.handleSubmit}>
 
-            <Segment stacked>
+            <Segment raised>
               <Form.Input
                 fluid
                 icon='user'
