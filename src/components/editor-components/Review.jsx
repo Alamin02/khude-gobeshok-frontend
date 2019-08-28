@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import { EditorState, convertFromRaw } from 'draft-js';
 
-import { projectActions } from '../_actions';
-
 import { Container } from 'semantic-ui-react'
 
 import Editor from 'draft-js-plugins-editor';
@@ -25,20 +23,19 @@ const plugins = [imagePlugin, videoPlugin];
 class ProjectViewer extends Component {
     constructor(props) {
         super(props);
-        const { id } = this.props.match.params;
-        this.props.get_project(id);
     }
+    onChange = () => { };
 
     render() {
-        const { description } = this.props.project;
+        const description = this.props.description;
         const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
-        console.log(this.props.project);
         return (
-            <div style={{ minHeight: '100vh' }}>
-                <Container text style={{ marginTop: '5em' }}>
+            <div >
+                <Container text >
                     <Editor
                         editorState={editorState}
                         plugins={plugins}
+                        onChange={this.onChange}
                         readOnly
                     />
                 </Container>
@@ -48,16 +45,14 @@ class ProjectViewer extends Component {
 }
 
 function mapStateToProps(state) {
-    let { project_loaded, project } = state.project;
+    let { description } = state.editor;
     return {
-        project,
-        project_loaded,
+        description
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        get_project: (project_id) => dispatch(projectActions.get_project(project_id)),
     }
 };
 

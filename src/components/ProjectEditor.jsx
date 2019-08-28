@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import Previews from "./ImageDragnDrop";
 import ProjectDetails from "./editor-components/ProjectDetails";
 import EditorSteps from "./editor-components/EditorSteps";
+import Review from "./editor-components/Review";
+
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -86,6 +88,7 @@ class ProjectEditor extends Component {
     render() {
         const introVisible = this.state.visibility[0];
         const detailsVisible = this.state.visibility[1];
+        const reviewVisible = this.state.visibility[2];
 
         return (
             <div >
@@ -100,7 +103,7 @@ class ProjectEditor extends Component {
                     </Grid>
                 </Container>
                 <Container text style={{ paddingTop: "50px", paddingBottom: "50px" }}>
-                    <Transition visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>
+                    <Transition unmountOnHide visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>
                         <Form>
                             <Form.Field>
                                 <label>Project Title</label>
@@ -144,13 +147,16 @@ class ProjectEditor extends Component {
 
                         </Form>
                     </Transition>
-                    <Transition visible={detailsVisible} animation="scale" duration={500} onHide={this.handleNext}>
+                    <Transition unmountOnHide visible={detailsVisible} animation="scale" duration={500} onHide={this.handleNext}>
                         <Form>
                             <Form.Field>
                                 <label>Project Details</label>
                                 <ProjectDetails />
                             </Form.Field>
                         </Form>
+                    </Transition>
+                    <Transition unmountOnHide visible={reviewVisible} animation="scale" duration={500} onHide={this.handleNext}>
+                        <Review />
                     </Transition>
                     <Grid style={{ marginTop: "3em" }}>
                         <Grid.Column textAlign="center">
@@ -160,6 +166,7 @@ class ProjectEditor extends Component {
                             </Button.Group>
                         </Grid.Column>
                     </Grid>
+
                 </Container >
 
             </div >

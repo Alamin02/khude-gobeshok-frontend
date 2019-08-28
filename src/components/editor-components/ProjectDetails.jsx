@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { editorActions, projectActions } from "../../_actions";
 import './ProjectDetails.css'
 
-import { convertToRaw } from 'draft-js'
+import { convertToRaw, convertFromRaw, EditorState } from 'draft-js'
 
 import Editor, { createEditorStateWithText, composeDecorators } from 'draft-js-plugins-editor';
 
@@ -64,10 +64,15 @@ const text = 'Start Typing your project details from here...';
 
 
 class ProjectDetails extends Component {
+    constructor(props) {
+        super(props);
+        const { description } = this.props.project;
+        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
 
-    state = {
-        editorState: createEditorStateWithText(text),
-    };
+        this.state = {
+            editorState
+        }
+    }
 
     onChange = (editorState) => {
         this.setState({
@@ -87,6 +92,7 @@ class ProjectDetails extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <div onClick={this.focus}>
@@ -138,6 +144,7 @@ function mapStateToProps(state) {
     let { editor } = state;
     return {
         project: editor,
+        description: editor.description
     }
 }
 
