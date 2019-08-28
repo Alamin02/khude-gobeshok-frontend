@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Header, Grid, Select, Button, Transition } from "semantic-ui-react";
+import { Container, Form, Header, Grid, Select, Button, Transition, Label } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
 
@@ -30,7 +30,8 @@ class ProjectEditor extends Component {
             currentStep: 1,
             nextDisable: false,
             prevDisable: true,
-            btnPress: ""
+            btnPress: "",
+            titleEmptyWarning: false
         }
     }
 
@@ -73,16 +74,22 @@ class ProjectEditor extends Component {
             currentStep: nextStep,
             nextDisable: nextDisable,
             prevDisable: prevDisable,
-        })
-        console.log(this.state);
+        });
     }
 
     handleHide = (button) => {
+        if (button === "next" && this.state.currentStep === 1) {
+            if (this.props.title === "") {
+                this.setState({
+                    titleEmptyWarning: true,
+                });
+                return 0;
+            }
+        }
         this.setState({
             visibility: [false, false, false],
             btnPress: button
         });
-        console.log("Clicked");
     }
 
     render() {
@@ -99,6 +106,7 @@ class ProjectEditor extends Component {
                     <Grid centered columns={2}>
                         <Grid.Column >
                             <EditorSteps currentStep={this.state.currentStep} />
+
                         </Grid.Column>
                     </Grid>
                 </Container>
@@ -108,6 +116,7 @@ class ProjectEditor extends Component {
                             <Form.Field>
                                 <label>Project Title</label>
                                 <input autoComplete="off" placeholder="Enter your awesome project title" name="title" value={this.props.title} onChange={e => this.props.titleChange(e.target.value)}></input>
+                                {this.state.titleEmptyWarning && <Label basic color='red' pointing> Please enter a Title </Label>}
                             </Form.Field>
 
                             <Grid columns={2}>

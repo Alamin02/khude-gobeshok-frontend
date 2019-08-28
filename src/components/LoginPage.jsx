@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Message, Segment, } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { userActions } from '../_actions';
@@ -68,7 +68,7 @@ class LoginPage extends Component {
                   onChange={this.handleChange}
                 />
                 {submitted && !username &&
-                  <p className={styles.formValidationError}>Username is important..</p>
+                  <Label basic color='red' pointing> Please enter a Username</Label>
                 }
                 <Form.Input
                   fluid
@@ -80,7 +80,7 @@ class LoginPage extends Component {
                   name="password" value={password} onChange={this.handleChange}
                 />
                 {submitted && !password &&
-                  <p className={styles.formValidationError}>Password is important..</p>
+                  <Label basic color='red' pointing> Please enter a password </Label>
                 }
 
                 <Button color='blue' fluid size='large'>

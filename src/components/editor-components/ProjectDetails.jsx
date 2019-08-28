@@ -67,7 +67,7 @@ class ProjectDetails extends Component {
     constructor(props) {
         super(props);
         const { description } = this.props.project;
-        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
+        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || createEditorStateWithText(text);
 
         this.state = {
             editorState

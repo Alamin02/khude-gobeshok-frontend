@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Label } from 'semantic-ui-react'
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom"
@@ -80,7 +80,7 @@ class SignupPage extends React.Component {
                 value={username}
                 onChange={this.handleChange}
               />
-              {!username && submitted && <p className={styles.formValidationError}>Username is important..</p>}
+              {!username && submitted && <Label basic color='red' pointing> Please enter a Username </Label>}
 
               <Form.Input
                 fluid
@@ -91,7 +91,7 @@ class SignupPage extends React.Component {
                 value={email}
                 onChange={this.handleChange}
               />
-              {!email && submitted && <p className={styles.formValidationError}>Email is important..</p>}
+              {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
               <Form.Input
                 fluid
                 icon='lock'
@@ -101,7 +101,7 @@ class SignupPage extends React.Component {
                 name="password1"
                 value={password1} onChange={this.handleChange}
               />
-              {!password1 && submitted && <p className={styles.formValidationError}>Password is important..</p>}
+              {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
               <Form.Input
                 fluid
                 icon='lock'
@@ -111,7 +111,7 @@ class SignupPage extends React.Component {
                 name="password2"
                 value={password2} onChange={this.handleChange}
               />
-              {password1 && (password1 !== password2) && submitted && <p className={styles.formValidationError}>Passwords did not match...</p>}
+              {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
 
               <Button color='blue' fluid size='large'>
                 Signup
