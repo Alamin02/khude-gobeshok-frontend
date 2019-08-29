@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Header, Grid, Select, Button, Transition, Label } from "semantic-ui-react";
+import { Container, Form, Header, Grid, Select, Button, Transition, Label, Popup } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
 
@@ -114,6 +114,7 @@ class ProjectEditor extends Component {
                     <Transition unmountOnHide visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>
                         <Form>
                             <Form.Field>
+
                                 <label>Project Title</label>
                                 <input autoComplete="off" placeholder="Enter your awesome project title" name="title" value={this.props.title} onChange={e => this.props.titleChange(e.target.value)}></input>
                                 {this.state.titleEmptyWarning && <Label basic color='red' pointing> Please enter a Title </Label>}
@@ -159,6 +160,21 @@ class ProjectEditor extends Component {
                     <Transition unmountOnHide visible={detailsVisible} animation="scale" duration={500} onHide={this.handleNext}>
                         <Form>
                             <Form.Field>
+                                <Popup trigger={<Button circular icon='question circle outline' floated="right" />} flowing hoverable position="bottom right" >
+                                    <Header as="h3">Suggested Sections</Header>
+                                    <ul>
+                                        <li><b>Introduction:</b> <br /> Give an overall introduction and objectives of your project.</li>
+                                        <li><b>Raw material list:</b> <br /> Mention the parts used in this project</li>
+                                        <li><b>Machine or Tools used in this project:</b> <br /> Mention the machine and tools list used in this project</li>
+                                        <li><b>Design and Drawing:</b> <br /> Provide image of CAD design / Circuit design</li>
+                                        <li><b>Working method:</b> <br /> Mention working methodology of your project
+                                        <br /> Share video link of your project if needed
+                                        <br /> Upload Pictures if required
+                                        </li>
+                                        <li><b>Application:</b> <br /> In which way your project will impact in real life</li>
+                                    </ul>
+                                </Popup>
+
                                 <label>Project Details</label>
                                 <ProjectDetails />
                             </Form.Field>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { editorActions, projectActions } from "../../_actions";
+import { editorActions } from "../../_actions";
 import './ProjectDetails.css'
 
 import { convertToRaw, convertFromRaw, EditorState } from 'draft-js'
@@ -129,12 +129,7 @@ class ProjectDetails extends Component {
                 </div>
                 <AddImage editorState={this.state.editorState} onChange={this.onChange} modifier={imagePlugin.addImage} />
                 <AddVideo editorState={this.state.editorState} onChange={this.onChange} modifier={videoPlugin.addVideo} />
-                <div style={{
-                    textAlign: "center",
-                    margin: "20px",
-                }}>
-                    <Button content='Submit' secondary onClick={this.handleSubmit} />
-                </div>
+
             </div>
         );
     }
@@ -151,7 +146,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         descriptionChange: (editable) => dispatch(editorActions.editor_description_change(editable)),
-        createProject: (project) => dispatch(projectActions.create_project(project)),
+
     }
 };
 
