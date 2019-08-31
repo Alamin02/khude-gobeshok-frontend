@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { EditorState, convertFromRaw } from 'draft-js';
 
-import { Container, Button } from 'semantic-ui-react'
+import { Container, Button, Header, Image, Grid } from 'semantic-ui-react'
 
 import { projectActions } from "../../_actions";
 
@@ -40,6 +40,17 @@ class ProjectViewer extends Component {
         return (
             <div >
                 <Container text >
+                    <Grid style={{ marginBottom: "20px" }}>
+                        <Grid.Row>
+                            <Grid.Column width={4}>
+                                <Image src={this.props.project.thumbnail} />
+                            </Grid.Column>
+                            <Grid.Column width={12}>
+                                <Header as="h1" content={this.props.project.title} />
+                                <p>Started: {this.props.project.startDate.toLocaleDateString("en-US")} || Finished: {this.props.project.endDate.toLocaleDateString("en-US")}</p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                     <Editor
                         editorState={editorState}
                         plugins={plugins}

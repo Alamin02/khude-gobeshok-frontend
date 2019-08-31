@@ -5,7 +5,7 @@ import { EditorState, convertFromRaw } from 'draft-js';
 
 import { projectActions } from '../_actions';
 
-import { Container } from 'semantic-ui-react'
+import { Container, Grid, Image, Header } from 'semantic-ui-react'
 
 import Editor from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -36,6 +36,17 @@ class ProjectViewer extends Component {
         return (
             <div style={{ minHeight: '100vh' }}>
                 <Container text style={{ marginTop: '5em' }}>
+                    <Grid style={{ marginBottom: "20px" }}>
+                        <Grid.Row>
+                            <Grid.Column width={4}>
+                                <Image src={this.props.project.thumbnail} />
+                            </Grid.Column>
+                            <Grid.Column width={12}>
+                                <Header as="h1" content={this.props.project.title} />
+                                <p>Started:  || Finished: </p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                     <Editor
                         editorState={editorState}
                         plugins={plugins}

@@ -36,33 +36,24 @@ const img = {
 
 
 export default function Previews(props) {
-    const [files, setFiles] = useState([]);
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
             props.imageChange(acceptedFiles[0]);
-            setFiles(acceptedFiles.map(file => Object.assign(file, {
-                preview: URL.createObjectURL(file)
-            })));
         }
     });
 
-    const thumbs = files.map(file => (
-        <div style={thumb} key={file.name}>
+    const thumbs = (
+        <div style={thumb} key={props.url}>
             <div style={thumbInner}>
                 <img
-                    src={file.preview}
+                    src={props.url}
                     style={img}
                     alt=""
                 />
             </div>
         </div>
-    ));
-
-    useEffect(() => () => {
-        // Make sure to revoke the data uris to avoid memory leaks
-        files.forEach(file => URL.revokeObjectURL(file.preview));
-    }, [files]);
+    );
 
     return (
         <section className="container" >

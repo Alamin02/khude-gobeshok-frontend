@@ -31,7 +31,8 @@ class ProjectEditor extends Component {
             nextDisable: false,
             prevDisable: true,
             btnPress: "",
-            titleEmptyWarning: false
+            titleEmptyWarning: false,
+            thumbnailEmptyWarning: false,
         }
     }
 
@@ -85,6 +86,18 @@ class ProjectEditor extends Component {
                 });
                 return 0;
             }
+            else if (!this.props.thumbnail) {
+                this.setState({
+                    thumbnailEmptyWarning: true,
+                });
+                return 0;
+            }
+            else {
+                this.setState({
+                    titleEmptyWarning: false,
+                    thumbnailEmptyWarning: false,
+                });
+            }
         }
         this.setState({
             visibility: [false, false, false],
@@ -117,7 +130,7 @@ class ProjectEditor extends Component {
 
                                 <label>Project Title</label>
                                 <input autoComplete="off" placeholder="Enter your awesome project title" name="title" value={this.props.title} onChange={e => this.props.titleChange(e.target.value)}></input>
-                                {this.state.titleEmptyWarning && <Label basic color='red' pointing> Please enter a Title </Label>}
+                                {this.state.titleEmptyWarning && <Label key="title" basic color='red' pointing> Please enter a Title </Label>}
                             </Form.Field>
 
                             <Grid columns={2}>
@@ -125,7 +138,8 @@ class ProjectEditor extends Component {
                                     <Grid.Column>
                                         <Form.Field>
                                             <label>Thumbnail</label>
-                                            <Previews key="1" imageChange={this.props.thumbnailChange} />
+                                            <Previews key="1" imageChange={this.props.thumbnailChange} url={this.props.thumbnail} />
+                                            {this.state.thumbnailEmptyWarning && <Label key="thumbnail" basic color='red' pointing> Please upload a thumbnail </Label>}
                                         </Form.Field>
                                     </Grid.Column>
                                     <Grid.Column>
@@ -205,6 +219,7 @@ function mapStateToProps(state) {
         title: editor.title,
         startDate: editor.startDate,
         endDate: editor.endDate,
+        thumbnail: editor.thumbnail,
     }
 };
 function mapDispatchToProps(dispatch) {
