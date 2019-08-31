@@ -7,20 +7,30 @@ import { projectActions } from '../_actions';
 
 import { Container, Grid, Image, Header } from 'semantic-ui-react'
 
-import Editor from 'draft-js-plugins-editor';
+import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
 import 'draft-js-image-plugin/lib/plugin.css';
 import createVideoPlugin from 'draft-js-video-plugin';
 import 'draft-js-video-plugin/lib/plugin.css';
+import createResizePlugin from 'draft-js-resizeable-plugin';
+import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import 'draft-js-alignment-plugin/lib/plugin.css';
 
+const resizePlugin = createResizePlugin();
+const alignmentPlugin = createAlignmentPlugin();
+const decorator = composeDecorators(
+    resizePlugin.decorator,
+    alignmentPlugin.decorator,
+);
 const imagePlugin = createImagePlugin({
+    decorator,
     theme: {
         image: "editor-image-content"
     }
 });
 const videoPlugin = createVideoPlugin({});
 
-const plugins = [imagePlugin, videoPlugin];
+const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];
 
 class ProjectViewer extends Component {
     constructor(props) {
@@ -43,7 +53,7 @@ class ProjectViewer extends Component {
                             </Grid.Column>
                             <Grid.Column width={12}>
                                 <Header as="h1" content={this.props.project.title} />
-                                <p>Started:  || Finished: </p>
+                                <p>Started: {this.props.project.start_date} || Finished: {this.props.project.start_date}</p>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

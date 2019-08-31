@@ -9,7 +9,7 @@ import HomePage from './components/HomePage';
 import ProjectsPage from './components/ProjectsPage';
 import ProjectEditor from "./components/ProjectEditor";
 import ProjectView from "./components/ProjectViewer";
-
+import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
 
 import "./App.css";
@@ -29,6 +29,7 @@ class App extends React.Component {
           <Route path="/projects" exact component={ProjectsPage} />
           <Route path="/new-project" component={ProjectEditor} />
           <Route path="/projects/:id/" component={ProjectView} />
+          <Route path="/profile" component={ProfilePage} />
           <Route path="/login" render={() => (
             this.props.loggedIn ? (
               <Redirect to="/" />

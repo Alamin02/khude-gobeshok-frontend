@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Container, Button, Popup, Header, Image } from "semantic-ui-react";
+import { Menu, Container, Button, Popup, Header, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -68,14 +68,15 @@ class Navbar extends React.Component {
                                 <Popup trigger={
                                     <Menu.Item icon='user' />
                                 } flowing hoverable position="bottom right">
-                                    <Image src='https://i.stack.imgur.com/X9JD4.png?s=328&g=1' size='small' circular />
-                                    <Header as='h4'>Irfan Khan</Header>
-                                    <p>
-                                        <b>2</b> projects, $10 a month
-                                        </p>
-                                    <Link to="/logout">
-                                        <Button>Logout</Button>
-                                    </Link>
+                                    <Segment placeholder>
+                                        <Link to="/profile">
+                                            <Image src='https://i.stack.imgur.com/X9JD4.png?s=328&g=1' size='small' circular />
+                                            <h4 style={{ textAlign: "center" }}>Irfan Khan</h4>
+                                        </Link>
+                                        <Link to="/logout">
+                                            <Button>Logout</Button>
+                                        </Link>
+                                    </Segment>
                                 </Popup>
                                 : <Link to="/signup">
                                     <Menu.Item

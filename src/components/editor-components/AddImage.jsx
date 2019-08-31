@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Popup, Form, Button, Tab } from "semantic-ui-react"
+import { Popup, Form, Button, Tab, Segment } from "semantic-ui-react"
 
 import ImageDnD from "../ImageDragnDrop";
 
@@ -46,7 +46,7 @@ export default class AddImage extends Component {
             {
                 menuItem: 'Upload', render: () =>
                     <Form>
-                        <ImageDnD key="2" imageChange={this.handleUpload} />
+                        <ImageDnD key="2" imageChange={this.handleUpload} url={this.state.imageUrl} />
                         <Button content="Add" primary onClick={this.handleSubmit} />
                     </Form>
             },
@@ -59,7 +59,10 @@ export default class AddImage extends Component {
                 }
                 on='click'
             >
-                <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+                <Segment placeholder>
+                    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+                </Segment>
+
 
             </Popup>
 
