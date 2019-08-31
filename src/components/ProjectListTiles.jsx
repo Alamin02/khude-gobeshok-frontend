@@ -9,7 +9,6 @@ const ProjectListTiles = ({ projects }) => {
             <Card.Content>
                 <Card.Header>{project.title}</Card.Header>
                 <Card.Meta>Author: {project.author}</Card.Meta>
-                <Card.Description>Created at: {project.created_at}</Card.Description>
             </Card.Content>
         </Card>
     );

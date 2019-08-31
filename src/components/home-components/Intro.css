@@ -1,5 +1,5 @@
 .particle-container {
-    height: 80vh;
+    min-height: 80vh;
     background-image: url("/img/khude gobeshok2.png");
     background-size: auto 80%;
     background-repeat: no-repeat;
