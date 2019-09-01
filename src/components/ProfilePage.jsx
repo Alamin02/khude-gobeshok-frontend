@@ -26,6 +26,7 @@ export default class ProfilePage extends Component {
                                 <Segment>
                                     <Header as="h3" dividing content="Your Badges" />
                                     <p>No badges yet</p>
+
                                 </Segment>
 
                                 <Segment>
