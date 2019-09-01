@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Container, Button, Popup, Header, Image, Segment } from "semantic-ui-react";
+import { Menu, Container, Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -36,14 +36,6 @@ class Navbar extends React.Component {
                         />
                     </Link>
 
-                    <Link to={"/projects"}>
-                        <Menu.Item
-                            name="Blog"
-                            active={activeItem === "Blog"}
-                            onClick={this.handleItemClick}
-                        />
-                    </Link>
-
                     <Menu.Menu position="right">
                         {
                             this.props.loggedIn ?
@@ -65,19 +57,16 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
 
-                                <Popup trigger={
-                                    <Menu.Item icon='user' />
-                                } flowing hoverable position="bottom right">
-                                    <Segment placeholder>
+                                <Dropdown item icon="user">
+                                    <Dropdown.Menu>
                                         <Link to="/profile">
-                                            <Image src='https://i.stack.imgur.com/X9JD4.png?s=328&g=1' size='small' circular />
-                                            <h4 style={{ textAlign: "center" }}>Irfan Khan</h4>
+                                            <Dropdown.Item text='Your Profile' />
                                         </Link>
                                         <Link to="/logout">
-                                            <Button>Logout</Button>
+                                            <Dropdown.Item text='Logout' />
                                         </Link>
-                                    </Segment>
-                                </Popup>
+                                    </Dropdown.Menu>
+                                </Dropdown>
                                 : <Link to="/signup">
                                     <Menu.Item
                                         name="Sign Up"
