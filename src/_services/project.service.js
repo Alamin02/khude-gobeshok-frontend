@@ -7,7 +7,6 @@ export const projectService = {
 }
 
 function create(project) {
-    const auth_header = authHeader();
     const requestOptions = {
         mode: 'cors',
         method: 'POST',
@@ -15,7 +14,6 @@ function create(project) {
         body: JSON.stringify(project),
     };
 
-    console.log(requestOptions.headers);
     return fetch(`http://localhost:8000/project/create/`, requestOptions)
         .then(handleResponse)
         .then(project => {

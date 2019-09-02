@@ -6,9 +6,8 @@ import { history } from '../_helpers';
 export const userActions = {
     login,
     logout,
-    register
+    register,
 };
-
 
 function login(username, password) {
     return dispatch => {
@@ -16,8 +15,9 @@ function login(username, password) {
 
         userService.login(username, password)
             .then(
-                user => {
-                    dispatch(success(user));
+                authToken => {
+                    dispatch(success({ username, authToken }));
+                    localStorage.setItem('username', JSON.stringify(username));
                     history.push('/');
                 },
                 error => {
@@ -43,10 +43,11 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => {
-                    dispatch(success());
+                authToken => {
+                    const username = user.username;
+                    dispatch(success({ authToken, username }));
+                    localStorage.setItem('username', JSON.stringify(username));
                     history.push('/login');
-                    dispatch({ type: userConstants.LOGIN_SUCCESS, user });
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

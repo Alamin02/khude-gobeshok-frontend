@@ -16,17 +16,17 @@ function login(username, password) {
 
     return fetch(`http://localhost:8000/rest-auth/login/`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+        .then(authToken => {
+            // store authToken details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('authToken', JSON.stringify(authToken));
 
-            return user;
+            return authToken;
         });
 }
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
 }
 
 function register(user) {
@@ -39,12 +39,26 @@ function register(user) {
 
     return fetch(`http://localhost:8000/rest-auth/registration/`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+        .then(authToken => {
+            // store authToken details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('authToken', JSON.stringify(authToken));
 
-            return user;
+            return authToken;
         });
+}
+
+// Gets "username" from API
+function getUser() {
+    const requestOptions = {
+        mode: 'cors',
+        headers: { ...authHeader() },
+    };
+
+    return fetch(`http://localhost:8000/users/get-user/`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            console.log("username")
+        })
 }
 
 function handleResponse(response) {
@@ -64,3 +78,4 @@ function handleResponse(response) {
         return data;
     });
 }
+

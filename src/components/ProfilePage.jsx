@@ -1,13 +1,53 @@
 import React, { Component } from 'react'
-import { Container, Grid, Card, Icon, Image, Menu, Segment, Header, Divider } from "semantic-ui-react";
+import { Container, Grid, Tab, Image, Menu, Segment, Header, Divider } from "semantic-ui-react";
+
+
 
 export default class ProfilePage extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+
     state = { activeItem: 'projects' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { activeItem } = this.state
+        const { activeItem } = this.state;
+        const panes = [
+            {
+                menuItem: 'Projects',
+                render: () => (<Tab.Pane attached></Tab.Pane>),
+            },
+            {
+                menuItem: 'Profile',
+                render: () => (
+                    <Tab.Pane attached>
+                        <Segment vertical>
+                            <Header as="h4">Name</Header>
+                            <p>Irfan Khan</p>
+                        </Segment>
+                        <Segment vertical>
+                            <Header as="h4">Email</Header>
+                            <p>irfan@khudegobeshok.com</p>
+                        </Segment>
+                        <Segment vertical>
+                            <Header as="h4">Contact No</Header>
+                            <p>+88 0176 420 420</p>
+                        </Segment>
+                        <Segment vertical>
+                            <Header as="h4">Education</Header>
+                            <p>irfan@khudegobeshok.com</p>
+                        </Segment>
+                    </Tab.Pane>
+                ),
+            },
+            {
+                menuItem: 'Teammates',
+                render: () => <Tab.Pane attached>Tab 3 Content</Tab.Pane>,
+            },
+        ]
         return (
             <div style={{ minHeight: '100vh' }}>
                 <Container t style={{ marginTop: '5em' }}>
@@ -38,28 +78,13 @@ export default class ProfilePage extends Component {
 
                             </Grid.Column>
                             <Grid.Column width={12}>
-                                <Menu pointing secondary>
-                                    <Menu.Item
-                                        name='projects'
-                                        active={activeItem === 'projects'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                    <Menu.Item
-                                        name='profile'
-                                        active={activeItem === 'profile'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                    <Menu.Item
-                                        name='teammates'
-                                        active={activeItem === 'teammates'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                </Menu>
+                                <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Container>
-            </div>
+            </div >
         )
     }
 }

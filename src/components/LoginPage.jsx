@@ -62,7 +62,7 @@ class LoginPage extends Component {
                   fluid
                   icon='user'
                   iconPosition='left'
-                  placeholder='E-mail address / username'
+                  placeholder='Username'
                   name="username"
                   value={username}
                   onChange={this.handleChange}

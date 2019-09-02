@@ -14,6 +14,8 @@ import Footer from "./components/Footer";
 
 import "./App.css";
 import { userActions, editorActions } from './_actions';
+import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Navbar />
+          <SemanticToastContainer />
           <Route path="/" exact component={HomePage} />
           <Route path="/projects" exact component={ProjectsPage} />
           <Route path="/new-project" component={ProjectEditor} />
