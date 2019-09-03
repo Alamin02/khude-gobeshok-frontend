@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Message, Segment, Label } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Label, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { userActions } from '../_actions';
@@ -23,7 +23,6 @@ class LoginPage extends Component {
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -57,31 +56,36 @@ class LoginPage extends Component {
             {error && <Message error header="Request Errors" content={error_list} />}
             <Form size='large' onSubmit={this.handleSubmit}>
 
-              <Segment raised>
-                <Form.Input
-                  fluid
-                  icon='user'
-                  iconPosition='left'
-                  placeholder='Username'
-                  name="username"
-                  value={username}
-                  onChange={this.handleChange}
-                />
-                {submitted && !username &&
-                  <Label basic color='red' pointing> Please enter a Username</Label>
-                }
-                <Form.Input
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  type='password'
+              <Segment raised textAlign="left">
+                <Form.Field fluid >
+                  <Input
+                    icon='user'
+                    iconPosition='left'
+                    placeholder='Username'
+                    name="username"
+                    value={username}
+                    onChange={this.handleChange}
+                    error={submitted && !username} />
 
-                  name="password" value={password} onChange={this.handleChange}
-                />
-                {submitted && !password &&
-                  <Label basic color='red' pointing> Please enter a password </Label>
-                }
+                  {submitted && !username &&
+                    <Label basic color='red' pointing> Please enter a Username</Label>
+                  }
+                </Form.Field>
+
+                <Form.Field>
+                  <Input
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Password'
+                    type='password'
+
+                    name="password" value={password} onChange={this.handleChange}
+                  />
+                  {submitted && !password &&
+                    <Label basic color='red' pointing> Please enter a password </Label>
+                  }
+                </Form.Field>
 
                 <Button color='blue' fluid size='large'>
                   Login

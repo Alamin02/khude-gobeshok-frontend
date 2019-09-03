@@ -7,15 +7,11 @@ import { connect } from "react-redux";
 class ProfilePage extends Component {
     constructor(props) {
         super(props);
-
+        const { profilename } = this.props.match.params;
     }
 
-    state = { activeItem: 'projects' }
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { activeItem } = this.state;
         const panes = [
             {
                 menuItem: 'Projects',

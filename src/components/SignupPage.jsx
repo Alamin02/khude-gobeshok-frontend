@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Message, Segment, Label } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Label, Input } from 'semantic-ui-react'
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom"
@@ -70,49 +70,56 @@ class SignupPage extends React.Component {
           {error && <Message error header="Request Errors" list={error_list} />}
           <Form size='large' onSubmit={this.handleSubmit}>
 
-            <Segment raised>
-              <Form.Input
-                fluid
-                icon='user'
-                iconPosition='left'
-                placeholder='Username'
-                name="username"
-                value={username}
-                onChange={this.handleChange}
-              />
-              {!username && submitted && <Label basic color='red' pointing> Please enter a Username </Label>}
+            <Segment raised textAlign="left">
+              <Form.Field>
+                <Input
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='Username'
+                  name="username"
+                  value={username}
+                  onChange={this.handleChange}
+                />
+                {!username && submitted && <Label basic color='red' pointing> Please enter a Username </Label>}
+              </Form.Field>
 
-              <Form.Input
-                fluid
-                icon='mail'
-                iconPosition='left'
-                placeholder='E-mail address'
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-              {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
-              <Form.Input
-                fluid
-                icon='lock'
-                iconPosition='left'
-                placeholder='Password'
-                type='password'
-                name="password1"
-                value={password1} onChange={this.handleChange}
-              />
-              {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
-              <Form.Input
-                fluid
-                icon='lock'
-                iconPosition='left'
-                placeholder='Confirm Password'
-                type='password'
-                name="password2"
-                value={password2} onChange={this.handleChange}
-              />
-              {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
-
+              <Form.Field>
+                <Input
+                  fluid
+                  icon='mail'
+                  iconPosition='left'
+                  placeholder='E-mail address'
+                  name="email"
+                  value={email}
+                  onChange={this.handleChange}
+                />
+                {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
+              </Form.Field>
+              <Form.Field>
+                <Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Password'
+                  type='password'
+                  name="password1"
+                  value={password1} onChange={this.handleChange}
+                />
+                {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
+              </Form.Field>
+              <Form.Field>
+                <Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Confirm Password'
+                  type='password'
+                  name="password2"
+                  value={password2} onChange={this.handleChange}
+                />
+                {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
+              </Form.Field>
               <Button color='blue' fluid size='large'>
                 Signup
               </Button>

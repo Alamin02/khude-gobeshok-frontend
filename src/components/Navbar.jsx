@@ -59,7 +59,7 @@ class Navbar extends React.Component {
 
                                 <Dropdown item icon="user">
                                     <Dropdown.Menu>
-                                        <Link to="/profile">
+                                        <Link to={"/profile/" + this.props.username}>
                                             <Dropdown.Item text='Your Profile' />
                                         </Link>
                                         <Link to="/logout">
@@ -84,8 +84,10 @@ class Navbar extends React.Component {
 
 function mapStateToProps(state) {
     const { loggedIn } = state.authentication;
+    const { username } = state.users;
     return {
-        loggedIn
+        loggedIn,
+        username,
     };
 }
 

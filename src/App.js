@@ -32,7 +32,7 @@ class App extends React.Component {
           <Route path="/projects" exact component={ProjectsPage} />
           <Route path="/new-project" component={ProjectEditor} />
           <Route path="/projects/:id/" component={ProjectView} />
-          <Route path="/profile" component={ProfilePage} />
+          <Route path="/profile/:profilename/" component={ProfilePage} />
           <Route path="/login" render={() => (
             this.props.loggedIn ? (
               <Redirect to="/" />
