@@ -4,7 +4,7 @@ export const projectService = {
     create,
     list,
     retrieve,
-}
+};
 
 function create(project) {
     const requestOptions = {

@@ -2,20 +2,31 @@ import React, { Component } from 'react'
 import { Container, Grid, Tab, Image, Menu, Segment, Header, Divider } from "semantic-ui-react";
 import { connect } from "react-redux";
 
+import { profileActions } from "../_actions";
 
+import ProjectListTiles from "./ProjectListTiles";
 
 class ProfilePage extends Component {
     constructor(props) {
         super(props);
         const { profilename } = this.props.match.params;
+
+        this.props.getProjects(profilename);
+
     }
 
 
     render() {
+        const { profilename } = this.props.match.params;
+
         const panes = [
             {
                 menuItem: 'Projects',
-                render: () => (<Tab.Pane attached></Tab.Pane>),
+                render: () => (
+                    <Tab.Pane attached>
+                        <ProjectListTiles projects={this.props.projectList} />
+                    </Tab.Pane>
+                ),
             },
             {
                 menuItem: 'Profile',
@@ -53,7 +64,7 @@ class ProfilePage extends Component {
                             <Grid.Column width={4}>
                                 <Segment textAlign="center">
                                     <Image src="https://i.dailymail.co.uk/i/pix/2017/04/20/13/3F6B966D00000578-4428630-image-m-80_1492690622006.jpg" size="small" circular centered />
-                                    <Header as="h3" content={this.props.username} subheader="Tell us about yourself in one line"></Header>
+                                    <Header as="h3" content={profilename} subheader="Tell us about yourself in one line"></Header>
                                     <Divider />
                                     <p>From: Bangladesh</p>
                                     <p>Member Since: Aug 2019</p>
@@ -87,15 +98,17 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.users)
-    let username = state.users.username
+    let { projectList } = state.profile;
+
     return {
-        username
+        projectList,
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {};
+    return {
+        getProjects: (profileName) => dispatch(profileActions.getProjects(profileName)),
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

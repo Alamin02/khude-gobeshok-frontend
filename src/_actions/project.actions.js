@@ -59,15 +59,11 @@ function get_project_list() {
                     dispatch(success(project_list));
                 },
                 error => {
-                    console.log("ERROR...")
+                    dispatch(failure());
                 });
     }
 
     function request(project_list) { return { type: projectConstants.PROJECT_LIST_REQUEST, project_list } }
     function success(project_list) { return { type: projectConstants.PROJECT_LIST_SUCCESS, project_list } }
     function failure(error) { return { type: projectConstants.PROJECT_LIST_FAILURE, error } }
-}
-
-function get_own_project_list() {
-
 }

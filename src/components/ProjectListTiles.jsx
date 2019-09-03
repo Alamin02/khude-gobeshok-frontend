@@ -14,7 +14,7 @@ const ProjectListTiles = ({ projects }) => {
     );
     return (
         <div style={{ paddingTop: "3em" }}>
-            <Card.Group centered >
+            <Card.Group itemsPerRow={4} >
                 {projectList}
             </Card.Group>
         </div>

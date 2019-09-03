@@ -6,6 +6,7 @@ import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 import { editor } from './editor.reducer';
 import { project } from './project.reducer';
+import { profile } from './profile.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     users,
     alert,
     editor,
-    project
+    project,
+    profile,
 });
 
 export default rootReducer;
