@@ -32,28 +32,44 @@ class ProfilePage extends Component {
                 menuItem: 'Profile',
                 render: () => (
                     <Tab.Pane attached>
-                        <Segment vertical>
-                            <Header as="h4">Name</Header>
-                            <p>Irfan Khan</p>
+                        <Header as="h4" dividing>Personal Details</Header>
+                        <Segment color="grey" >
+                            <Grid>
+                                <Grid.Row>
+                                    <Grid.Column width={8}>
+                                        <p><b>Name</b></p>
+                                        <p>Md. Irfan Khan</p>
+                                        <p><b>Email</b></p>
+                                        <p>irfan@khudegobeshok.com</p>
+                                        <p><b>Phone Number</b></p>
+                                        <p>+88 0176 420 420</p>
+                                    </Grid.Column>
+                                    <Grid.Column width={8}>
+                                        <p><b>Country</b></p>
+                                        <p>Bangladesh</p>
+                                        <p><b>Address</b></p>
+                                        <p>Mirpur-1, Block-C, Road-11, House-6, Dhaka 1216</p>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
                         </Segment>
-                        <Segment vertical>
-                            <Header as="h4">Email</Header>
-                            <p>irfan@khudegobeshok.com</p>
+                        <Header as="h4" dividing>Education</Header>
+                        <Segment color="grey" >
+                            <Header as="h4">Ahsanullah University of Engineering and Technology</Header>
+                            <p>BSc. Mechanical Engineering</p>
                         </Segment>
-                        <Segment vertical>
-                            <Header as="h4">Contact No</Header>
-                            <p>+88 0176 420 420</p>
-                        </Segment>
-                        <Segment vertical>
-                            <Header as="h4">Education</Header>
-                            <p>irfan@khudegobeshok.com</p>
+                        <Header as="h4" dividing>Job experience</Header>
+                        <Segment color="grey" >
+                            <Header as="h4">Walton DigiTech Industries Ltd.</Header>
+                            <p>Assistant Director, Computer RnD</p>
+                            <p>June 2017 - Continuing</p>
                         </Segment>
                     </Tab.Pane>
                 ),
             },
             {
                 menuItem: 'Teammates',
-                render: () => <Tab.Pane attached>Tab 3 Content</Tab.Pane>,
+                render: () => <Tab.Pane attached>Yet to come</Tab.Pane>,
             },
         ]
         return (

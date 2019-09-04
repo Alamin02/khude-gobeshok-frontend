@@ -3,7 +3,23 @@ import { profileService } from '../_services'
 
 export const profileActions = {
     getProjects,
+    getDetails,
 };
+
+function getDetails(username) {
+    return dispatch => {
+        profileService.profileDetails(username)
+            .then(
+                profileDetails => {
+                    dispatch(success(profileDetails));
+                }
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_DETAILS_REQUEST } }
+    function success(profileDetails) { return { type: profileConstants.PROFILE_DETAILS_SUCCESS, profileDetails } }
+    function failure(error) { return { type: profileConstants.PROFILE_DETAILS_FAILURE, error } }
+}
 
 function getProjects(username) {
     return dispatch => {
@@ -11,7 +27,6 @@ function getProjects(username) {
             .then(
                 projectList => {
                     dispatch(success(projectList));
-                    console.log(projectList);
                 },
                 error => {
                     dispatch(failure(error));

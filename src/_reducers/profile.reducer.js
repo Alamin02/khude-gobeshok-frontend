@@ -10,6 +10,10 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 projectList: action.projectList,
             });
+        case profileConstants.PROFILE_DETAILS_SUCCESS:
+            return Object.assign({}, state, {
+                profileDetails: action.profileDetails,
+            });
         default:
             return state;
     }

@@ -1,8 +1,21 @@
 import { authHeader } from '../_helpers';
 
 export const profileService = {
+    profileDetails,
     listProjects,
 };
+
+function profileDetails(username) {
+    const requestOptions = {
+        mode: 'cors',
+    };
+
+    let url = `http://localhost:8000/users/profile/` + username
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(profileDetails => { return profileDetails });
+}
 
 function listProjects(username) {
     const requestOptions = {
