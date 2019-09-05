@@ -14,6 +14,10 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 profileDetails: action.profileDetails,
             });
+        case profileConstants.PROFILE_DETAILS_UPDATE_SUCCESS:
+            return Object.assign({}, state, {
+                profileDetails: action.profileDetails,
+            });
         default:
             return state;
     }

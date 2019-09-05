@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Container, Grid, Tab, Image, Menu, Segment, Header, Divider } from "semantic-ui-react";
+import { Container, Grid, Tab, Image, Segment, Header, Divider, Button, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import { profileActions } from "../_actions";
 
 import ProjectListTiles from "./ProjectListTiles";
+import ProfileTab from "./profile-components/ProfileTab";
 
 class ProfilePage extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class ProfilePage extends Component {
         const { profilename } = this.props.match.params;
 
         this.props.getProjects(profilename);
+        this.props.getDetails(profilename);
 
     }
 
@@ -32,38 +34,7 @@ class ProfilePage extends Component {
                 menuItem: 'Profile',
                 render: () => (
                     <Tab.Pane attached>
-                        <Header as="h4" dividing>Personal Details</Header>
-                        <Segment color="grey" >
-                            <Grid>
-                                <Grid.Row>
-                                    <Grid.Column width={8}>
-                                        <p><b>Name</b></p>
-                                        <p>Md. Irfan Khan</p>
-                                        <p><b>Email</b></p>
-                                        <p>irfan@khudegobeshok.com</p>
-                                        <p><b>Phone Number</b></p>
-                                        <p>+88 0176 420 420</p>
-                                    </Grid.Column>
-                                    <Grid.Column width={8}>
-                                        <p><b>Country</b></p>
-                                        <p>Bangladesh</p>
-                                        <p><b>Address</b></p>
-                                        <p>Mirpur-1, Block-C, Road-11, House-6, Dhaka 1216</p>
-                                    </Grid.Column>
-                                </Grid.Row>
-                            </Grid>
-                        </Segment>
-                        <Header as="h4" dividing>Education</Header>
-                        <Segment color="grey" >
-                            <Header as="h4">Ahsanullah University of Engineering and Technology</Header>
-                            <p>BSc. Mechanical Engineering</p>
-                        </Segment>
-                        <Header as="h4" dividing>Job experience</Header>
-                        <Segment color="grey" >
-                            <Header as="h4">Walton DigiTech Industries Ltd.</Header>
-                            <p>Assistant Director, Computer RnD</p>
-                            <p>June 2017 - Continuing</p>
-                        </Segment>
+                        <ProfileTab profileDetails={this.props.profileDetails} />
                     </Tab.Pane>
                 ),
             },
@@ -74,7 +45,7 @@ class ProfilePage extends Component {
         ]
         return (
             <div style={{ minHeight: '100vh' }}>
-                <Container t style={{ marginTop: '5em' }}>
+                <Container style={{ marginTop: '5em' }}>
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={4}>
@@ -114,16 +85,18 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-    let { projectList } = state.profile;
+    let { projectList, profileDetails } = state.profile;
 
     return {
         projectList,
+        profileDetails,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         getProjects: (profileName) => dispatch(profileActions.getProjects(profileName)),
+        getDetails: (profileName) => dispatch(profileActions.getDetails(profileName)),
     };
 }
 

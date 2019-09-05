@@ -4,6 +4,7 @@ import { profileService } from '../_services'
 export const profileActions = {
     getProjects,
     getDetails,
+    updateDetails,
 };
 
 function getDetails(username) {
@@ -19,6 +20,23 @@ function getDetails(username) {
     function request() { return { type: profileConstants.PROFILE_DETAILS_REQUEST } }
     function success(profileDetails) { return { type: profileConstants.PROFILE_DETAILS_SUCCESS, profileDetails } }
     function failure(error) { return { type: profileConstants.PROFILE_DETAILS_FAILURE, error } }
+}
+
+function updateDetails(username, updatedProfileData) {
+    return dispatch => {
+        profileService.updateProfileDetails(username, updatedProfileData)
+            .then(
+                profileDetails => {
+                    dispatch(success(profileDetails));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+    function request(updatedProfileData) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_REQUEST, updatedProfileData } }
+    function success(profileDetails) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_SUCCESS, profileDetails } }
+    function failure(error) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_FAILURE, error } }
 }
 
 function getProjects(username) {

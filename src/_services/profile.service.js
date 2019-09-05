@@ -3,6 +3,7 @@ import { authHeader } from '../_helpers';
 export const profileService = {
     profileDetails,
     listProjects,
+    updateProfileDetails,
 };
 
 function profileDetails(username) {
@@ -10,11 +11,28 @@ function profileDetails(username) {
         mode: 'cors',
     };
 
-    let url = `http://localhost:8000/users/profile/` + username
+    let url = `http://localhost:8000/users/profile/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(profileDetails => { return profileDetails });
+}
+
+function updateProfileDetails(username, updatedProfileData) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedProfileData),
+    }
+
+    let url = `http://localhost:8000/users/profile/` + username;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(profileDetails => {
+            return profileDetails
+        })
 }
 
 function listProjects(username) {

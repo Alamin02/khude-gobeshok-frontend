@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 
 import "./App.css";
 import { userActions, editorActions } from './_actions';
-import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import { SemanticToastContainer } from 'react-semantic-toasts';
 import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 class App extends React.Component {
