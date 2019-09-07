@@ -4,6 +4,7 @@ export const profileService = {
     profileDetails,
     listProjects,
     updateProfileDetails,
+    getEducationList,
 };
 
 function profileDetails(username) {
@@ -35,11 +36,24 @@ function updateProfileDetails(username, updatedProfileData) {
         })
 }
 
+function getEducationList(username) {
+    const requestOptions = {
+        mode: 'cors',
+    };
+    let url = `http://localhost:8000/users/education/` + username;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(educationList => {
+            return educationList;
+        });
+}
+
 function listProjects(username) {
     const requestOptions = {
         mode: 'cors',
     };
-    let url = `http://localhost:8000/project/list/` + username
+    let url = `http://localhost:8000/project/list/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

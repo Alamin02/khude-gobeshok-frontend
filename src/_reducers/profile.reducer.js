@@ -1,7 +1,9 @@
 import { profileConstants } from "../_constants";
 
 const initialState = {
-    projectList: []
+    projectList: [],
+    profileDetails: {},
+    educationList: []
 }
 
 export function profile(state = initialState, action) {
@@ -17,6 +19,10 @@ export function profile(state = initialState, action) {
         case profileConstants.PROFILE_DETAILS_UPDATE_SUCCESS:
             return Object.assign({}, state, {
                 profileDetails: action.profileDetails,
+            });
+        case profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS:
+            return Object.assign({}, state, {
+                educationList: action.educationList,
             });
         default:
             return state;

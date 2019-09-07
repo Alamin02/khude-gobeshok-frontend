@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Segment, Header, Button, Icon, Grid, Transition, } from "semantic-ui-react";
 
 import ProfileDetailsEditor from "./ProfileDetailsEditor";
+import EducationList from "./EducationList";
+
 
 export default class ProfileTab extends Component {
     constructor(props) {
@@ -40,8 +42,6 @@ export default class ProfileTab extends Component {
                                 <Grid.Column width={8}>
                                     <p><b>Name</b></p>
                                     <p>{this.props.profileDetails.full_name || "Name unknown"}</p>
-                                    <p><b>Email</b></p>
-                                    <p>irfan@khudegobeshok.com</p>
                                     <p><b>Phone Number</b></p>
                                     <p>{this.props.profileDetails.phone_number || "Phone Number unknown"}</p>
                                 </Grid.Column>
@@ -69,8 +69,7 @@ export default class ProfileTab extends Component {
                     </Button>
                 </Segment>
                 <Segment color="grey" >
-                    <Header as="h4">Ahsanullah University of Engineering and Technology</Header>
-                    <p>BSc. Mechanical Engineering</p>
+                    <EducationList />
                 </Segment>
                 <Segment clearing vertical>
                     <Header as="h3" floated="left" >
