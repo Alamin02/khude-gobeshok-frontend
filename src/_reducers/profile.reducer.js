@@ -24,6 +24,10 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 educationList: action.educationList,
             });
+        case profileConstants.PROFILE_ADD_EDUCATION_SUCCESS:
+            return Object.assign({}, state, {
+                educationList: [...state.educationList, action.education],
+            });
         default:
             return state;
     }

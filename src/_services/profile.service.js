@@ -5,6 +5,7 @@ export const profileService = {
     listProjects,
     updateProfileDetails,
     getEducationList,
+    addEducation,
 };
 
 function profileDetails(username) {
@@ -46,6 +47,21 @@ function getEducationList(username) {
         .then(handleResponse)
         .then(educationList => {
             return educationList;
+        });
+}
+
+function addEducation(education) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(education),
+    };
+
+    return fetch(`http://localhost:8000/users/add-education/`, requestOptions)
+        .then(handleResponse)
+        .then(education => {
+            return education;
         });
 }
 

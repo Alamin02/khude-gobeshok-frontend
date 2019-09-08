@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
-import { Segment, Header, Button, Icon, Grid, Transition, Form, Checkbox } from "semantic-ui-react";
+import { Segment, Header, Button, Icon, Grid, Transition, } from "semantic-ui-react";
 
 import ProfileDetailsEditor from "./ProfileDetailsEditor";
 import EducationList from "./EducationList";
-
-const monthOptions = [
-    { key: 'a', text: 'January', value: 0 },
-    { key: 'b', text: 'February', value: 1 },
-    { key: 'c', text: 'March', value: 2 },
-    { key: 'd', text: 'April', value: 3 },
-    { key: 'e', text: 'May', value: 4 },
-    { key: 'f', text: 'June', value: 5 },
-    { key: 'g', text: 'July', value: 6 },
-    { key: 'h', text: 'August', value: 7 },
-    { key: 'i', text: 'September', value: 8 },
-    { key: 'j', text: 'October', value: 9 },
-    { key: 'k', text: 'November', value: 10 },
-    { key: 'l', text: 'December', value: 11 },
-]
+import AddEducation from "./AddEducation";
 
 export default class ProfileTab extends Component {
     constructor(props) {
@@ -55,7 +41,6 @@ export default class ProfileTab extends Component {
                     </Button>
                 </Segment>
 
-
                 <Segment color="grey" >
                     <Transition visible={this.state.profileDetailsVisible}>
                         <Grid>
@@ -89,37 +74,7 @@ export default class ProfileTab extends Component {
                 </Segment>
                 <Segment color="grey" >
                     <EducationList />
-
-                    <Transition visible={this.state.addEducationVisible}>
-                        <Segment>
-                            <Header as="h4">Add Education</Header>
-                            <Form>
-                                <Form.Field>
-                                    <label>Institute</label>
-                                    <input placeholder='Institution Name' />
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Subject/Group/Major</label>
-                                    <input placeholder='Subject/Group Name' />
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Degree</label>
-                                    <input placeholder='Degree Name' />
-                                </Form.Field>
-                                <Form.Group inline>
-                                    <label>Start Date</label>
-                                    <Form.Select options={monthOptions} placeholder='Month' />
-                                    <Form.Select options={monthOptions} placeholder='Month' />
-
-                                </Form.Group>
-                                <Form.Field>
-                                    <Checkbox label='Currently Studying' />
-                                </Form.Field>
-                                <Button type='submit'>Submit</Button>
-                            </Form>
-                        </Segment>
-
-                    </Transition>
+                    <AddEducation visible={this.state.addEducationVisible} />
                 </Segment>
 
                 <Segment clearing vertical>
