@@ -27,9 +27,7 @@ class EducationList extends Component {
                     <p>{start_month} {start_year} - {education.currently_enrolled ? "Continuing" : end_date_string}</p>
                 </Segment>
             )
-        }
-
-        );
+        });
 
         return (
             <div>

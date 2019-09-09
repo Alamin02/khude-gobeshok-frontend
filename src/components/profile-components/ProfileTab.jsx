@@ -5,6 +5,7 @@ import ProfileDetailsEditor from "./ProfileDetailsEditor";
 import EducationList from "./EducationList";
 import AddEducation from "./AddEducation";
 import JobList from "./JobList";
+import AddJob from "./AddJob";
 
 export default class ProfileTab extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class ProfileTab extends Component {
             profileDetailsVisible: true,
             profileDetailsEditVisible: false,
             addEducationVisible: false,
+            addJobVisible: false,
         }
     }
 
@@ -27,6 +29,12 @@ export default class ProfileTab extends Component {
     toggleEducationAdd = () => {
         this.setState({
             addEducationVisible: !this.state.addEducationVisible,
+        })
+    }
+
+    toggleJobAdd = () => {
+        this.setState({
+            addJobVisible: !this.state.addJobVisible,
         })
     }
 
@@ -81,13 +89,14 @@ export default class ProfileTab extends Component {
                 <Segment clearing vertical>
                     <Header as="h3" floated="left" >
                         Job Experience
-                        </Header>
-                    <Button icon circular floated="right" size="tiny">
+                    </Header>
+                    <Button icon circular floated="right" size="tiny" onClick={this.toggleJobAdd}>
                         <Icon name='edit outline' />
                     </Button>
                 </Segment>
                 <Segment color="grey" >
                     <JobList />
+                    <AddJob visible={this.state.addJobVisible} />
                 </Segment>
             </div>
         )

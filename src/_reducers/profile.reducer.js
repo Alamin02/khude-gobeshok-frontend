@@ -33,6 +33,11 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 jobList: action.jobList,
             });
+        case profileConstants.PROFILE_ADD_JOB_SUCCESS:
+            return Object.assign({}, state, {
+                jobList: [...state.jobList, action.job],
+            });
+
         default:
             return state;
     }

@@ -7,6 +7,7 @@ export const profileService = {
     getEducationList,
     addEducation,
     getJobList,
+    addJob,
 };
 
 function profileDetails(username) {
@@ -77,6 +78,21 @@ function getJobList(username) {
         .then(handleResponse)
         .then(jobList => {
             return jobList;
+        });
+}
+
+function addJob(job) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(job),
+    };
+
+    return fetch(`http://localhost:8000/users/add-job/`, requestOptions)
+        .then(handleResponse)
+        .then(job => {
+            return job;
         });
 }
 
