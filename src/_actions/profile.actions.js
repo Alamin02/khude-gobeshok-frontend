@@ -12,6 +12,7 @@ export const profileActions = {
     deleteEducation,
     getJobList,
     addJob,
+    deleteJob,
 };
 
 function getDetails(username) {
@@ -107,7 +108,6 @@ function deleteEducation(id) {
     function request() { return { type: profileConstants.PROFILE_DELETE_EDUCATION_REQUEST, } }
     function success(id) { return { type: profileConstants.PROFILE_DELETE_EDUCATION_SUCCESS, id } }
     function failure(error) { return { type: profileConstants.PROFILE_DELETE_EDUCATION_FAILURE, error } }
-
 }
 
 
@@ -149,6 +149,24 @@ function addJob(job) {
     function failure(error) { return { type: profileConstants.PROFILE_ADD_JOB_FAILURE, error } }
 }
 
+function deleteJob(id) {
+    return dispatch => {
+        profileService.deleteJob(id)
+            .then(
+                deleted => {
+                    dispatch(success(id));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_DELETE_JOB_REQUEST, } }
+    function success(id) { return { type: profileConstants.PROFILE_DELETE_JOB_SUCCESS, id } }
+    function failure(error) { return { type: profileConstants.PROFILE_DELETE_JOB_FAILURE, error } }
+
+}
 
 function getProjects(username) {
     return dispatch => {

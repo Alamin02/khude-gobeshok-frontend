@@ -45,7 +45,12 @@ export function profile(state = initialState, action) {
                     return education.id !== action.id;
                 }),
             });
-
+        case profileConstants.PROFILE_DELETE_JOB_SUCCESS:
+            return Object.assign({}, state, {
+                jobList: state.jobList.filter((job) => {
+                    return job.id !== action.id;
+                }),
+            });
         default:
             return state;
     }

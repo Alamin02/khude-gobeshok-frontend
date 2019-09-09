@@ -9,6 +9,7 @@ export const profileService = {
     deleteEducation,
     getJobList,
     addJob,
+    deleteJob,
 };
 
 function profileDetails(username) {
@@ -112,6 +113,23 @@ function addJob(job) {
         .then(job => {
             return job;
         });
+}
+
+function deleteJob(id) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'DELETE',
+    }
+
+    let url = `http://localhost:8000/users/delete-job/` + id;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(
+            deleted => {
+                return deleted;
+            }
+        )
 }
 
 function listProjects(username) {
