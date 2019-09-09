@@ -22,13 +22,11 @@ class JobList extends Component {
 
 
             return (
-                <div>
-                    <Segment vertical key={key}>
-                        <Header as="h4">{job.company}</Header>
-                        <p>{job.position}</p>
-                        <p>{start_month} {start_year} - {job.currently_working ? "Continuing" : end_date_string}</p>
-                    </Segment>
-                </div>
+                <Segment vertical key={key}>
+                    <Header as="h4">{job.company}</Header>
+                    <p>{job.position}</p>
+                    <p>{start_month} {start_year} - {job.currently_working ? "Continuing" : end_date_string}</p>
+                </Segment>
             )
         });
 

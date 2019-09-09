@@ -2,7 +2,6 @@ import { toast } from 'react-semantic-toasts';
 
 import { profileConstants } from '../_constants'
 import { profileService } from '../_services'
-import moment from 'moment';
 
 export const profileActions = {
     getProjects,
@@ -10,6 +9,7 @@ export const profileActions = {
     updateDetails,
     getEducationList,
     addEducation,
+    deleteEducation,
     getJobList,
     addJob,
 };
@@ -90,6 +90,26 @@ function addEducation(education) {
     function success(education) { return { type: profileConstants.PROFILE_ADD_EDUCATION_SUCCESS, education } }
     function failure(error) { return { type: profileConstants.PROFILE_ADD_EDUCATION_FAILURE, error } }
 }
+
+function deleteEducation(id) {
+    return dispatch => {
+        profileService.deleteEducation(id)
+            .then(
+                deleted => {
+                    dispatch(success(id));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_DELETE_EDUCATION_REQUEST, } }
+    function success(id) { return { type: profileConstants.PROFILE_DELETE_EDUCATION_SUCCESS, id } }
+    function failure(error) { return { type: profileConstants.PROFILE_DELETE_EDUCATION_FAILURE, error } }
+
+}
+
 
 function getJobList(username) {
     return dispatch => {

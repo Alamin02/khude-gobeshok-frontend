@@ -6,6 +6,7 @@ export const profileService = {
     updateProfileDetails,
     getEducationList,
     addEducation,
+    deleteEducation,
     getJobList,
     addJob,
 };
@@ -65,6 +66,23 @@ function addEducation(education) {
         .then(education => {
             return education;
         });
+}
+
+function deleteEducation(id) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'DELETE',
+    }
+
+    let url = `http://localhost:8000/users/delete-education/` + id;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(
+            deleted => {
+                return deleted;
+            }
+        )
 }
 
 function getJobList(username) {

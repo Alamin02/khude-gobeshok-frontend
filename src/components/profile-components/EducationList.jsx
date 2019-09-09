@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { profileActions } from "../../_actions";
-import { Segment, Header } from "semantic-ui-react";
+import { Segment, Header, Button } from "semantic-ui-react";
 
 class EducationList extends Component {
+
+    handleDelete = (id) => {
+        this.props.deleteEducation(id);
+    }
+
     render() {
+
         const renderEducationList = this.props.educationList.map((education, key) => {
             const { start_date, end_date } = education;
             const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -23,6 +29,7 @@ class EducationList extends Component {
             return (
                 <Segment vertical key={key}>
                     <Header as="h4">{education.institute}</Header>
+                    <Button floated="right" onClick={() => { this.handleDelete(education.id) }}>Delete</Button>
                     <p>{education.degree} - {education.major}</p>
                     <p>{start_month} {start_year} - {education.currently_enrolled ? "Continuing" : end_date_string}</p>
                 </Segment>
@@ -46,7 +53,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        deleteEducation: (id) => { dispatch(profileActions.deleteEducation(id)) }
     }
 }
 
