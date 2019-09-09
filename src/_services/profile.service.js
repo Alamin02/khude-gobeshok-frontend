@@ -6,6 +6,7 @@ export const profileService = {
     updateProfileDetails,
     getEducationList,
     addEducation,
+    getJobList,
 };
 
 function profileDetails(username) {
@@ -62,6 +63,20 @@ function addEducation(education) {
         .then(handleResponse)
         .then(education => {
             return education;
+        });
+}
+
+function getJobList(username) {
+    const requestOptions = {
+        mode: 'cors',
+    };
+
+    let url = `http://localhost:8000/users/job/` + username;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(jobList => {
+            return jobList;
         });
 }
 

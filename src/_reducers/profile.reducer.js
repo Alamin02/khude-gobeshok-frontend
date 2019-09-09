@@ -3,7 +3,8 @@ import { profileConstants } from "../_constants";
 const initialState = {
     projectList: [],
     profileDetails: {},
-    educationList: []
+    educationList: [],
+    jobList: [],
 }
 
 export function profile(state = initialState, action) {
@@ -27,6 +28,10 @@ export function profile(state = initialState, action) {
         case profileConstants.PROFILE_ADD_EDUCATION_SUCCESS:
             return Object.assign({}, state, {
                 educationList: [...state.educationList, action.education],
+            });
+        case profileConstants.PROFILE_GET_JOB_LIST_SUCCESS:
+            return Object.assign({}, state, {
+                jobList: action.jobList,
             });
         default:
             return state;

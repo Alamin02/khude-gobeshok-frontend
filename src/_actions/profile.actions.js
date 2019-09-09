@@ -10,6 +10,7 @@ export const profileActions = {
     updateDetails,
     getEducationList,
     addEducation,
+    getJobList,
 };
 
 function getDetails(username) {
@@ -71,7 +72,6 @@ function getEducationList(username) {
 }
 
 function addEducation(education) {
-    console.log(education);
 
     return dispatch => {
         profileService.addEducation(education)
@@ -84,9 +84,29 @@ function addEducation(education) {
                 }
             );
     }
+
     function request() { return { type: profileConstants.PROFILE_ADD_EDUCATION_REQUEST, } }
     function success(education) { return { type: profileConstants.PROFILE_ADD_EDUCATION_SUCCESS, education } }
     function failure(error) { return { type: profileConstants.PROFILE_ADD_EDUCATION_FAILURE, error } }
+}
+
+function getJobList(username) {
+    return dispatch => {
+        profileService.getJobList(username)
+            .then(
+                jobList => {
+                    dispatch(success(jobList));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_GET_JOB_LIST_REQUEST, } }
+    function success(jobList) { return { type: profileConstants.PROFILE_GET_JOB_LIST_SUCCESS, jobList } }
+    function failure(error) { return { type: profileConstants.PROFILE_GET_JOB_LIST_FAILURE, error } }
+
 }
 
 function getProjects(username) {

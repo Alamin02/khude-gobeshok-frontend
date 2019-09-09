@@ -15,6 +15,7 @@ class ProfilePage extends Component {
         this.props.getProjects(profilename);
         this.props.getDetails(profilename);
         this.props.getEducationList(profilename);
+        this.props.getJobList(profilename);
 
     }
 
@@ -98,7 +99,8 @@ function mapDispatchToProps(dispatch) {
     return {
         getProjects: (profileName) => dispatch(profileActions.getProjects(profileName)),
         getDetails: (profileName) => dispatch(profileActions.getDetails(profileName)),
-        getEducationList: (profileName) => { dispatch(profileActions.getEducationList(profileName)) }
+        getEducationList: (profileName) => { dispatch(profileActions.getEducationList(profileName)) },
+        getJobList: (profileName) => { dispatch(profileActions.getJobList(profileName)) },
     };
 }
 

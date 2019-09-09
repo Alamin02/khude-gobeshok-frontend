@@ -4,6 +4,7 @@ import { Segment, Header, Button, Icon, Grid, Transition, } from "semantic-ui-re
 import ProfileDetailsEditor from "./ProfileDetailsEditor";
 import EducationList from "./EducationList";
 import AddEducation from "./AddEducation";
+import JobList from "./JobList";
 
 export default class ProfileTab extends Component {
     constructor(props) {
@@ -86,9 +87,7 @@ export default class ProfileTab extends Component {
                     </Button>
                 </Segment>
                 <Segment color="grey" >
-                    <Header as="h4">Walton DigiTech Industries Ltd.</Header>
-                    <p>Assistant Director, Computer RnD</p>
-                    <p>June 2017 - Continuing</p>
+                    <JobList />
                 </Segment>
             </div>
         )

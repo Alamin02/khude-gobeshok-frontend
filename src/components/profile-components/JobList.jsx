@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { profileActions } from "../../_actions";
 import { Segment, Header } from "semantic-ui-react";
 
-class EducationList extends Component {
+class JobList extends Component {
+
     render() {
-        const renderEducationList = this.props.educationList.map((education, key) => {
-            const { start_date, end_date } = education;
+        const renderJobList = this.props.jobList.map((job, key) => {
+            const { start_date, end_date } = job;
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];
@@ -20,29 +20,30 @@ class EducationList extends Component {
 
             let end_date_string = end_month + " " + end_year;
 
-            return (
-                <Segment vertical key={key}>
-                    <Header as="h4">{education.institute}</Header>
-                    <p>{education.degree} - {education.major}</p>
-                    <p>{start_month} {start_year} - {education.currently_enrolled ? "Continuing" : end_date_string}</p>
-                </Segment>
-            )
-        }
 
-        );
+            return (
+                <div>
+                    <Segment vertical key={key}>
+                        <Header as="h4">{job.company}</Header>
+                        <p>{job.position}</p>
+                        <p>{start_month} {start_year} - {job.currently_enrolled ? "Continuing" : end_date_string}</p>
+                    </Segment>
+                </div>
+            )
+        });
 
         return (
             <div>
-                {renderEducationList}
+                {renderJobList}
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    const { educationList } = state.profile;
+    const { jobList } = state.profile;
     return {
-        educationList,
+        jobList,
     }
 }
 
@@ -52,4 +53,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EducationList);
+export default connect(mapStateToProps, mapDispatchToProps)(JobList);
