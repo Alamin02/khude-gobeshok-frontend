@@ -23,6 +23,14 @@ export default function Description() {
                             <Image src="/img/project-library.png" />
                         </Grid.Column>
                     </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={6}>
+                            <Image src="/img/challenges.png" />
+                        </Grid.Column>
+                        <Grid.Column width={10} verticalAlign="middle">
+                            <Header as="h2">Present your skills through challenges. Give a ride on quest section, sharpen your skill and make yourself more sagacious everyday than previous.</Header>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
 
             </Container>

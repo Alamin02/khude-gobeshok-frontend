@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image } from "semantic-ui-react";
+import { Container, Image, Header } from "semantic-ui-react";
 import Particles from 'react-particles-js';
 
 import styles from "./Intro.module.css";
@@ -122,6 +122,7 @@ export default function Intro() {
                     }
                 } />
                 <Image src="/img/khude gobeshok2.png" size="large" centered />
+                <Header as="h1" textAlign="center">OpenSource Platform for Tiny Curious Minds</Header>
             </Container>
         </div>
     )
