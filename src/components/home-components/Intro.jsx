@@ -1,14 +1,15 @@
 import React from 'react';
-import { Container } from "semantic-ui-react";
+import { Container, Image } from "semantic-ui-react";
 import Particles from 'react-particles-js';
 
-import "./Intro.css";
+import styles from "./Intro.module.css";
 
 export default function Intro() {
     return (
-        <div>
+        <div className={styles.introContainer}>
             <Container fluid>
-                <Particles className="particle-container" params={
+
+                <Particles className={styles.particleContainer} params={
                     {
                         "particles": {
                             "number": {
@@ -120,12 +121,7 @@ export default function Intro() {
                         "retina_detect": true
                     }
                 } />
-                {/* <Image src='/img/khude gobeshok2.png' style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "35%",
-                    width: "30%",
-                }}></Image> */}
+                <Image src="/img/khude gobeshok2.png" size="large" centered />
             </Container>
         </div>
     )

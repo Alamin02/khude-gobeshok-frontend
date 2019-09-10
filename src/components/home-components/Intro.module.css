@@ -1,0 +1,9 @@
+.introContainer {
+    padding-bottom: 5em;
+}
+
+.particleContainer {
+    position: absolute;
+    width: 100%;
+    height: 40em;
+}
