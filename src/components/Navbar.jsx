@@ -17,7 +17,7 @@ class Navbar extends React.Component {
         const { activeItem } = this.state;
 
         return (
-            <Menu pointing fixed={"top"} >
+            <Menu pointing fixed="top" >
                 <Container>
                     <Link to={"/"}>
                         <Menu.Item

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Header } from "semantic-ui-react";
+import { Container, Image, Header, Button } from "semantic-ui-react";
 import Particles from 'react-particles-js';
 
 import styles from "./Intro.module.css";
@@ -7,7 +7,7 @@ import styles from "./Intro.module.css";
 export default function Intro() {
     return (
         <div className={styles.introContainer}>
-            <Container fluid>
+            <Container fluid textAlign="center">
 
                 <Particles className={styles.particleContainer} params={
                     {
@@ -122,7 +122,8 @@ export default function Intro() {
                     }
                 } />
                 <Image src="/img/khude gobeshok2.png" size="large" centered />
-                <Header as="h1" textAlign="center">OpenSource Platform for Tiny Curious Minds</Header>
+                <Header as="h1" textAlign="center" className={styles.introHeader}>OpenSource Platform for Tiny Curious Minds</Header>
+                <Button size="big" color="blue">Join Us</Button>
             </Container>
         </div>
     )
