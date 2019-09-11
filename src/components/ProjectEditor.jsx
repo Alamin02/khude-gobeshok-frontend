@@ -112,16 +112,12 @@ class ProjectEditor extends Component {
 
         return (
             <div >
-                <Container >
+                <Container text>
                     <Header as='h1' textAlign="center" style={{
                         marginTop: "10vh"
                     }}>Project Editor</Header>
-                    <Grid centered columns={2}>
-                        <Grid.Column >
-                            <EditorSteps currentStep={this.state.currentStep} />
 
-                        </Grid.Column>
-                    </Grid>
+                    <EditorSteps currentStep={this.state.currentStep} />
                 </Container>
                 <Container text style={{ paddingTop: "50px", paddingBottom: "50px" }}>
                     <Transition unmountOnHide visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>

@@ -48,7 +48,7 @@ class ProfilePage extends Component {
         return (
             <div style={{ minHeight: '100vh' }}>
                 <Container style={{ marginTop: '5em' }}>
-                    <Grid>
+                    <Grid stackable>
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Segment textAlign="center">

@@ -3,7 +3,7 @@ import { Step, Icon } from 'semantic-ui-react'
 
 export default function EditorSteps({ currentStep }) {
     return (
-        <Step.Group stackable='tablet'>
+        <Step.Group widths={3} unstackable>
             <Step active={currentStep === 1}>
                 <Icon name='info circle' />
                 <Step.Content>
