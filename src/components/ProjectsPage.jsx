@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Search, Header, Container } from "semantic-ui-react";
+import { Search, Header, Container, Icon } from "semantic-ui-react";
 
 import { projectActions } from '../_actions';
 
@@ -23,8 +23,10 @@ class ProjectsPage extends Component {
                 minHeight: "80vh",
                 textAlign: "center"
             }}>
-                <Container className={styles.pageHeaderContainer}>
-                    <Header as='h1' className={styles.pageHeader}>Project Library</Header>
+                <Container className={styles.pageHeaderContainer} >
+                    <Header as='h1' className={styles.pageHeader} icon>
+                        <Header.Content>Project Library</Header.Content>
+                    </Header>
 
                     <Search placeholder={"Search"} className={styles.projectSearch} />
                 </Container>

@@ -52,7 +52,7 @@ class ProfilePage extends Component {
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Segment textAlign="center">
-                                    <Image src="https://i.dailymail.co.uk/i/pix/2017/04/20/13/3F6B966D00000578-4428630-image-m-80_1492690622006.jpg" size="small" circular centered />
+                                    <Image src="/Logo.png" size="small" circular centered />
                                     <Header as="h3" content={profilename} subheader="Tell us about yourself in one line"></Header>
                                     <Divider />
                                     <p>From: Bangladesh</p>

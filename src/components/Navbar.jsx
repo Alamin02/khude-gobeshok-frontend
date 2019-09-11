@@ -7,11 +7,12 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: "home"
+            activeItem: ""
         };
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    handleIconClick = (name) => this.setState({ activeItem: name })
 
     render() {
         const { activeItem } = this.state;
@@ -23,8 +24,8 @@ class Navbar extends React.Component {
                         <Menu.Item
                             icon="home"
                             name=""
-                            active={activeItem === ""}
-                            onClick={this.handleItemClick}
+                            active={activeItem === "home"}
+                            onClick={() => this.handleIconClick("home")}
                         />
                     </Link>
 
@@ -57,13 +58,13 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
 
-                                <Dropdown item icon="user">
-                                    <Dropdown.Menu>
+                                <Dropdown item icon="user" >
+                                    <Dropdown.Menu active>
                                         <Link to={"/profile/" + this.props.username}>
-                                            <Dropdown.Item text='Your Profile' />
+                                            <Dropdown.Item text='Your Profile' onClick={() => this.handleIconClick("")} />
                                         </Link>
                                         <Link to="/logout">
-                                            <Dropdown.Item text='Logout' />
+                                            <Dropdown.Item text='Logout' onClick={() => this.handleIconClick("")} />
                                         </Link>
                                     </Dropdown.Menu>
                                 </Dropdown>

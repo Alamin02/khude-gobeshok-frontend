@@ -1,0 +1,9 @@
+.projectPageContainer {
+    background-color: #E1F5FE;
+    min-block-size: 80vh;
+}
+
+.projectTextContainer {
+    padding: 5em 1em;
+    background-color: white;
+}
