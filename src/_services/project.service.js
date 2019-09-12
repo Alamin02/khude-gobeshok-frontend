@@ -21,12 +21,21 @@ function create(project) {
         });
 }
 
-function list() {
+function list(pageNumber) {
     const requestOptions = {
         mode: 'cors',
     };
 
-    return fetch(`http://localhost:8000/project/list/`, requestOptions)
+    let queryString = "";
+    if (pageNumber) {
+        let offset = (12 * (pageNumber - 1));
+        let limit = "12";
+        console.log(offset, limit);
+
+        queryString = `?limit=` + limit.toString() + `&offset=` + offset;
+    }
+
+    return fetch(`http://localhost:8000/project/list/` + queryString, requestOptions)
         .then(handleResponse)
         .then(project_list => { return project_list });
 

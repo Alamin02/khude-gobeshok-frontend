@@ -32,6 +32,7 @@ const imagePlugin = createImagePlugin({
 });
 const videoPlugin = createVideoPlugin({});
 
+
 const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];
 
 class ProjectViewer extends Component {
@@ -47,13 +48,13 @@ class ProjectViewer extends Component {
         return (
             <div className={styles.projectPageContainer}>
                 <Container text className={styles.projectTextContainer}>
-                    <Grid style={{ marginBottom: "20px" }}>
+                    <Grid className={styles.projectHeadingContainer}>
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Image src={this.props.project.thumbnail} rounded bordered />
                             </Grid.Column>
                             <Grid.Column width={12}>
-                                <Header as="h1" content={this.props.project.title} />
+                                <Header as="h1" content={this.props.project.title} className={styles.projectHeading} />
                                 <p>Started: {this.props.project.start_date} || Finished: {this.props.project.start_date}</p>
                             </Grid.Column>
                         </Grid.Row>

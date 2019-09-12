@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
 .projectPageContainer {
     background-color: #E1F5FE;
     min-block-size: 80vh;
@@ -6,4 +8,13 @@
 .projectTextContainer {
     padding: 5em 1em;
     background-color: white;
+}
+
+.projectHeadingContainer {
+    margin-bottom: 2em !important;
+}
+
+.projectHeading {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: 2em !important;
 }

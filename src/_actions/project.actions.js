@@ -51,9 +51,9 @@ function get_project(project_id) {
     function failure(error) { return { type: projectConstants.PROJECT_RETRIEVE_FAILURE, error } }
 }
 
-function get_project_list() {
+function get_project_list(pageNumber) {
     return dispatch => {
-        projectService.list()
+        projectService.list(pageNumber)
             .then(
                 project_list => {
                     dispatch(success(project_list));
