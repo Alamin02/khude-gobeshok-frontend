@@ -12,9 +12,14 @@
 }
 
 .introHeader {
-    font-family: 'Oswald', sans-serif !important;
+    padding-top: .75em !important;
     font-size: 3em !important;
     padding-bottom: .75em !important;
+}
+
+.introHeaderText {
+    display: inline;
+    font-family: 'Oswald', sans-serif !important;
 }
 
 .introButton {

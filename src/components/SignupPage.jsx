@@ -64,10 +64,13 @@ class SignupPage extends React.Component {
     return (
       <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
         <Grid.Column className={styles.signupForm}>
+
           <Header as='h2' textAlign='center' className={styles.headerStyle} >
             Create new account
           </Header>
+
           {error && <Message error header="Request Errors" list={error_list} />}
+
           <Form size='large' onSubmit={this.handleSubmit}>
 
             <Segment raised textAlign="left">
@@ -96,6 +99,7 @@ class SignupPage extends React.Component {
                 />
                 {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
               </Form.Field>
+
               <Form.Field>
                 <Input
                   fluid
@@ -108,6 +112,7 @@ class SignupPage extends React.Component {
                 />
                 {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
               </Form.Field>
+
               <Form.Field>
                 <Input
                   fluid
@@ -120,6 +125,7 @@ class SignupPage extends React.Component {
                 />
                 {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
               </Form.Field>
+
               <Button color='blue' fluid size='large'>
                 Signup
               </Button>

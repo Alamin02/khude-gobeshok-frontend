@@ -43,6 +43,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-semantic-toasts": "^0.6.3",
+    "react-typist": "^2.0.5",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-starter-kit": "^0.5.1",

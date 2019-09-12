@@ -1,8 +1,10 @@
 import React from 'react';
 import { Container, Image, Header, Button } from "semantic-ui-react";
 import Particles from 'react-particles-js';
+import Typist from 'react-typist';
 
 import styles from "./Intro.module.css";
+import "react-typist/dist/Typist.css";
 
 export default function Intro() {
     return (
@@ -122,7 +124,10 @@ export default function Intro() {
                     }
                 } />
                 <Image src="/img/khude gobeshok2.png" size="large" centered />
-                <Header as="h1" textAlign="center" className={styles.introHeader}>OpenSource Platform for Tiny Curious Minds</Header>
+
+                <Typist className={styles.introHeader}>
+                    <h1 className={styles.introHeaderText}>OpenSource Platform for Tiny Curious Minds</h1>
+                </Typist>
                 <Button size="big" color="blue">Join Us</Button>
             </Container>
         </div>

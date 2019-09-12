@@ -32,7 +32,6 @@ const imagePlugin = createImagePlugin({
 });
 const videoPlugin = createVideoPlugin({});
 
-
 const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];
 
 class ProjectViewer extends Component {
@@ -44,7 +43,10 @@ class ProjectViewer extends Component {
 
     render() {
         const { description } = this.props.project;
-        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
+        const editorState = (description
+            && EditorState.createWithContent(convertFromRaw(description)))
+            || EditorState.createEmpty();
+
         return (
             <div className={styles.projectPageContainer}>
                 <Container text className={styles.projectTextContainer}>
@@ -59,6 +61,7 @@ class ProjectViewer extends Component {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
+
                     <Editor
                         editorState={editorState}
                         plugins={plugins}

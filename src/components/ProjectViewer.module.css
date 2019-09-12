@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
 .projectPageContainer {
-    background-color: #E1F5FE;
+    background-color: #fcfbf7;
     min-block-size: 80vh;
 }
 
 .projectTextContainer {
     padding: 5em 1em;
-    background-color: white;
 }
 
 .projectHeadingContainer {

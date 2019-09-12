@@ -12,9 +12,10 @@ const ProjectListTiles = ({ projects }) => {
             </Card.Content>
         </Card>
     );
+
     return (
-        <div style={{ paddingTop: "3em" }}>
-            <Card.Group itemsPerRow={4} stackable >
+        <div>
+            <Card.Group itemsPerRow={3} stackable >
                 {projectList}
             </Card.Group>
         </div>

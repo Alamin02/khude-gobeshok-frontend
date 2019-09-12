@@ -3,6 +3,7 @@ import { profileConstants } from "../_constants";
 const initialState = {
     projectList: [],
     profileDetails: {},
+    profileUserDetails: {},
     educationList: [],
     jobList: [],
 }
@@ -11,7 +12,11 @@ export function profile(state = initialState, action) {
     switch (action.type) {
         case profileConstants.PROFILE_PROJECT_LIST_SUCCESS:
             return Object.assign({}, state, {
-                projectList: action.projectList,
+                projectList: action.projectList.results,
+            });
+        case profileConstants.PROFILE_USER_DETAILS_SUCCESS:
+            return Object.assign({}, state, {
+                profileUserDetails: action.profileUserDetails,
             });
         case profileConstants.PROFILE_DETAILS_SUCCESS:
             return Object.assign({}, state, {
@@ -24,7 +29,7 @@ export function profile(state = initialState, action) {
         case profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS:
             console.log(action.educationList);
             return Object.assign({}, state, {
-                educationList: action.educationList,
+                educationList: action.educationList.results,
             });
         case profileConstants.PROFILE_ADD_EDUCATION_SUCCESS:
             console.log(state.educationList);
@@ -33,7 +38,7 @@ export function profile(state = initialState, action) {
             });
         case profileConstants.PROFILE_GET_JOB_LIST_SUCCESS:
             return Object.assign({}, state, {
-                jobList: action.jobList,
+                jobList: action.jobList.results,
             });
         case profileConstants.PROFILE_ADD_JOB_SUCCESS:
             return Object.assign({}, state, {

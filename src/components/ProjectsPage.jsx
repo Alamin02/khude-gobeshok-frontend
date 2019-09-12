@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
-
 import { projectActions } from '../_actions';
 
 import ProjectListTiles from './ProjectListTiles';
-
 import styles from "./ProjectsPage.module.css";
 
 class ProjectsPage extends Component {
@@ -36,12 +33,14 @@ class ProjectsPage extends Component {
                     <Header as='h1' className={styles.pageHeader} icon>
                         <Header.Content>Project Library</Header.Content>
                     </Header>
-
-                    <Search placeholder={"Search"} className={styles.projectSearch} />
                 </Container>
+
+                <Search placeholder={"Search"} className={styles.projectSearch} />
+
                 <Container className={styles.projectListContainer}>
                     <ProjectListTiles projects={this.props.project_list} />
                 </Container>
+
                 <Pagination
                     activePage={this.state.activePage}
                     totalPages={numberOfPages}

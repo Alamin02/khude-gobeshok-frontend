@@ -113,31 +113,47 @@ class ProjectEditor extends Component {
         return (
             <div >
                 <Container text>
-                    <Header as='h1' textAlign="center" style={{
-                        marginTop: "10vh"
-                    }}>Project Editor</Header>
+                    <Header
+                        as='h1'
+                        textAlign="center"
+                        style={{ marginTop: "10vh" }}
+                        content="Project Editor"
+                    />
 
                     <EditorSteps currentStep={this.state.currentStep} />
                 </Container>
+
                 <Container text style={{ paddingTop: "50px", paddingBottom: "50px" }}>
                     <Transition unmountOnHide visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>
                         <Form>
-                            <Form.Field>
 
+                            <Form.Field>
                                 <label>Project Title</label>
-                                <input autoComplete="off" placeholder="Enter your awesome project title" name="title" value={this.props.title} onChange={e => this.props.titleChange(e.target.value)}></input>
+                                <input
+                                    autoComplete="off"
+                                    placeholder="Enter your awesome project title"
+                                    name="title" value={this.props.title}
+                                    onChange={e => this.props.titleChange(e.target.value)}
+                                />
                                 {this.state.titleEmptyWarning && <Label key="title" basic color='red' pointing> Please enter a Title </Label>}
                             </Form.Field>
 
                             <Grid columns={2}>
                                 <Grid.Row>
                                     <Grid.Column>
+
                                         <Form.Field>
                                             <label>Thumbnail</label>
-                                            <Previews key="1" imageChange={this.props.thumbnailChange} url={this.props.thumbnail} />
+                                            <Previews
+                                                key="1"
+                                                imageChange={this.props.thumbnailChange}
+                                                url={this.props.thumbnail}
+                                            />
                                             {this.state.thumbnailEmptyWarning && <Label key="thumbnail" basic color='red' pointing> Please upload a thumbnail </Label>}
                                         </Form.Field>
+
                                     </Grid.Column>
+
                                     <Grid.Column>
                                         <Form.Group>
                                             <Form.Field>
@@ -147,6 +163,7 @@ class ProjectEditor extends Component {
                                                     onChange={date => this.props.startDateChange(date)}
                                                 />
                                             </Form.Field>
+
                                             <Form.Field>
                                                 <label>End Date</label>
                                                 <DatePicker
@@ -155,6 +172,7 @@ class ProjectEditor extends Component {
                                                 />
                                             </Form.Field>
                                         </Form.Group>
+
                                         <Form.Field
                                             control={Select}
                                             label='Category'
@@ -196,8 +214,20 @@ class ProjectEditor extends Component {
                     <Grid style={{ marginTop: "3em" }}>
                         <Grid.Column textAlign="center">
                             <Button.Group className="mhyaskldjal">
-                                <Button labelPosition='left' icon='left chevron' content='Previous' onClick={() => this.handleHide("prev")} disabled={this.state.prevDisable} />
-                                <Button labelPosition='right' icon='right chevron' content='Next' onClick={() => this.handleHide("next")} disabled={this.state.nextDisable} />
+                                <Button
+                                    labelPosition='left'
+                                    icon='left chevron'
+                                    content='Previous'
+                                    onClick={() => this.handleHide("prev")}
+                                    disabled={this.state.prevDisable}
+                                />
+                                <Button
+                                    labelPosition='right'
+                                    icon='right chevron'
+                                    content='Next'
+                                    onClick={() => this.handleHide("next")}
+                                    disabled={this.state.nextDisable}
+                                />
                             </Button.Group>
                         </Grid.Column>
                     </Grid>

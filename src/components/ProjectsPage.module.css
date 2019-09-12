@@ -6,11 +6,14 @@
 
 .pageHeader {
     font-family: 'Red Hat Display', sans-serif !important;
-    font-size: 2em !important;
+    font-size: 3em !important;
 }
 
 .pageHeaderContainer {
-    padding: 100px 0 0 0;
+    padding: 5em 0 0 3em;
+    background-image: url("/img/banner-projects.png");
+    background-size: contain;
+    background-repeat: repeat-x;
 }
 
 .projectListContainer {

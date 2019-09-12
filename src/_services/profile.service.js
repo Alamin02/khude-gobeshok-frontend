@@ -2,6 +2,7 @@ import { authHeader } from '../_helpers';
 
 export const profileService = {
     profileDetails,
+    profileUserDetails,
     listProjects,
     updateProfileDetails,
     getEducationList,
@@ -22,6 +23,17 @@ function profileDetails(username) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(profileDetails => { return profileDetails });
+}
+
+function profileUserDetails(username) {
+    const requestOptions = {
+        mode: 'cors',
+    };
+
+    let url = `http://localhost:8000/users/get-user/` + username;
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(profileUserDetails => { return profileUserDetails });
 }
 
 function updateProfileDetails(username, updatedProfileData) {
