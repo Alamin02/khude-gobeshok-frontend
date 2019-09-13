@@ -26,6 +26,10 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 profileDetails: action.profileDetails,
             });
+        case profileConstants.PROFILE_BIO_UPDATE_SUCCESS:
+            return Object.assign({}, state, {
+                profileDetails: { ...state.profileDetails, bio: action.updatedBio.bio },
+            });
         case profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS:
             console.log(action.educationList);
             return Object.assign({}, state, {

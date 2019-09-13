@@ -5,6 +5,7 @@ export const profileService = {
     profileUserDetails,
     listProjects,
     updateProfileDetails,
+    updateProfileBio,
     getEducationList,
     addEducation,
     deleteEducation,
@@ -34,6 +35,21 @@ function profileUserDetails(username) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(profileUserDetails => { return profileUserDetails });
+}
+
+function updateProfileBio(bio) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bio }),
+    }
+
+    let url = `http://localhost:8000/users/profile-bio-update/`;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(updatedBio => updatedBio)
 }
 
 function updateProfileDetails(username, updatedProfileData) {

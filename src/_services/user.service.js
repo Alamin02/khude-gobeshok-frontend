@@ -48,20 +48,6 @@ function register(user) {
         });
 }
 
-// Gets "username" from API
-function getUser() {
-    const requestOptions = {
-        mode: 'cors',
-        headers: { ...authHeader() },
-    };
-
-    return fetch(`http://localhost:8000/users/get-user/`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            console.log("username")
-        })
-}
-
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

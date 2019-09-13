@@ -8,6 +8,7 @@ export const profileActions = {
     getDetails,
     getUserDetails,
     updateDetails,
+    updateBio,
     getEducationList,
     addEducation,
     deleteEducation,
@@ -70,6 +71,20 @@ function updateDetails(username, updatedProfileData) {
     function request(updatedProfileData) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_REQUEST, updatedProfileData } }
     function success(profileDetails) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_SUCCESS, profileDetails } }
     function failure(error) { return { type: profileConstants.PROFILE_DETAILS_UPDATE_FAILURE, error } }
+}
+
+function updateBio(bio) {
+    return dispatch => {
+        profileService.updateProfileBio(bio)
+            .then(
+                updatedBio => dispatch(success(updatedBio)),
+                error => dispatch(failure(error))
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_BIO_UPDATE_REQUEST, } }
+    function success(updatedBio) { return { type: profileConstants.PROFILE_BIO_UPDATE_SUCCESS, updatedBio } }
+    function failure(error) { return { type: profileConstants.PROFILE_BIO_UPDATE_FAILURE, error } }
 }
 
 function getEducationList(username) {
