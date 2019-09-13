@@ -11,6 +11,7 @@ class JobList extends Component {
 
     render() {
         const renderJobList = this.props.jobList.map((job, key) => {
+            const { editable } = this.props;
             const { start_date, end_date } = job;
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
@@ -28,7 +29,13 @@ class JobList extends Component {
             return (
                 <Segment vertical key={key}>
                     <Header as="h4">{job.company}</Header>
-                    <Button floated="right" onClick={() => { this.handleDelete(job.id) }}>Delete</Button>
+
+                    {editable &&
+                        <Button floated="right" onClick={() => { this.handleDelete(job.id) }}>
+                            Delete
+                        </Button>
+                    }
+
                     <p>{job.position}</p>
                     <p>{start_month} {start_year} - {job.currently_working ? "Continuing" : end_date_string}</p>
                 </Segment>

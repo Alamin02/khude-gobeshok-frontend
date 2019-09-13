@@ -12,6 +12,8 @@ class EducationList extends Component {
     render() {
 
         const renderEducationList = this.props.educationList.map((education, key) => {
+            const { editable } = this.props;
+
             const { start_date, end_date } = education;
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
@@ -28,8 +30,16 @@ class EducationList extends Component {
 
             return (
                 <Segment vertical key={key}>
-                    <Header as="h4">{education.institute}</Header>
-                    <Button floated="right" onClick={() => { this.handleDelete(education.id) }}>Delete</Button>
+                    <Header as="h4">
+                        {education.institute}
+                    </Header>
+
+                    {editable &&
+                        <Button floated="right" onClick={() => { this.handleDelete(education.id) }}>
+                            Delete
+                        </Button>
+                    }
+
                     <p>{education.degree} - {education.major}</p>
                     <p>{start_month} {start_year} - {education.currently_enrolled ? "Continuing" : end_date_string}</p>
                 </Segment>

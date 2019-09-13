@@ -13,41 +13,45 @@ export default class ProfileTab extends Component {
 
         this.state = {
             profileDetailsVisible: true,
-            profileDetailsEditVisible: false,
-            addEducationVisible: false,
-            addJobVisible: false,
+            profileDetailsEditable: false,
+            educationEditable: false,
+            jobEditable: false,
         }
     }
 
     toggleProfileDetailsEdit = () => {
         this.setState({
             profileDetailsVisible: !this.state.profileDetailsVisible,
-            profileDetailsEditVisible: !this.state.profileDetailsEditVisible,
+            profileDetailsEditable: !this.state.profileDetailsEditable,
         })
     }
 
     toggleEducationAdd = () => {
         this.setState({
-            addEducationVisible: !this.state.addEducationVisible,
+            educationEditable: !this.state.educationEditable,
         })
     }
 
     toggleJobAdd = () => {
         this.setState({
-            addJobVisible: !this.state.addJobVisible,
+            jobEditable: !this.state.jobEditable,
         })
     }
 
     render() {
+        const { own } = this.props;
+
         return (
             <div>
                 <Segment clearing vertical>
                     <Header as="h3" floated="left" >
                         Personal Details
                         </Header>
-                    <Button icon circular floated="right" size="tiny" onClick={this.toggleProfileDetailsEdit}>
-                        <Icon name='edit outline' />
-                    </Button>
+                    {own &&
+                        <Button icon circular floated="right" size="tiny" onClick={this.toggleProfileDetailsEdit}>
+                            <Icon name='edit outline' />
+                        </Button>
+                    }
                 </Segment>
 
                 <Segment color="grey" >
@@ -70,33 +74,37 @@ export default class ProfileTab extends Component {
                         </Grid>
                     </Transition>
 
-                    <ProfileDetailsEditor visible={this.state.profileDetailsEditVisible} />
+                    <ProfileDetailsEditor visible={this.state.profileDetailsEditable} />
                 </Segment>
 
                 <Segment clearing vertical>
                     <Header as="h3" floated="left" >
                         Education
-                        </Header>
-                    <Button icon circular floated="right" size="tiny" onClick={this.toggleEducationAdd}>
-                        <Icon name='edit outline' />
-                    </Button>
+                    </Header>
+                    {own &&
+                        <Button icon circular floated="right" size="tiny" onClick={this.toggleEducationAdd}>
+                            <Icon name='edit outline' />
+                        </Button>
+                    }
                 </Segment>
                 <Segment color="grey" >
-                    <EducationList />
-                    <AddEducation visible={this.state.addEducationVisible} />
+                    <EducationList editable={this.state.educationEditable} />
+                    <AddEducation visible={this.state.educationEditable} />
                 </Segment>
 
                 <Segment clearing vertical>
                     <Header as="h3" floated="left" >
                         Job Experience
                     </Header>
-                    <Button icon circular floated="right" size="tiny" onClick={this.toggleJobAdd}>
-                        <Icon name='edit outline' />
-                    </Button>
+                    {own &&
+                        <Button icon circular floated="right" size="tiny" onClick={this.toggleJobAdd}>
+                            <Icon name='edit outline' />
+                        </Button>
+                    }
                 </Segment>
                 <Segment color="grey" >
-                    <JobList />
-                    <AddJob visible={this.state.addJobVisible} />
+                    <JobList editable={this.state.jobEditable} />
+                    <AddJob visible={this.state.jobEditable} />
                 </Segment>
             </div>
         )
