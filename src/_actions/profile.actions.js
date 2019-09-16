@@ -9,6 +9,7 @@ export const profileActions = {
     getUserDetails,
     updateDetails,
     updateBio,
+    updatePropic,
     getEducationList,
     addEducation,
     deleteEducation,
@@ -87,6 +88,20 @@ function updateBio(bio) {
     function failure(error) { return { type: profileConstants.PROFILE_BIO_UPDATE_FAILURE, error } }
 }
 
+function updatePropic(propicUrl) {
+    return dispatch => {
+        profileService.updateProfilePic(propicUrl)
+            .then(
+                updatedProfilePic => dispatch(success(updatedProfilePic)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: profileConstants.PROFILE_PIC_UPDATE_REQUEST, } }
+    function success(updatedProfilePic) { return { type: profileConstants.PROFILE_PIC_UPDATE_SUCCESS, updatedProfilePic } }
+    function failure(error) { return { type: profileConstants.PROFILE_PIC_UPDATE_FAILURE, error } }
+}
+
 function getEducationList(username) {
     return dispatch => {
         profileService.getEducationList(username)
@@ -97,8 +112,8 @@ function getEducationList(username) {
                 error => {
                     dispatch(failure(error));
                 }
-            )
-    }
+            );
+    };
 
     function request() { return { type: profileConstants.PROFILE_GET_EDUCATION_LIST_REQUEST, } }
     function success(educationList) { return { type: profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS, educationList } }

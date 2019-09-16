@@ -6,6 +6,7 @@ export const profileService = {
     listProjects,
     updateProfileDetails,
     updateProfileBio,
+    updateProfilePic,
     getEducationList,
     addEducation,
     deleteEducation,
@@ -50,6 +51,21 @@ function updateProfileBio(bio) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(updatedBio => updatedBio)
+}
+
+function updateProfilePic(imageUrl) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile_picture: imageUrl }),
+    }
+
+    let url = `http://localhost:8000/users/profile-pic-update/`;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(updatedProPic => updatedProPic)
 }
 
 function updateProfileDetails(username, updatedProfileData) {

@@ -3,10 +3,14 @@ import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal } f
 import { connect } from "react-redux";
 
 import { profileActions } from "../../_actions";
+import { imageService } from "../../_services";
+
+import ImageDragNDrop from "../ImageDragnDrop";
 
 class ProfileRegularInfo extends Component {
     state = {
         bio: "",
+        propicUrl: "",
         editBio: false,
         proPicEditable: false,
     }
@@ -45,10 +49,39 @@ class ProfileRegularInfo extends Component {
         this.setState({ proPicEditable: false });
     }
 
+    handlePropicUpload = (image) => {
+        imageService.profilePicUpload(image).then(({ image, thumbnail }) => {
+            this.setState({
+                propicUrl: thumbnail
+            });
+        });
+    }
+
+    cancelPropicChange = () => {
+        this.setState({
+            propicUrl: "",
+            proPicEditable: false,
+        })
+    }
+
+    confirmPropicChange = () => {
+        const { propicUrl } = this.state;
+
+        if (propicUrl) {
+            this.props.updatePropic(propicUrl);
+        }
+
+        this.setState({
+            propicUrl: "",
+            proPicEditable: false,
+        })
+    }
+
     render() {
         const { profileDimmerActive, editBio, proPicEditable } = this.state;
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
+        const { profile_picture } = this.props.profileDetails;
 
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
@@ -74,21 +107,22 @@ class ProfileRegularInfo extends Component {
                         dimmer={{ active: profileDimmerActive, content: profileImageDimmerContent }}
                         onMouseEnter={this.handleDimmerShow}
                         onMouseLeave={this.handleDimmerHide}
-                        src='/Logo.png'
+                        src={profile_picture || '/Logo.png'}
                         circular
                         size="small"
-                    /> : <Image src="/Logo.png" size="small" circular centered />
+                    /> : <Image src={profile_picture || '/Logo.png'} size="small" circular centered />
                     }
 
                     <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>
                         <Modal.Header>Update Profile Photo</Modal.Header>
                         <Modal.Content>
-                            <p>Are you sure you want to delete your account</p>
+                            <ImageDragNDrop imageChange={this.handlePropicUpload} url={this.state.propicUrl} />
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button negative>No</Button>
+                            <Button negative onClick={this.cancelPropicChange}>Cancel</Button>
                             <Button
                                 positive
+                                onClick={this.confirmPropicChange}
                                 icon='checkmark'
                                 labelPosition='right'
                                 content='Yes'
@@ -153,6 +187,7 @@ function mapStateToProps(state) {
 function mapDipatchToProps(dispatch) {
     return {
         updateBio: (bio) => dispatch(profileActions.updateBio(bio)),
+        updatePropic: (propicUrl) => dispatch(profileActions.updatePropic(propicUrl)),
     }
 }
 
