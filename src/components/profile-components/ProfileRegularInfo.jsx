@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input } from 'semantic-ui-react';
+import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal } from 'semantic-ui-react';
 import { connect } from "react-redux";
 
 import { profileActions } from "../../_actions";
@@ -8,6 +8,7 @@ class ProfileRegularInfo extends Component {
     state = {
         bio: "",
         editBio: false,
+        proPicEditable: false,
     }
 
     handleDimmerShow = () => {
@@ -34,12 +35,18 @@ class ProfileRegularInfo extends Component {
             bio: "",
             editBio: !this.state.editBio
         });
-        console.log("Submit Request");
     }
 
+    enableProPicEdit = () => {
+        this.setState({ proPicEditable: true });
+    }
+
+    disableProPicEdit = () => {
+        this.setState({ proPicEditable: false });
+    }
 
     render() {
-        const { profileDimmerActive, editBio } = this.state;
+        const { profileDimmerActive, editBio, proPicEditable } = this.state;
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
 
@@ -52,7 +59,7 @@ class ProfileRegularInfo extends Component {
 
         const profileImageDimmerContent = (
             <div>
-                <Button primary size="tiny">Change</Button>
+                <Button primary size="tiny" onClick={this.enableProPicEdit}>Change</Button>
             </div>
 
         );
@@ -72,6 +79,22 @@ class ProfileRegularInfo extends Component {
                         size="small"
                     /> : <Image src="/Logo.png" size="small" circular centered />
                     }
+
+                    <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>
+                        <Modal.Header>Update Profile Photo</Modal.Header>
+                        <Modal.Content>
+                            <p>Are you sure you want to delete your account</p>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button negative>No</Button>
+                            <Button
+                                positive
+                                icon='checkmark'
+                                labelPosition='right'
+                                content='Yes'
+                            />
+                        </Modal.Actions>
+                    </Modal>
 
                     <Header
                         as="h3"

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Image, Header, Button } from "semantic-ui-react";
+import { Container, Image, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import Particles from 'react-particles-js';
 import Typist from 'react-typist';
 
@@ -128,7 +129,9 @@ export default function Intro() {
                 <Typist className={styles.introHeader}>
                     <h1 className={styles.introHeaderText}>OpenSource Platform for Tiny Curious Minds</h1>
                 </Typist>
-                <Button size="big" color="blue">Join Us</Button>
+                <Link to="/projects">
+                    <Button size="big" color="blue">Explore</Button>
+                </Link>
             </Container>
         </div>
     )

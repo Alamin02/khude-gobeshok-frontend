@@ -5,8 +5,7 @@ export default class Footer extends Component {
     render() {
         return (
             <div>
-                <Divider />
-                <Segment vertical style={{ padding: '1.5em 0em' }}>
+                <Segment vertical style={{ padding: '1.5em 0em' }} inverted>
                     <Container textAlign="center">
                         <Image src='/Logo.png' size='mini' centered />
                         <br />

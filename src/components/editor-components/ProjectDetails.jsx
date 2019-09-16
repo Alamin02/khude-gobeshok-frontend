@@ -35,8 +35,6 @@ import {
 
 import AddImage from "./AddImage";
 import AddVideo from "./AddVideo";
-import { Button, } from "semantic-ui-react";
-
 const toolbarPlugin = createToolbarPlugin();
 const focusPlugin = createFocusPlugin();
 const resizePlugin = createResizePlugin();
