@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal } from 'semantic-ui-react';
+import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal, Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 
 import { profileActions } from "../../_actions";
 import { imageService } from "../../_services";
 
 import ImageDragNDrop from "../ImageDragnDrop";
-
 class ProfileRegularInfo extends Component {
     state = {
         bio: "",
@@ -151,11 +150,16 @@ class ProfileRegularInfo extends Component {
                     />}
 
                     <Divider />
-
-                    <div style={{ textAlign: "left" }}>
-                        <p>Email: {email || "No email"}</p>
-                        <p>Member Since: {join_month} {join_year}</p>
-                    </div>
+                    <Grid columns={2}>
+                        <Grid.Row>
+                            <Grid.Column textAlign="left">Email:</Grid.Column>
+                            <Grid.Column textAlign="right">{email || "No email"}</Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column textAlign="left">Member Since:</Grid.Column>
+                            <Grid.Column textAlign="right">{join_month} {join_year}</Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
                     <Divider />
                 </Segment>
@@ -172,7 +176,7 @@ class ProfileRegularInfo extends Component {
                     <Header as="h3" dividing content="Software Skills" />
                     <p>No skills added</p>
                 </Segment>
-            </div>
+            </div >
         )
     }
 }
