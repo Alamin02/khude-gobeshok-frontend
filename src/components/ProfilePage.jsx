@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Grid, Tab, Image, Segment, Header, Divider, Button, Icon, Dimmer } from "semantic-ui-react";
 import { connect } from "react-redux";
-
+import memoize from "memoize-one";
 import { profileActions } from "../_actions";
 
 import ProjectListTiles from "./ProjectListTiles";
@@ -28,15 +28,23 @@ class ProfilePage extends Component {
             }
         }
 
-        this.props.getProjects(profilename);
-        this.props.getProfileUserDetails(profilename);
-        this.props.getDetails(profilename);
-        this.props.getEducationList(profilename);
-        this.props.getJobList(profilename);
     }
+
+    loadProfile = memoize(
+        (profilename) => {
+            this.props.getProjects(profilename);
+            this.props.getProfileUserDetails(profilename);
+            this.props.getDetails(profilename);
+            this.props.getEducationList(profilename);
+            this.props.getJobList(profilename);
+        }
+    )
 
     render() {
         const { profilename } = this.props.match.params;
+
+        this.loadProfile(profilename);
+
         const { ownProfile, publicMode } = this.state;
 
         const panes = [
