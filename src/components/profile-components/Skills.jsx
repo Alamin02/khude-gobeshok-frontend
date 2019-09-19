@@ -36,7 +36,8 @@ class Skills extends Component {
     }
 
     handleSoftwareSkillsUpdate = () => {
-
+        this.props.updateSoftwareSkill(this.props.username, this.state.softwareSkills);
+        this.setState({ softwareSkillEditable: !this.state.softwareSkillEditable, })
     }
 
 
@@ -130,6 +131,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         updateSpecializedIn: (username, specializedIn) => dispatch(profileActions.updateSpecializedIn(username, specializedIn)),
+        updateSoftwareSkill: (username, SoftwareSkills) => dispatch(profileActions.updateSoftwareSkill(username, SoftwareSkills)),
     };
 }
 

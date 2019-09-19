@@ -94,7 +94,7 @@ function updateSoftwareSkill(username, softwareSkill) {
         body: JSON.stringify({ software_skills: softwareSkill }),
     }
 
-    let url = `http://localhost:8000/users/` + username + `/specialized-in`;
+    let url = `http://localhost:8000/users/` + username + `/software-skill`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

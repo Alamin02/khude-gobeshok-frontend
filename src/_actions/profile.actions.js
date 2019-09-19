@@ -11,6 +11,7 @@ export const profileActions = {
     updateDetails,
     updateBio,
     updateSpecializedIn,
+    updateSoftwareSkill,
     updatePropic,
     getEducationList,
     addEducation,
@@ -107,6 +108,21 @@ function updateSpecializedIn(username, specializedIn) {
     function success(updatedSpecializedIn) { return { type: profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_SUCCESS, updatedSpecializedIn } }
     function failure(error) { return { type: profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_FAILURE, error } }
 }
+
+function updateSoftwareSkill(username, softwareSkill) {
+    return dispatch => {
+        profileService.updateSoftwareSkill(username, softwareSkill)
+            .then(
+                updatedSoftwareSkill => dispatch(success(updatedSoftwareSkill)),
+                error => dispatch(failure(error)),
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_SOFTWARE_SKILL_UPDATE_REQUEST, } }
+    function success(updatedSoftwareSkill) { return { type: profileConstants.PROFILE_SOFTWARE_SKILL_UPDATE_SUCCESS, updatedSoftwareSkill } }
+    function failure(error) { return { type: profileConstants.PROFILE_SOFTWARE_SKILL_UPDATE_FAILURE, error } }
+}
+
 
 function updatePropic(propicUrl) {
     return dispatch => {
