@@ -13,6 +13,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { editorActions } from "../../_actions"
+import styles from "./ProjectEditorPage.module.css";
+
 
 const options = [
     { key: 'm', text: 'Not Applicable', value: 'male' },
@@ -112,14 +114,13 @@ class ProjectEditor extends Component {
 
         return (
             <div >
-                <Container text>
-                    <Header
-                        as='h1'
-                        textAlign="center"
-                        style={{ marginTop: "10vh" }}
-                        content="Project Editor"
-                    />
+                <Container className={styles.pageHeaderContainer} >
+                    <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
+                        <Header.Content>Project Editor</Header.Content>
+                    </Header>
+                </Container>
 
+                <Container text>
                     <EditorSteps currentStep={this.state.currentStep} />
                 </Container>
 

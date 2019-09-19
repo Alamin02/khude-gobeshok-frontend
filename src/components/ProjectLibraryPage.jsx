@@ -25,27 +25,28 @@ class ProjectsPage extends Component {
         let numberOfPages = Math.ceil(projectCount / 12); // Retrieved Page Size (Number of Projects per page) is 12.
 
         return (
-            <div style={{
-                minHeight: "80vh",
-                textAlign: "center"
-            }}>
+            <div className={styles.pageContainer}>
                 <Container className={styles.pageHeaderContainer} >
-                    <Header as='h1' className={styles.pageHeader} icon>
+                    <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                         <Header.Content>Project Library</Header.Content>
                     </Header>
                 </Container>
 
-                <Search placeholder={"Search"} className={styles.projectSearch} />
+                <Search placeholder={"Search"} size="large" className={styles.projectSearch} />
 
                 <Container className={styles.projectListContainer}>
                     <ProjectListTiles projects={this.props.project_list} />
                 </Container>
 
-                <Pagination
-                    activePage={this.state.activePage}
-                    totalPages={numberOfPages}
-                    onPageChange={this.handlePageChange}
-                />
+                <Container className={styles.pagination}>
+                    <Pagination
+                        activePage={this.state.activePage}
+                        totalPages={numberOfPages}
+                        onPageChange={this.handlePageChange}
+
+                    />
+                </Container>
+
             </div>
         )
     }
