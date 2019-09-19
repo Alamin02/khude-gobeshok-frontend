@@ -4,7 +4,7 @@ import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
 import { projectActions } from '../_actions';
 
 import ProjectListTiles from './common/ProjectListTiles';
-import styles from "./ProjectsPage.module.css";
+import styles from "./ProjectLibraryPage.module.css";
 
 class ProjectsPage extends Component {
     state = {
