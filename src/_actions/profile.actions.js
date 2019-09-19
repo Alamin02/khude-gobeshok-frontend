@@ -4,11 +4,13 @@ import { profileConstants } from '../_constants'
 import { profileService } from '../_services'
 
 export const profileActions = {
+    setCurrentProfileName,
     getProjects,
     getDetails,
     getUserDetails,
     updateDetails,
     updateBio,
+    updateSpecializedIn,
     updatePropic,
     getEducationList,
     addEducation,
@@ -17,6 +19,10 @@ export const profileActions = {
     addJob,
     deleteJob,
 };
+
+function setCurrentProfileName(username) {
+    return dispatch => dispatch({ type: profileConstants.PROFILE_SET_USERNAME, username });
+}
 
 function getDetails(username) {
     return dispatch => {
@@ -86,6 +92,20 @@ function updateBio(bio) {
     function request() { return { type: profileConstants.PROFILE_BIO_UPDATE_REQUEST, } }
     function success(updatedBio) { return { type: profileConstants.PROFILE_BIO_UPDATE_SUCCESS, updatedBio } }
     function failure(error) { return { type: profileConstants.PROFILE_BIO_UPDATE_FAILURE, error } }
+}
+
+function updateSpecializedIn(username, specializedIn) {
+    return dispatch => {
+        profileService.updateSpecializedIn(username, specializedIn)
+            .then(
+                updatedSpecializedIn => dispatch(success(updatedSpecializedIn)),
+                error => dispatch(failure(error)),
+            )
+    }
+
+    function request() { return { type: profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_REQUEST, } }
+    function success(updatedSpecializedIn) { return { type: profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_SUCCESS, updatedSpecializedIn } }
+    function failure(error) { return { type: profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_FAILURE, error } }
 }
 
 function updatePropic(propicUrl) {

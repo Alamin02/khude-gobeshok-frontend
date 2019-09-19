@@ -98,6 +98,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        setProfileUsername: (username) => dispatch(profileActions.setCurrentProfileName(username)),
         getProjects: (profileName) => dispatch(profileActions.getProjects(profileName)),
         getDetails: (profileName) => dispatch(profileActions.getDetails(profileName)),
         getEducationList: (profileName) => dispatch(profileActions.getEducationList(profileName)),

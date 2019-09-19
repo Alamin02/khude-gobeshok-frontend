@@ -41,6 +41,10 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 profileDetails: { ...state.profileDetails, bio: action.updatedBio.bio },
             });
+        case profileConstants.PROFILE_SPECIALIZED_IN_UPDATE_SUCCESS:
+            return Object.assign({}, state, {
+                profileDetails: { ...state.profileDetails, specialized_in: action.updatedSpecializedIn.specialized_in },
+            });
         case profileConstants.PROFILE_PIC_UPDATE_SUCCESS:
             return Object.assign({}, state, {
                 profileDetails: { ...state.profileDetails, profile_picture: action.updatedProfilePic.profile_picture },

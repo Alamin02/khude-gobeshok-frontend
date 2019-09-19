@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Button, Icon, Header, Label } from "semantic-ui-react";
+import { profileActions } from '../../_actions';
 
 class Skills extends Component {
     state = {
@@ -30,7 +31,8 @@ class Skills extends Component {
 
 
     handleSpecializedInUpdate = () => {
-        console.log(this.state);
+        this.props.updateSpecializedIn(this.props.username, this.state.specializedIn);
+        this.setState({ specializedEditable: !this.state.specializedEditable, });
     }
 
     handleSoftwareSkillsUpdate = () => {
@@ -39,7 +41,7 @@ class Skills extends Component {
 
 
     render() {
-        const { own, profileDetails } = this.props;
+        const { own, profileDetails, } = this.props;
         const { specializedEditable, softwareSkillEditable, } = this.state;
 
         let specializedInList =
@@ -118,13 +120,16 @@ class Skills extends Component {
 
 function mapStateToProps(state) {
     const { profileDetails } = state.profile;
+    let { username } = state.users;
     return {
         profileDetails,
+        username,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        updateSpecializedIn: (username, specializedIn) => dispatch(profileActions.updateSpecializedIn(username, specializedIn)),
     };
 }
 
