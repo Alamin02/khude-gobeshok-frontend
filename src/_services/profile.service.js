@@ -6,7 +6,10 @@ export const profileService = {
     listProjects,
     updateProfileDetails,
     updateProfileBio,
+    updateSpecializedIn,
+    updateSoftwareSkill,
     updateProfilePic,
+    updateSpecializedIn,
     getEducationList,
     addEducation,
     deleteEducation,
@@ -66,6 +69,36 @@ function updateProfilePic(imageUrl) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(updatedProPic => updatedProPic)
+}
+
+function updateSpecializedIn(username, specilizedIn) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ specialized_in: specilizedIn }),
+    }
+
+    let url = `http://localhost:8000/users/` + username + `/specialized-in`;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(updatedSpecializedIn => updatedSpecializedIn)
+}
+
+function updateSoftwareSkill(username, softwareSkill) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ software_skills: softwareSkill }),
+    }
+
+    let url = `http://localhost:8000/users/` + username + `/specialized-in`;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(updatedSoftwareSkill => updatedSoftwareSkill)
 }
 
 function updateProfileDetails(username, updatedProfileData) {

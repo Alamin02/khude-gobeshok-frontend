@@ -10,25 +10,6 @@ import ProfileRegularInfo from "./profile-components/ProfileRegularInfo";
 import styles from "./ProfilePage.module.css";
 
 class ProfilePage extends Component {
-    constructor(props) {
-        super(props);
-        const { profilename } = this.props.match.params;
-        const { username } = this.props;
-
-        if (profilename === username) {
-            this.state = {
-                ownProfile: true,
-                publicMode: false,
-            }
-        }
-        else {
-            this.state = {
-                ownProfile: false,
-                publicMode: true,
-            }
-        }
-
-    }
 
     loadProfile = memoize(
         (profilename) => {
@@ -37,6 +18,21 @@ class ProfilePage extends Component {
             this.props.getDetails(profilename);
             this.props.getEducationList(profilename);
             this.props.getJobList(profilename);
+
+            const { username } = this.props;
+
+            if (profilename === username) {
+                this.state = {
+                    ownProfile: true,
+                    publicMode: false,
+                }
+            }
+            else {
+                this.state = {
+                    ownProfile: false,
+                    publicMode: true,
+                }
+            }
         }
     )
 

@@ -6,6 +6,8 @@ import { profileActions } from "../../_actions";
 import { imageService } from "../../_services";
 
 import ImageDragNDrop from "../ImageDragnDrop";
+import Skills from "./Skills";
+
 class ProfileRegularInfo extends Component {
     state = {
         bio: "",
@@ -76,8 +78,16 @@ class ProfileRegularInfo extends Component {
         })
     }
 
+
     render() {
-        const { profileDimmerActive, editBio, proPicEditable } = this.state;
+        const {
+            profileDimmerActive,
+            editBio,
+            proPicEditable,
+            specializedEditable,
+            softwareSkillEditable
+        } = this.state;
+
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
         const { profile_picture } = this.props.profileDetails;
@@ -139,7 +149,8 @@ class ProfileRegularInfo extends Component {
                         {own &&
                             <span onClick={this.handleBioPenClick}>
                                 <Icon name="pencil alternate" />
-                            </span>}
+                            </span>
+                        }
                     </p>
 
                     {editBio && <Input
@@ -171,10 +182,7 @@ class ProfileRegularInfo extends Component {
                 </Segment>
 
                 <Segment>
-                    <Header as="h3" dividing content="Specialized in" />
-                    <p>No specialties added</p>
-                    <Header as="h3" dividing content="Software Skills" />
-                    <p>No skills added</p>
+                    <Skills own={own} />
                 </Segment>
             </div >
         )

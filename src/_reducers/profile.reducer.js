@@ -1,8 +1,19 @@
 import { profileConstants } from "../_constants";
 
+const initialProfileDetails = {
+    full_name: '',
+    bio: '',
+    profile_picture: '',
+    specialized_in: '',
+    software_skills: '',
+    phone_number: '',
+    country: '',
+    address: '',
+}
+
 const initialState = {
     projectList: [],
-    profileDetails: {},
+    profileDetails: initialProfileDetails,
     profileUserDetails: {},
     educationList: [],
     jobList: [],
