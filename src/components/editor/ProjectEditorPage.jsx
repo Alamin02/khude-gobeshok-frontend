@@ -3,16 +3,16 @@ import { Container, Form, Header, Grid, Select, Button, Transition, Label, Popup
 
 import { connect } from 'react-redux';
 
-import Previews from "./ImageDragnDrop";
-import ProjectDetails from "./editor-components/ProjectDetails";
-import EditorSteps from "./editor-components/EditorSteps";
-import Review from "./editor-components/Review";
+import Previews from "../common/ImageDragnDrop";
+import ProjectDetails from "./ProjectDetails";
+import EditorSteps from "./EditorSteps";
+import Review from "./Review";
 
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { editorActions } from "../_actions"
+import { editorActions } from "../../_actions"
 
 const options = [
     { key: 'm', text: 'Not Applicable', value: 'male' },

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { profileActions } from "../../_actions";
 import { imageService } from "../../_services";
 
-import ImageDragNDrop from "../ImageDragnDrop";
+import ImageDragNDrop from "../common/ImageDragnDrop";
 import Skills from "./Skills";
 
 class ProfileRegularInfo extends Component {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Label, Input } from 'semantic-ui-react'
-import { userActions } from '../_actions';
+import { userActions } from '../../_actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom"
 

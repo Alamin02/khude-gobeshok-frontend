@@ -16,7 +16,7 @@ import createResizePlugin from 'draft-js-resizeable-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import 'draft-js-alignment-plugin/lib/plugin.css';
 
-import styles from "./ProjectViewer.module.css";
+import styles from "./ProjectViewerPage.module.css";
 
 const resizePlugin = createResizePlugin();
 const alignmentPlugin = createAlignmentPlugin();
@@ -24,6 +24,7 @@ const decorator = composeDecorators(
     resizePlugin.decorator,
     alignmentPlugin.decorator,
 );
+
 const imagePlugin = createImagePlugin({
     decorator,
     theme: {

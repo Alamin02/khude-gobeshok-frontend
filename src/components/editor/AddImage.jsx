@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Popup, Form, Button, Tab, Segment } from "semantic-ui-react"
 
-import ImageDnD from "../ImageDragnDrop";
+import ImageDnD from "../common/ImageDragnDrop";
 
 import { imageService } from "../../_services"
 

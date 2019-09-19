@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
 import { projectActions } from '../_actions';
 
-import ProjectListTiles from './ProjectListTiles';
+import ProjectListTiles from './common/ProjectListTiles';
 import styles from "./ProjectsPage.module.css";
 
 class ProjectsPage extends Component {

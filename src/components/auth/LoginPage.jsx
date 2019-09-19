@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Label, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { userActions } from '../_actions';
+import { userActions } from '../../_actions';
 
 import styles from "./LoginPage.module.css";
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Container, Grid, Tab, Image, Segment, Header, Divider, Button, Icon, Dimmer } from "semantic-ui-react";
 import { connect } from "react-redux";
 import memoize from "memoize-one";
-import { profileActions } from "../_actions";
+import { profileActions } from "../../_actions";
 
-import ProjectListTiles from "./ProjectListTiles";
-import ProfileTab from "./profile-components/ProfileTab";
-import ProfileRegularInfo from "./profile-components/ProfileRegularInfo";
+import ProjectListTiles from "../common/ProjectListTiles";
+import ProfileTab from "./ProfileTab";
+import ProfileRegularInfo from "./ProfileRegularInfo";
 import styles from "./ProfilePage.module.css";
 
 class ProfilePage extends Component {

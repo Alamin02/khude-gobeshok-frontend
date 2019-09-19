@@ -1,16 +1,16 @@
 import React from 'react';
-import Navbar from './components/Navbar'
+import Navbar from './components/common/Navbar'
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import LoginForm from './components/LoginPage';
-import SignupForm from './components/SignupPage';
-import HomePage from './components/HomePage';
+import LoginForm from './components/auth/LoginPage';
+import SignupForm from './components/auth/SignupPage';
+import HomePage from './components/home/HomePage';
 import ProjectsPage from './components/ProjectsPage';
-import ProjectEditor from "./components/ProjectEditor";
-import ProjectView from "./components/ProjectViewer";
-import ProfilePage from "./components/ProfilePage";
-import Footer from "./components/Footer";
+import ProjectEditor from "./components/editor/ProjectEditorPage";
+import ProjectView from "./components/ProjectViewerPage";
+import ProfilePage from "./components/profile/ProfilePage";
+import Footer from "./components/common/Footer";
 
 import "./App.css";
 import { userActions, editorActions } from './_actions';

@@ -1,6 +1,6 @@
 import React from "react";
-import Intro from "./home-components/Intro";
-import Description from "./home-components/Description";
+import Intro from "./Intro";
+import Description from "./Description";
 
 const HomePage = () => (
     <div>
