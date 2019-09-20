@@ -1,4 +1,4 @@
-import { authHeader } from '../_helpers';
+import { authHeader, apiBaseUrl, handleResponse } from '../_helpers';
 
 export const projectService = {
     create,
@@ -14,7 +14,9 @@ function create(project) {
         body: JSON.stringify(project),
     };
 
-    return fetch(`http://localhost:8000/project/create/`, requestOptions)
+    let url = apiBaseUrl() + `project/create/`;
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(project => {
             return project;
@@ -30,12 +32,12 @@ function list(pageNumber) {
     if (pageNumber) {
         let offset = (12 * (pageNumber - 1));
         let limit = "12";
-        console.log(offset, limit);
-
         queryString = `?limit=` + limit.toString() + `&offset=` + offset;
     }
 
-    return fetch(`http://localhost:8000/project/list/` + queryString, requestOptions)
+    let url = apiBaseUrl() + `project/list/` + queryString;
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(project_list => { return project_list });
 
@@ -45,20 +47,10 @@ function retrieve(project_id) {
     const requestOptions = {
         mode: 'cors',
     };
-    return fetch(`http://localhost:8000/project/retrieve/` + project_id, requestOptions)
+
+    let url = apiBaseUrl() + `project/retrieve/` + project_id;
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(project => { return project });
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
 }

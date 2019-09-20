@@ -1,3 +1,5 @@
+import { apiBaseUrl, handleResponse } from "../_helpers";
+
 export const imageService = {
     image_upload,
     thumbnail_upload,
@@ -14,7 +16,9 @@ function image_upload(image) {
         body: formData,
     };
 
-    return fetch("http://127.0.0.1:8000/content/image-add", requestOptions)
+    let url = apiBaseUrl() + "content/image-add"
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(image => {
             return image;
@@ -31,12 +35,13 @@ function profilePicUpload(image) {
         body: formData,
     };
 
-    return fetch("http://localhost:8000/content/propic-add", requestOptions)
+    let url = apiBaseUrl() + "content/propic-add";
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(image => {
             return image;
         });
-
 }
 
 function thumbnail_upload(image) {
@@ -49,22 +54,11 @@ function thumbnail_upload(image) {
         body: formData,
     };
 
-    return fetch("http://127.0.0.1:8000/content/thumbnail-add", requestOptions)
+    let url = apiBaseUrl() + "content/thumbnail-add";
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(image => {
             return image;
         });
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
 }

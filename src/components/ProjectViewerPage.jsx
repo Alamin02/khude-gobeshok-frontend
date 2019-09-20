@@ -33,6 +33,7 @@ const imagePlugin = createImagePlugin({
         image: "editor-image-content"
     }
 });
+
 const videoPlugin = createVideoPlugin({});
 
 const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];

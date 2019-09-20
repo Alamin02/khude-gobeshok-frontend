@@ -1,4 +1,4 @@
-import { authHeader } from '../_helpers';
+import { authHeader, apiBaseUrl } from '../_helpers';
 
 export const userService = {
     login,
@@ -14,7 +14,9 @@ function login(username, password) {
         body: JSON.stringify({ username, password }),
     };
 
-    return fetch(`http://localhost:8000/rest-auth/login/`, requestOptions)
+    let url = apiBaseUrl() + `/rest-auth/login/`;
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(authToken => {
             // store authToken details and jwt token in local storage to keep user logged in between page refreshes
@@ -38,7 +40,9 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`http://localhost:8000/rest-auth/registration/`, requestOptions)
+    let url = apiBaseUrl() + `/rest-auth/registration/`;
+
+    return fetch(url, requestOptions)
         .then(handleResponse)
         .then(authToken => {
             // store authToken details and jwt token in local storage to keep user logged in between page refreshes

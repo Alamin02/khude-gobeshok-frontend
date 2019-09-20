@@ -1,4 +1,4 @@
-import { authHeader } from '../_helpers';
+import { authHeader, apiBaseUrl, handleResponse } from '../_helpers';
 
 export const profileService = {
     profileDetails,
@@ -23,7 +23,7 @@ function profileDetails(username) {
         mode: 'cors',
     };
 
-    let url = `http://localhost:8000/users/profile/` + username;
+    let url = apiBaseUrl() + `users/profile/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -35,7 +35,7 @@ function profileUserDetails(username) {
         mode: 'cors',
     };
 
-    let url = `http://localhost:8000/users/get-user/` + username;
+    let url = apiBaseUrl() + `users/get-user/` + username;
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(profileUserDetails => { return profileUserDetails });
@@ -49,7 +49,7 @@ function updateProfileBio(bio) {
         body: JSON.stringify({ bio }),
     }
 
-    let url = `http://localhost:8000/users/profile-bio-update/`;
+    let url = apiBaseUrl() + `users/profile-bio-update/`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -64,7 +64,7 @@ function updateProfilePic(imageUrl) {
         body: JSON.stringify({ profile_picture: imageUrl }),
     }
 
-    let url = `http://localhost:8000/users/profile-pic-update/`;
+    let url = apiBaseUrl() + `users/profile-pic-update/`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -79,7 +79,7 @@ function updateSpecializedIn(username, specilizedIn) {
         body: JSON.stringify({ specialized_in: specilizedIn }),
     }
 
-    let url = `http://localhost:8000/users/` + username + `/specialized-in`;
+    let url = apiBaseUrl() + `users/` + username + `/specialized-in`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -94,7 +94,7 @@ function updateSoftwareSkill(username, softwareSkill) {
         body: JSON.stringify({ software_skills: softwareSkill }),
     }
 
-    let url = `http://localhost:8000/users/` + username + `/software-skill`;
+    let url = apiBaseUrl() + `users/` + username + `/software-skill`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -109,7 +109,7 @@ function updateProfileDetails(username, updatedProfileData) {
         body: JSON.stringify(updatedProfileData),
     }
 
-    let url = `http://localhost:8000/users/profile/` + username;
+    let url = apiBaseUrl() + `users/profile/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -122,7 +122,7 @@ function getEducationList(username) {
     const requestOptions = {
         mode: 'cors',
     };
-    let url = `http://localhost:8000/users/education/` + username;
+    let url = apiBaseUrl() + `users/education/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -139,7 +139,7 @@ function addEducation(education) {
         body: JSON.stringify(education),
     };
 
-    return fetch(`http://localhost:8000/users/add-education/`, requestOptions)
+    return fetch(apiBaseUrl() + `users/add-education/`, requestOptions)
         .then(handleResponse)
         .then(education => {
             return education;
@@ -152,7 +152,7 @@ function deleteEducation(id) {
         method: 'DELETE',
     }
 
-    let url = `http://localhost:8000/users/delete-education/` + id;
+    let url = apiBaseUrl() + `users/delete-education/` + id;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -168,7 +168,7 @@ function getJobList(username) {
         mode: 'cors',
     };
 
-    let url = `http://localhost:8000/users/job/` + username;
+    let url = apiBaseUrl() + `users/job/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -185,7 +185,7 @@ function addJob(job) {
         body: JSON.stringify(job),
     };
 
-    return fetch(`http://localhost:8000/users/add-job/`, requestOptions)
+    return fetch(apiBaseUrl() + `users/add-job/`, requestOptions)
         .then(handleResponse)
         .then(job => {
             return job;
@@ -198,7 +198,7 @@ function deleteJob(id) {
         method: 'DELETE',
     }
 
-    let url = `http://localhost:8000/users/delete-job/` + id;
+    let url = apiBaseUrl() + `users/delete-job/` + id;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -213,7 +213,7 @@ function listProjects(username) {
     const requestOptions = {
         mode: 'cors',
     };
-    let url = `http://localhost:8000/project/list/` + username;
+    let url = apiBaseUrl() + `project/list/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -221,15 +221,3 @@ function listProjects(username) {
 
 }
 
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
-}
