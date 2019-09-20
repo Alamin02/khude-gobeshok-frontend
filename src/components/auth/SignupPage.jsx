@@ -4,6 +4,8 @@ import { userActions } from '../../_actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom"
 
+import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
+
 import styles from "./SignupPage.module.css"
 
 class SignupPage extends React.Component {
@@ -62,80 +64,83 @@ class SignupPage extends React.Component {
     });
 
     return (
-      <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
-        <Grid.Column className={styles.signupForm}>
+      <div>
+        <ScrollToTopOnMount />
+        <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
+          <Grid.Column className={styles.signupForm}>
 
-          <Header as='h2' textAlign='center' className={styles.headerStyle} >
-            Create new account
+            <Header as='h2' textAlign='center' className={styles.headerStyle} >
+              Create new account
           </Header>
 
-          {error && <Message error header="Request Errors" list={error_list} />}
+            {error && <Message error header="Request Errors" list={error_list} />}
 
-          <Form size='large' onSubmit={this.handleSubmit}>
+            <Form size='large' onSubmit={this.handleSubmit}>
 
-            <Segment raised textAlign="left">
-              <Form.Field>
-                <Input
-                  fluid
-                  icon='user'
-                  iconPosition='left'
-                  placeholder='Username'
-                  name="username"
-                  value={username}
-                  onChange={this.handleChange}
-                />
-                {!username && submitted && <Label basic color='red' pointing> Please enter a Username </Label>}
-              </Form.Field>
+              <Segment raised textAlign="left">
+                <Form.Field>
+                  <Input
+                    fluid
+                    icon='user'
+                    iconPosition='left'
+                    placeholder='Username'
+                    name="username"
+                    value={username}
+                    onChange={this.handleChange}
+                  />
+                  {!username && submitted && <Label basic color='red' pointing> Please enter a Username </Label>}
+                </Form.Field>
 
-              <Form.Field>
-                <Input
-                  fluid
-                  icon='mail'
-                  iconPosition='left'
-                  placeholder='E-mail address'
-                  name="email"
-                  value={email}
-                  onChange={this.handleChange}
-                />
-                {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
-              </Form.Field>
+                <Form.Field>
+                  <Input
+                    fluid
+                    icon='mail'
+                    iconPosition='left'
+                    placeholder='E-mail address'
+                    name="email"
+                    value={email}
+                    onChange={this.handleChange}
+                  />
+                  {!email && submitted && <Label basic color='red' pointing> Please enter an email </Label>}
+                </Form.Field>
 
-              <Form.Field>
-                <Input
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  type='password'
-                  name="password1"
-                  value={password1} onChange={this.handleChange}
-                />
-                {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
-              </Form.Field>
+                <Form.Field>
+                  <Input
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Password'
+                    type='password'
+                    name="password1"
+                    value={password1} onChange={this.handleChange}
+                  />
+                  {!password1 && submitted && <Label basic color='red' pointing> Please enter a password </Label>}
+                </Form.Field>
 
-              <Form.Field>
-                <Input
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Confirm Password'
-                  type='password'
-                  name="password2"
-                  value={password2} onChange={this.handleChange}
-                />
-                {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
-              </Form.Field>
+                <Form.Field>
+                  <Input
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Confirm Password'
+                    type='password'
+                    name="password2"
+                    value={password2} onChange={this.handleChange}
+                  />
+                  {password1 && (password1 !== password2) && submitted && <Label basic color='red' pointing> Passwords didn't match </Label>}
+                </Form.Field>
 
-              <Button color='blue' fluid size='large'>
-                Signup
+                <Button color='blue' fluid size='large'>
+                  Signup
               </Button>
-            </Segment>
-          </Form>
-          <Message>
-            Already have an account? <Link to='/login'>Login</Link>
-          </Message>
-        </Grid.Column>
-      </Grid>
+              </Segment>
+            </Form>
+            <Message>
+              Already have an account? <Link to='/login'>Login</Link>
+            </Message>
+          </Grid.Column>
+        </Grid>
+      </div>
     )
   }
 

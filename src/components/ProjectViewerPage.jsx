@@ -16,6 +16,8 @@ import createResizePlugin from 'draft-js-resizeable-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import 'draft-js-alignment-plugin/lib/plugin.css';
 
+import ScrollToTopOnMount from "./common/ScrollToTopOnMount";
+
 import styles from "./ProjectViewerPage.module.css";
 
 const resizePlugin = createResizePlugin();
@@ -50,6 +52,7 @@ class ProjectViewer extends Component {
 
         return (
             <div className={styles.projectPageContainer}>
+                <ScrollToTopOnMount />
                 <Container text className={styles.projectTextContainer}>
                     <Grid className={styles.projectHeadingContainer}>
                         <Grid.Row>

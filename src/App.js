@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './components/common/Navbar'
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import LoginForm from './components/auth/LoginPage';

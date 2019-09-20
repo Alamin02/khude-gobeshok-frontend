@@ -19,6 +19,7 @@
 .projectListContainer {
     padding-top: 3em;
     padding-bottom: 3em;
+    min-height: 50vh;
 }
 
 .projectSearch {

@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Message, Segment, Label, Input } from 'sema
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { userActions } from '../../_actions';
+import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
 import styles from "./LoginPage.module.css";
 
@@ -48,12 +49,17 @@ class LoginPage extends Component {
 
     return (
       <div>
+        <ScrollToTopOnMount />
         <Grid textAlign='center' className={styles.container} verticalAlign='middle'>
           <Grid.Column className={styles.loginForm}>
-            <Header as='h2' textAlign='center' className={styles.headerStyle}>
-              Login to your account
-      </Header>
+            <Header
+              as='h2'
+              textAlign='center'
+              className={styles.headerStyle}
+              content="SignIn to your account"
+            />
             {error && <Message error header="Request Errors" content={error_list} />}
+
             <Form size='large' onSubmit={this.handleSubmit}>
 
               <Segment raised textAlign="left">

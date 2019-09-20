@@ -7,7 +7,7 @@ import Previews from "../common/ImageDragnDrop";
 import ProjectDetails from "./ProjectDetails";
 import EditorSteps from "./EditorSteps";
 import Review from "./Review";
-
+import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -113,7 +113,8 @@ class ProjectEditor extends Component {
         const reviewVisible = this.state.visibility[2];
 
         return (
-            <div >
+            <div>
+                <ScrollToTopOnMount />
                 <Container className={styles.pageHeaderContainer} >
                     <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                         <Header.Content>Project Editor</Header.Content>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
 import { projectActions } from '../_actions';
 
+import ScrollToTopOnMount from "./common/ScrollToTopOnMount";
 import ProjectListTiles from './common/ProjectListTiles';
 import styles from "./ProjectLibraryPage.module.css";
 
@@ -26,6 +27,7 @@ class ProjectsPage extends Component {
 
         return (
             <div className={styles.pageContainer}>
+                <ScrollToTopOnMount />
                 <Container className={styles.pageHeaderContainer} >
                     <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                         <Header.Content>Project Library</Header.Content>

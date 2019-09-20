@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import memoize from "memoize-one";
 import { profileActions } from "../../_actions";
 
+import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import ProjectListTiles from "../common/ProjectListTiles";
 import ProfileTab from "./ProfileTab";
 import ProfileRegularInfo from "./ProfileRegularInfo";
@@ -68,6 +69,7 @@ class ProfilePage extends Component {
 
         return (
             <div style={{ minHeight: '100vh' }}>
+                <ScrollToTopOnMount />
                 <Container style={{ marginTop: '5em' }}>
                     <Grid stackable>
                         <Grid.Row>
