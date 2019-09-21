@@ -20,7 +20,6 @@ import 'react-semantic-toasts/styles/react-semantic-alert.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.props.initEditor();
   }
   render() {
     return (
@@ -66,9 +65,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    initEditor: () => { dispatch(editorActions.init()) },
     logout: () => { dispatch(userActions.logout()) },
-
   }
 }
 

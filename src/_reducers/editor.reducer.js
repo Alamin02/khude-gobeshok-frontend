@@ -7,6 +7,7 @@ export function editor(state = {}, action) {
                 title: "",
                 startDate: new Date(),
                 endDate: new Date(),
+                author: action.author,
             };
         case editorConstants.EDITOR_TITLE_CHANGE:
             return Object.assign({}, state, {

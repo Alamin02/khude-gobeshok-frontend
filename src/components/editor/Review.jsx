@@ -33,16 +33,13 @@ const videoPlugin = createVideoPlugin({});
 const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];
 
 class ProjectViewer extends Component {
-    constructor(props) {
-        super(props);
-    }
     onChange = () => { };
 
     handleSubmit = () => {
         this.props.createProject(this.props.project);
         let path = `/projects`;
         this.props.history.push(path);
-    }
+    };
 
     render() {
         const description = this.props.description;
@@ -83,9 +80,10 @@ class ProjectViewer extends Component {
 function mapStateToProps(state) {
     let { description } = state.editor;
     let { editor } = state;
+
     return {
         description: description,
-        project: editor
+        project: editor,
     }
 }
 

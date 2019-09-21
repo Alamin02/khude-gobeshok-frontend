@@ -10,6 +10,7 @@ export const projectActions = {
 
 function create_project(project) {
     const new_project = {
+        author: project.author,
         title: project.title,
         start_date: moment(project.startDate).format('YYYY-MM-DD'),
         end_date: moment(project.endDate).format('YYYY-MM-DD'),

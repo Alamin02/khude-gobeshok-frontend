@@ -11,8 +11,8 @@ export const editorActions = {
     editor_description_change,
 }
 
-function init() {
-    return { type: editorConstants.EDITOR_INIT }
+function init(author) {
+    return { type: editorConstants.EDITOR_INIT, author }
 }
 
 function title_change(title) {

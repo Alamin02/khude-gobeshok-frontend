@@ -213,7 +213,7 @@ function listProjects(username) {
     const requestOptions = {
         mode: 'cors',
     };
-    let url = apiBaseUrl() + `project/list/` + username;
+    let url = apiBaseUrl() + `projects/list/` + username;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

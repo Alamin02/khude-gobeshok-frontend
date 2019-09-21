@@ -27,6 +27,8 @@ class ProjectEditor extends Component {
     constructor(props) {
         super(props);
 
+        this.props.init(this.props.author);
+
         this.state = {
             visibility: [true, false, false],
             currentStep: 1,
@@ -243,21 +245,25 @@ class ProjectEditor extends Component {
 
 function mapStateToProps(state) {
     let { editor } = state;
+    let { username } = state.users;
+
     return {
         title: editor.title,
         startDate: editor.startDate,
         endDate: editor.endDate,
         thumbnail: editor.thumbnail,
+        author: username,
     }
-};
+}
+
 function mapDispatchToProps(dispatch) {
     return {
-        init: () => dispatch(editorActions.init()),
+        init: (author) => dispatch(editorActions.init(author)),
         titleChange: (title) => dispatch(editorActions.title_change(title)),
         thumbnailChange: (image) => dispatch(editorActions.thumbnail_change(image)),
         startDateChange: (date) => dispatch(editorActions.start_date_change(date)),
         endDateChange: (date) => dispatch(editorActions.end_date_change(date)),
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectEditor);

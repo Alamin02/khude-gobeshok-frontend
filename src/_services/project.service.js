@@ -14,7 +14,7 @@ function create(project) {
         body: JSON.stringify(project),
     };
 
-    let url = apiBaseUrl() + `project/create/`;
+    let url = apiBaseUrl() + `projects/`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -35,7 +35,7 @@ function list(pageNumber) {
         queryString = `?limit=` + limit.toString() + `&offset=` + offset;
     }
 
-    let url = apiBaseUrl() + `project/list/` + queryString;
+    let url = apiBaseUrl() + `projects/` + queryString;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -48,7 +48,7 @@ function retrieve(project_id) {
         mode: 'cors',
     };
 
-    let url = apiBaseUrl() + `project/retrieve/` + project_id;
+    let url = apiBaseUrl() + `projects/retrieve/` + project_id;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

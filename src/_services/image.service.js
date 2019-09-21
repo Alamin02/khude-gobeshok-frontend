@@ -16,7 +16,7 @@ function image_upload(image) {
         body: formData,
     };
 
-    let url = apiBaseUrl() + "content/image-add"
+    let url = apiBaseUrl() + "contents/images"
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -35,7 +35,7 @@ function profilePicUpload(image) {
         body: formData,
     };
 
-    let url = apiBaseUrl() + "content/propic-add";
+    let url = apiBaseUrl() + "contents/propics";
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -54,7 +54,7 @@ function thumbnail_upload(image) {
         body: formData,
     };
 
-    let url = apiBaseUrl() + "content/thumbnail-add";
+    let url = apiBaseUrl() + "contents/thumbnails";
 
     return fetch(url, requestOptions)
         .then(handleResponse)
