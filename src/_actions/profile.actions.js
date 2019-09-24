@@ -251,9 +251,9 @@ function deleteJob(id) {
 
 }
 
-function getProjects(username) {
+function getProjects(username, pageNumber) {
     return dispatch => {
-        profileService.listProjects(username)
+        profileService.listProjects(username, pageNumber)
             .then(
                 projectList => {
                     dispatch(success(projectList));

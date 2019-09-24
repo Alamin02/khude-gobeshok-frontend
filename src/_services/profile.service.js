@@ -209,11 +209,19 @@ function deleteJob(id) {
         )
 }
 
-function listProjects(username) {
+function listProjects(username, pageNumber) {
     const requestOptions = {
         mode: 'cors',
     };
-    let url = apiBaseUrl() + `projects/list/` + username;
+
+    let queryString = "";
+    if (pageNumber) {
+        let offset = (12 * (pageNumber - 1));
+        let limit = "12";
+        queryString = `?limit=` + limit.toString() + `&offset=` + offset;
+    }
+
+    let url = apiBaseUrl() + `projects/list/` + username + queryString;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

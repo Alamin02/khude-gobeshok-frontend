@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Grid, Tab, Image, Segment, Header, Divider, Button, Icon, Dimmer } from "semantic-ui-react";
+import { Container, Grid, Tab, Pagination, Image, Segment, Header, Divider, Button, Icon, Dimmer } from "semantic-ui-react";
 import { connect } from "react-redux";
 import memoize from "memoize-one";
 import { profileActions } from "../../_actions";
@@ -11,6 +11,9 @@ import ProfileRegularInfo from "./ProfileRegularInfo";
 import styles from "./ProfilePage.module.css";
 
 class ProfilePage extends Component {
+    state = {
+        activePage: 1
+    }
 
     loadProfile = memoize(
         (profilename) => {
@@ -37,10 +40,20 @@ class ProfilePage extends Component {
         }
     )
 
+    handlePageChange = (e, { activePage }) => {
+        const { profilename } = this.props.match.params;
+        this.setState({ activePage });
+        this.props.getProjects(profilename, activePage);
+        window.scrollTo(0, 0);
+    }
+
     render() {
         const { profilename } = this.props.match.params;
 
         this.loadProfile(profilename);
+
+        const { projectCount } = this.props;
+        let numberOfPages = Math.ceil(projectCount / 12); // Retrieved Page Size (Number of Projects per page) is 12.
 
         const { ownProfile, publicMode } = this.state;
 
@@ -50,6 +63,14 @@ class ProfilePage extends Component {
                 render: () => (
                     <Tab.Pane attached>
                         <ProjectListTiles projects={this.props.projectList} own={ownProfile} public={publicMode} />
+
+                        <Container className={styles.pagination}>
+                            <Pagination
+                                activePage={this.state.activePage}
+                                totalPages={numberOfPages}
+                                onPageChange={this.handlePageChange}
+                            />
+                        </Container>
                     </Tab.Pane>
                 ),
             },
@@ -88,11 +109,12 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-    let { projectList, profileDetails } = state.profile;
+    let { projectList, profileDetails, projectCount } = state.profile;
     let { username } = state.users;
 
     return {
         projectList,
+        projectCount,
         profileDetails,
         username,
     };
@@ -101,7 +123,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         setProfileUsername: (username) => dispatch(profileActions.setCurrentProfileName(username)),
-        getProjects: (profileName) => dispatch(profileActions.getProjects(profileName)),
+        getProjects: (profileName, pageNumber) => dispatch(profileActions.getProjects(profileName, pageNumber)),
         getDetails: (profileName) => dispatch(profileActions.getDetails(profileName)),
         getEducationList: (profileName) => dispatch(profileActions.getEducationList(profileName)),
         getJobList: (profileName) => dispatch(profileActions.getJobList(profileName)),

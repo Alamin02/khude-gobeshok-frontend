@@ -13,6 +13,7 @@ const initialProfileDetails = {
 
 const initialState = {
     projectList: [],
+    projectCount: 1,
     profileDetails: initialProfileDetails,
     profileUserDetails: {},
     educationList: [],
@@ -24,6 +25,7 @@ export function profile(state = initialState, action) {
         case profileConstants.PROFILE_PROJECT_LIST_SUCCESS:
             return Object.assign({}, state, {
                 projectList: action.projectList.results,
+                projectCount: action.projectList.count,
             });
         case profileConstants.PROFILE_USER_DETAILS_SUCCESS:
             return Object.assign({}, state, {

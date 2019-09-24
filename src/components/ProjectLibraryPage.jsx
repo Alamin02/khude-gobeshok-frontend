@@ -13,12 +13,13 @@ class ProjectsPage extends Component {
     }
 
     componentDidMount() {
-        this.props.get_project_list();
+        this.props.getProjectList();
     }
 
     handlePageChange = (e, { activePage }) => {
         this.setState({ activePage });
-        this.props.get_project_list(activePage);
+        this.props.getProjectList(activePage);
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -60,9 +61,10 @@ function mapStateToProps(state) {
         projectCount
     }
 }
+
 function mapDipatchToProps(dispatch) {
     return {
-        get_project_list: (pageNumber) => dispatch(projectActions.get_project_list(pageNumber)),
+        getProjectList: (pageNumber) => dispatch(projectActions.get_project_list(pageNumber)),
     }
 }
 
