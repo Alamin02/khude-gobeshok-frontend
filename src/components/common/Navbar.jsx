@@ -54,11 +54,12 @@ class Navbar extends React.Component {
                                     <Menu.Item icon='envelope' />
                                     <Dropdown item icon="user" pointing="top right" className='link item'>
                                         <Dropdown.Menu active >
-
-                                            <Dropdown.Item text='Your Profile' onClick={() => this.handleIconClick("")} />
-
-                                            <Dropdown.Item text='Logout' onClick={() => this.handleIconClick("")} />
-
+                                            <Link to={`/profile/` + this.props.username} style={{ textDecoration: "none" }}>
+                                                <Dropdown.Item text='Your Profile' onClick={() => this.handleIconClick("")} />
+                                            </Link>
+                                            <Link to='/logout'>
+                                                <Dropdown.Item text='Logout' onClick={() => this.handleIconClick("")} />
+                                            </Link>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </React.Fragment>

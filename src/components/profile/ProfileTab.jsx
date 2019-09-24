@@ -7,6 +7,8 @@ import AddEducation from "./AddEducation";
 import JobList from "./JobList";
 import AddJob from "./AddJob";
 
+import styles from "./ProfileTab.module.css";
+
 export default class ProfileTab extends Component {
     constructor(props) {
         super(props);
@@ -43,7 +45,7 @@ export default class ProfileTab extends Component {
 
         return (
             <div>
-                <Segment clearing vertical>
+                <Segment clearing vertical className={styles.headerHolder}>
                     <Header as="h3" floated="left" >
                         Personal Details
                         </Header>
@@ -77,7 +79,7 @@ export default class ProfileTab extends Component {
                     <ProfileDetailsEditor visible={this.state.profileDetailsEditable} />
                 </Segment>
 
-                <Segment clearing vertical>
+                <Segment clearing vertical className={styles.headerHolder}>
                     <Header as="h3" floated="left" >
                         Education
                     </Header>
@@ -92,7 +94,7 @@ export default class ProfileTab extends Component {
                     <AddEducation visible={this.state.educationEditable} />
                 </Segment>
 
-                <Segment clearing vertical>
+                <Segment clearing vertical className={styles.headerHolder}>
                     <Header as="h3" floated="left" >
                         Job Experience
                     </Header>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Form, Button, Icon, Header, Label } from "semantic-ui-react";
+import { Form, Button, Icon, Header, Label, Segment } from "semantic-ui-react";
 import { profileActions } from '../../_actions';
+
+import styles from "./Skills.module.css";
 
 class Skills extends Component {
     state = {
@@ -51,7 +53,7 @@ class Skills extends Component {
                 .filter(d => (d !== ""));
 
         let specializedInRender = specializedInList.map((specializedIn) => (
-            <Label key={specializedIn}>{specializedIn}</Label>
+            <Label className={styles.skillLabels} key={specializedIn}>{specializedIn}</Label>
         ))
 
         let softwareSkillsList =
@@ -60,17 +62,23 @@ class Skills extends Component {
                 .filter(d => (d !== ""));
 
         let softwareSkillsRender = softwareSkillsList.map((softwareSkills) => (
-            <Label key={softwareSkills}>{softwareSkills}</Label>
+            <Label className={styles.skillLabels} key={softwareSkills}>
+                {softwareSkills}
+            </Label>
         ))
 
         return (
             <div>
-                <Header as="h3" dividing>Specialized In</Header>
-                {own &&
-                    <Button icon circular floated="right" size="tiny" onClick={this.toggleSpecializedEdit}>
-                        <Icon name='edit outline' />
-                    </Button>
-                }
+                <Segment clearing vertical className={styles.headerHolder}>
+                    <Header as="h3" floated="left" className={styles.skillHeader} >
+                        Specialized In
+                    </Header>
+                    {own &&
+                        <Button icon circular floated="right" size="tiny" onClick={this.toggleSpecializedEdit}>
+                            <Icon name='edit outline' />
+                        </Button>
+                    }
+                </Segment>
 
                 {specializedInRender
                     ||
@@ -90,12 +98,16 @@ class Skills extends Component {
                     </Form>
                 }
 
-                <Header as="h3" dividing content="Software Skills" />
-                {own &&
-                    <Button icon circular floated="right" size="mini" onClick={this.toggleSoftwareEdit}>
-                        <Icon name='edit outline' />
-                    </Button>
-                }
+                <Segment clearing vertical className={styles.headerHolder}>
+                    <Header as="h3" floated="left" className={styles.skillHeader} >
+                        Software Skills
+                    </Header>
+                    {own &&
+                        <Button icon circular floated="right" size="tiny" onClick={this.toggleSoftwareEdit}>
+                            <Icon name='edit outline' />
+                        </Button>
+                    }
+                </Segment>
 
                 {softwareSkillsRender
                     ||

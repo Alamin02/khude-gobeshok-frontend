@@ -8,6 +8,8 @@ import { imageService } from "../../_services";
 import ImageDragNDrop from "../common/ImageDragnDrop";
 import Skills from "./Skills";
 
+import styles from "./ProfileRegularInfo.module.css";
+
 class ProfileRegularInfo extends Component {
     state = {
         bio: "",
@@ -141,6 +143,7 @@ class ProfileRegularInfo extends Component {
 
                     <Header
                         as="h3"
+                        className={styles.username}
                         content={username}
                     />
 
@@ -162,8 +165,8 @@ class ProfileRegularInfo extends Component {
 
                     <Divider />
                     <Grid columns={2}>
-                        <Grid.Row>
-                            <Grid.Column textAlign="left">Email:</Grid.Column>
+                        <Grid.Row className={styles.textRow}>
+                            <Grid.Column textAlign="left" >Email:</Grid.Column>
                             <Grid.Column textAlign="right">{email || "No email"}</Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
