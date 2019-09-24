@@ -16,13 +16,6 @@ import { editorActions } from "../../_actions"
 import styles from "./ProjectEditorPage.module.css";
 
 
-const options = [
-    { key: 'm', text: 'Not Applicable', value: 'male' },
-    { key: 'f', text: 'Not Applicable', value: 'female' },
-    { key: 'o', text: 'Not Applicabler', value: 'other' },
-]
-
-
 class ProjectEditor extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +30,19 @@ class ProjectEditor extends Component {
             btnPress: "",
             titleEmptyWarning: false,
             thumbnailEmptyWarning: false,
+            title: this.props.title,
+            teammates: this.props.teammates,
+            tags: this.props.tags,
         }
+    }
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state);
     }
 
     handleNext = () => {
@@ -51,6 +56,7 @@ class ProjectEditor extends Component {
             newVisibility = [false, true, false];
             nextDisable = false;
             prevDisable = false;
+
         }
 
         else if (this.state.currentStep === 2 && this.state.btnPress === "next") {
@@ -83,8 +89,11 @@ class ProjectEditor extends Component {
     }
 
     handleHide = (button) => {
+        // Validate metadata form on next click on first step
+        // If validated, update store and then proceed to next
+        // Else shows the error messages
         if (button === "next" && this.state.currentStep === 1) {
-            if (this.props.title === "") {
+            if (this.state.title === "") {
                 this.setState({
                     titleEmptyWarning: true,
                 });
@@ -101,6 +110,12 @@ class ProjectEditor extends Component {
                     titleEmptyWarning: false,
                     thumbnailEmptyWarning: false,
                 });
+
+                this.props.editorMetaDataChange({
+                    title: this.state.title,
+                    teammates: this.state.teammates,
+                    tags: this.state.tags,
+                })
             }
         }
         this.setState({
@@ -130,14 +145,14 @@ class ProjectEditor extends Component {
                 <Container text style={{ paddingTop: "50px", paddingBottom: "50px" }}>
                     <Transition unmountOnHide visible={introVisible} animation='scale' duration={500} onHide={this.handleNext}>
                         <Form>
-
                             <Form.Field>
                                 <label>Project Title</label>
                                 <input
                                     autoComplete="off"
                                     placeholder="Enter your awesome project title"
-                                    name="title" value={this.props.title}
-                                    onChange={e => this.props.titleChange(e.target.value)}
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.handleChange}
                                 />
                                 {this.state.titleEmptyWarning && <Label key="title" basic color='red' pointing> Please enter a Title </Label>}
                             </Form.Field>
@@ -145,7 +160,6 @@ class ProjectEditor extends Component {
                             <Grid columns={2}>
                                 <Grid.Row>
                                     <Grid.Column>
-
                                         <Form.Field>
                                             <label>Thumbnail</label>
                                             <Previews
@@ -155,9 +169,7 @@ class ProjectEditor extends Component {
                                             />
                                             {this.state.thumbnailEmptyWarning && <Label key="thumbnail" basic color='red' pointing> Please upload a thumbnail </Label>}
                                         </Form.Field>
-
                                     </Grid.Column>
-
                                     <Grid.Column>
                                         <Form.Group>
                                             <Form.Field>
@@ -167,7 +179,6 @@ class ProjectEditor extends Component {
                                                     onChange={date => this.props.startDateChange(date)}
                                                 />
                                             </Form.Field>
-
                                             <Form.Field>
                                                 <label>End Date</label>
                                                 <DatePicker
@@ -177,12 +188,25 @@ class ProjectEditor extends Component {
                                             </Form.Field>
                                         </Form.Group>
 
-                                        <Form.Field
-                                            control={Select}
-                                            label='Category'
-                                            options={options}
-                                            placeholder='Category (Not implemented)'
-                                        />
+                                        <Form.Field>
+                                            <label>Tags</label>
+                                            <input
+                                                placeholder="Enter tags seperated with comma"
+                                                value={this.state.tags}
+                                                name="tags"
+                                                onChange={this.handleChange}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Teammates</label>
+                                            <input
+                                                value={this.state.teammates}
+                                                name="teammates"
+                                                placeholder="Enter teammate names seperated with comma"
+                                                onChange={this.handleChange}
+                                            />
+                                        </Form.Field>
+
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
@@ -235,9 +259,7 @@ class ProjectEditor extends Component {
                             </Button.Group>
                         </Grid.Column>
                     </Grid>
-
-                </Container >
-
+                </Container>
             </div >
         )
     }
@@ -253,16 +275,18 @@ function mapStateToProps(state) {
         endDate: editor.endDate,
         thumbnail: editor.thumbnail,
         author: username,
+        teammates: editor.teammates,
+        tags: editor.tags,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         init: (author) => dispatch(editorActions.init(author)),
-        titleChange: (title) => dispatch(editorActions.title_change(title)),
-        thumbnailChange: (image) => dispatch(editorActions.thumbnail_change(image)),
-        startDateChange: (date) => dispatch(editorActions.start_date_change(date)),
-        endDateChange: (date) => dispatch(editorActions.end_date_change(date)),
+        thumbnailChange: (image) => dispatch(editorActions.thumbnailChange(image)),
+        startDateChange: (date) => dispatch(editorActions.startDateChange(date)),
+        endDateChange: (date) => dispatch(editorActions.endDateChange(date)),
+        editorMetaDataChange: (metadata) => dispatch(editorActions.editorMetaDataChange(metadata)),
     }
 }
 

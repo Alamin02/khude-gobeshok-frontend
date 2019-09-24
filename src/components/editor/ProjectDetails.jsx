@@ -143,7 +143,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        descriptionChange: (editable) => dispatch(editorActions.editor_description_change(editable)),
+        descriptionChange: (editable) => dispatch(editorActions.editorDescriptionChange(editable)),
 
     }
 };
