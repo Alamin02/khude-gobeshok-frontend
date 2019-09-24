@@ -30,7 +30,7 @@ class ProjectsPage extends Component {
                 <ScrollToTopOnMount />
                 <Container className={styles.pageHeaderContainer} >
                     <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
-                        <Header.Content>Project Library</Header.Content>
+                        <Header.Content>Project Garage</Header.Content>
                     </Header>
                 </Container>
 
@@ -45,7 +45,6 @@ class ProjectsPage extends Component {
                         activePage={this.state.activePage}
                         totalPages={numberOfPages}
                         onPageChange={this.handlePageChange}
-
                     />
                 </Container>
 
