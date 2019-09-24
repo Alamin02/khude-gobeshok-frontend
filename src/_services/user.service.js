@@ -14,7 +14,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password }),
     };
 
-    let url = apiBaseUrl() + `/rest-auth/login/`;
+    let url = apiBaseUrl() + `rest-auth/login/`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
@@ -40,7 +40,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    let url = apiBaseUrl() + `/rest-auth/registration/`;
+    let url = apiBaseUrl() + `rest-auth/registration/`;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

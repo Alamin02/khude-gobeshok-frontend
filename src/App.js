@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignupForm from './components/auth/SignupPage';
 import HomePage from './components/home/HomePage';
-import ProjectsPage from './components/ProjectLibraryPage';
+import ProjectsPage from './components/projects/ProjectLibraryPage';
 import ProjectEditor from "./components/editor/ProjectEditorPage";
-import ProjectView from "./components/ProjectViewerPage";
+import ProjectView from "./components/projects/ProjectViewerPage";
 import ProfilePage from "./components/profile/ProfilePage";
 import Footer from "./components/common/Footer";
 

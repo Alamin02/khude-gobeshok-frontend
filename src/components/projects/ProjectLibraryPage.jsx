@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
-import { projectActions } from '../_actions';
+import { projectActions } from '../../_actions';
 
-import ScrollToTopOnMount from "./common/ScrollToTopOnMount";
-import ProjectListTiles from './common/ProjectListTiles';
+import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
+import ProjectListTiles from '../common/ProjectListTiles';
 import styles from "./ProjectLibraryPage.module.css";
 
 class ProjectsPage extends Component {
