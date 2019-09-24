@@ -12,6 +12,8 @@ function create_project(project) {
     const new_project = {
         author: project.author,
         title: project.title,
+        tags: project.tags,
+        teammates: project.teammates,
         start_date: moment(project.startDate).format('YYYY-MM-DD'),
         end_date: moment(project.endDate).format('YYYY-MM-DD'),
         thumbnail: project.thumbnail,
@@ -22,11 +24,10 @@ function create_project(project) {
         projectService.create(new_project)
             .then(
                 project => {
-                    console.log("SUCESS...!!!!");
-                    console.log(project);
+                    dispatch(success(project));
                 },
                 error => {
-                    console.log("ERROR...!!!!");
+                    dispatch(failure(error));
                 }
             )
     }

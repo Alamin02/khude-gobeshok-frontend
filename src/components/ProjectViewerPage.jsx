@@ -45,6 +45,9 @@ class ProjectViewer extends Component {
         this.props.get_project(id);
     }
 
+    // Dummy onChange for readOnly plugin editor.
+    onChange = () => { }
+
     render() {
         const { description } = this.props.project;
         const editorState = (description
@@ -70,6 +73,7 @@ class ProjectViewer extends Component {
                     <Editor
                         editorState={editorState}
                         plugins={plugins}
+                        onChange={this.onChange}
                         readOnly
                     />
                 </Container>
