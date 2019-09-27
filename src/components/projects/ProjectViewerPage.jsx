@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import { EditorState, convertFromRaw } from 'draft-js';
 
 import { projectActions } from '../../_actions';
 
-import { Container, Grid, Image, Header } from 'semantic-ui-react'
+import { Container, Grid, Image, Header, Segment } from 'semantic-ui-react'
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -49,7 +50,7 @@ class ProjectViewer extends Component {
     onChange = () => { }
 
     render() {
-        const { description } = this.props.project;
+        const { description, author, teammates } = this.props.project;
         const editorState = (description
             && EditorState.createWithContent(convertFromRaw(description)))
             || EditorState.createEmpty();
@@ -76,6 +77,17 @@ class ProjectViewer extends Component {
                         onChange={this.onChange}
                         readOnly
                     />
+
+                    <Segment padded>
+                        <p>
+                            <i>Author: <Link to={`/profile/` + author}>{author}</Link></i>
+                        </p>
+                        {teammates &&
+                            <p><i>Teammates: {teammates}</i></p>
+                        }
+
+                    </Segment>
+
                 </Container>
             </div>
         )

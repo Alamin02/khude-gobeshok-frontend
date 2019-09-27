@@ -1,6 +1,6 @@
+import { toast } from "react-semantic-toasts";
 import { userConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './';
 import { history } from '../_helpers';
 
 export const userActions = {
@@ -16,13 +16,20 @@ function login(username, password) {
         userService.login(username, password)
             .then(
                 authToken => {
+                    toast({
+                        type: 'success',
+                        icon: 'user',
+                        title: 'Login Success',
+                        description: 'You have successfully Logged in as a KhudeGobeshok',
+                        animation: 'bounce',
+                        time: 5000,
+                    });
                     dispatch(success({ username, authToken }));
                     localStorage.setItem('username', JSON.stringify(username));
                     history.push('/');
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
                 }
             );
     };
@@ -48,12 +55,9 @@ function register(user) {
                     dispatch(success({ authToken, username }));
                     localStorage.setItem('username', JSON.stringify(username));
                     history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
-                    console.log(error);
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
                 }
             );
     };
