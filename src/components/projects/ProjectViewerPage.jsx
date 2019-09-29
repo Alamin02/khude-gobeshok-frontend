@@ -6,7 +6,7 @@ import { EditorState, convertFromRaw } from 'draft-js';
 
 import { projectActions } from '../../_actions';
 
-import { Container, Grid, Image, Header, Segment } from 'semantic-ui-react'
+import { Container, Grid, Image, Header, Segment, Form } from 'semantic-ui-react'
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -87,6 +87,14 @@ class ProjectViewer extends Component {
                         }
 
                     </Segment>
+
+                    <Header as='h3' dividing>
+                        Comments
+                    </Header>
+                    <Form>
+                        <Form.TextArea placeholder='Type your comment...' />
+                        <Form.Button>Submit</Form.Button>
+                    </Form>
 
                 </Container>
             </div>

@@ -29,6 +29,7 @@ function list(pageNumber) {
     };
 
     let queryString = "";
+    
     if (pageNumber) {
         let offset = (12 * (pageNumber - 1));
         let limit = "12";
