@@ -4,6 +4,8 @@ export const projectService = {
     create,
     list,
     retrieve,
+    getComments,
+    postComments,
 };
 
 function create(project) {
@@ -29,7 +31,7 @@ function list(pageNumber) {
     };
 
     let queryString = "";
-    
+
     if (pageNumber) {
         let offset = (12 * (pageNumber - 1));
         let limit = "12";
@@ -54,4 +56,31 @@ function retrieve(project_id) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(project => { return project });
+}
+
+function getComments(projectId) {
+    const requestOptions = {
+        mode: 'cors',
+    };
+
+    let url = apiBaseUrl() + `api/comments/?project=` + projectId;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(comments => comments);
+}
+
+function postComments(comment) {
+    const requestOptions = {
+        mode: 'cors',
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(comment),
+    };
+
+    let url = apiBaseUrl() + `api/comments/`;
+
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(comment => comment);
 }

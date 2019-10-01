@@ -5,6 +5,7 @@ const initalState = {
     project_loaded: false,
     project: {},
     projectCount: 1,
+    comments: [],
 }
 
 export function project(state = initalState, action) {
@@ -20,6 +21,10 @@ export function project(state = initalState, action) {
             return Object.assign({}, state, {
                 project: action.project,
                 project_loaded: true,
+            });
+        case projectConstants.PROJECT_GET_COMMENTS_SUCCESS:
+            return Object.assign({}, state, {
+                comments: action.comments.results,
             });
         default:
             return state;

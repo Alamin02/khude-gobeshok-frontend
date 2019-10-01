@@ -6,7 +6,7 @@ import { EditorState, convertFromRaw } from 'draft-js';
 
 import { projectActions } from '../../_actions';
 
-import { Container, Grid, Image, Header, Segment, Form } from 'semantic-ui-react'
+import { Container, Grid, Image, Header, Segment, Form, Comment } from 'semantic-ui-react'
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -43,7 +43,8 @@ class ProjectViewer extends Component {
     constructor(props) {
         super(props);
         const { id } = this.props.match.params;
-        this.props.get_project(id);
+        this.props.getProject(id);
+        this.props.getComments(id);
     }
 
     // Dummy onChange for readOnly plugin editor.
@@ -54,6 +55,18 @@ class ProjectViewer extends Component {
         const editorState = (description
             && EditorState.createWithContent(convertFromRaw(description)))
             || EditorState.createEmpty();
+
+        const comments = this.props.comments.map((comment, index) =>
+            <Comment key={index}>
+                <Comment.Content>
+                    <Comment.Author as={Link} to={`/profile/` + comment.commenter}>{comment.commenter}</Comment.Author>
+                    <Comment.Metadata>
+                        <div>Today at 5:42PM</div>
+                    </Comment.Metadata>
+                    <Comment.Text>{comment.description}</Comment.Text>
+                </Comment.Content>
+            </Comment>
+        )
 
         return (
             <div className={styles.projectPageContainer}>
@@ -91,6 +104,10 @@ class ProjectViewer extends Component {
                     <Header as='h3' dividing>
                         Comments
                     </Header>
+                    <Comment.Group>
+                        {comments}
+                    </Comment.Group>
+
                     <Form>
                         <Form.TextArea placeholder='Type your comment...' />
                         <Form.Button>Submit</Form.Button>
@@ -103,16 +120,18 @@ class ProjectViewer extends Component {
 }
 
 function mapStateToProps(state) {
-    let { project_loaded, project } = state.project;
+    let { project_loaded, project, comments } = state.project;
     return {
         project,
         project_loaded,
+        comments,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        get_project: (project_id) => dispatch(projectActions.get_project(project_id)),
+        getProject: (projectId) => dispatch(projectActions.getProject(projectId)),
+        getComments: (projectId) => dispatch(projectActions.getComments(projectId)),
     }
 };
 

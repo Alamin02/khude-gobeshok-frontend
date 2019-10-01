@@ -4,8 +4,9 @@ import moment from 'moment';
 
 export const projectActions = {
     create_project,
-    get_project,
+    getProject,
     get_project_list,
+    getComments,
 }
 
 function create_project(project) {
@@ -37,7 +38,7 @@ function create_project(project) {
     function failure(error) { return { type: projectConstants.PROJECT_CREATE_FAILURE, error } }
 }
 
-function get_project(project_id) {
+function getProject(project_id) {
     return dispatch => {
         projectService.retrieve(project_id)
             .then(
@@ -45,7 +46,7 @@ function get_project(project_id) {
                     dispatch(success(project));
                 },
                 error => {
-                    console.log("ERROR...")
+                    dispatch(failure(error));
                 });
     }
     function request(project) { return { type: projectConstants.PROJECT_RETRIEVE_REQUEST, project } }
@@ -61,11 +62,29 @@ function get_project_list(pageNumber) {
                     dispatch(success(project_list));
                 },
                 error => {
-                    dispatch(failure());
+                    dispatch(failure(error));
                 });
     }
 
     function request(project_list) { return { type: projectConstants.PROJECT_LIST_REQUEST, project_list } }
     function success(project_list) { return { type: projectConstants.PROJECT_LIST_SUCCESS, project_list } }
     function failure(error) { return { type: projectConstants.PROJECT_LIST_FAILURE, error } }
+}
+
+function getComments(projectId) {
+    return dispatch => {
+        projectService.getComments(projectId)
+            .then(
+                comments => dispatch(success(comments)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request(projectId) { return { type: projectConstants.PROJECT_GET_COMMENTS_REQUEST, projectId } }
+    function success(comments) { return { type: projectConstants.PROJECT_GET_COMMENTS_SUCCESS, comments } }
+    function failure(error) { return { type: projectConstants.PROJECT_GET_COMMENTS_FAILURE, error } }
+}
+
+function postComment(comment) {
+
 }
