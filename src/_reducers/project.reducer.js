@@ -26,6 +26,10 @@ export function project(state = initalState, action) {
             return Object.assign({}, state, {
                 comments: action.comments.results,
             });
+        case projectConstants.PROJECT_ADD_COMMENTS_SUCCESS:
+            return Object.assign({}, state, {
+                comments: [...state.comments, action.comment],
+            });
         default:
             return state;
     }

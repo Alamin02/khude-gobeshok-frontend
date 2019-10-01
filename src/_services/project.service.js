@@ -5,7 +5,7 @@ export const projectService = {
     list,
     retrieve,
     getComments,
-    postComments,
+    postComment,
 };
 
 function create(project) {
@@ -70,7 +70,7 @@ function getComments(projectId) {
         .then(comments => comments);
 }
 
-function postComments(comment) {
+function postComment(comment) {
     const requestOptions = {
         mode: 'cors',
         method: 'POST',

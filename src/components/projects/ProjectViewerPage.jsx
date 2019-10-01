@@ -47,8 +47,31 @@ class ProjectViewer extends Component {
         this.props.getComments(id);
     }
 
+    state = {
+        commentDescription: "",
+    }
+
     // Dummy onChange for readOnly plugin editor.
     onChange = () => { }
+
+    handleChange = (e, { value }) => {
+        this.setState({
+            commentDescription: value,
+        });
+    }
+
+    handleCommentSubmit = () => {
+        const { id } = this.props.match.params;
+        let comment = {
+            project: id,
+            commenter: this.props.username,
+            description: this.state.commentDescription,
+        }
+        this.setState({
+            commentDescription: "",
+        });
+        this.props.postComment(comment);
+    }
 
     render() {
         const { description, author, teammates } = this.props.project;
@@ -61,7 +84,7 @@ class ProjectViewer extends Component {
                 <Comment.Content>
                     <Comment.Author as={Link} to={`/profile/` + comment.commenter}>{comment.commenter}</Comment.Author>
                     <Comment.Metadata>
-                        <div>Today at 5:42PM</div>
+                        <div>{comment.time}</div>
                     </Comment.Metadata>
                     <Comment.Text>{comment.description}</Comment.Text>
                 </Comment.Content>
@@ -108,8 +131,8 @@ class ProjectViewer extends Component {
                         {comments}
                     </Comment.Group>
 
-                    <Form>
-                        <Form.TextArea placeholder='Type your comment...' />
+                    <Form onSubmit={this.handleCommentSubmit}>
+                        <Form.TextArea placeholder='Type your comment...' value={this.state.commentDescription} onChange={this.handleChange} />
                         <Form.Button>Submit</Form.Button>
                     </Form>
 
@@ -121,10 +144,12 @@ class ProjectViewer extends Component {
 
 function mapStateToProps(state) {
     let { project_loaded, project, comments } = state.project;
+    const { username } = state.users;
     return {
         project,
         project_loaded,
         comments,
+        username,
     }
 }
 
@@ -132,6 +157,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getProject: (projectId) => dispatch(projectActions.getProject(projectId)),
         getComments: (projectId) => dispatch(projectActions.getComments(projectId)),
+        postComment: (comment) => dispatch(projectActions.postComment(comment)),
     }
 };
 

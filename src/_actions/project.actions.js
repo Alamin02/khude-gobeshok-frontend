@@ -7,6 +7,7 @@ export const projectActions = {
     getProject,
     get_project_list,
     getComments,
+    postComment,
 }
 
 function create_project(project) {
@@ -87,4 +88,15 @@ function getComments(projectId) {
 
 function postComment(comment) {
 
+    return dispatch => {
+        projectService.postComment(comment)
+            .then(
+                comment => dispatch(success(comment)),
+                error => dispatch(failure(error))
+            )
+    }
+
+    function request(comment) { return { type: projectConstants.PROJECT_ADD_COMMENTS_REQUEST, comment } }
+    function success(comment) { return { type: projectConstants.PROJECT_ADD_COMMENTS_SUCCESS, comment } }
+    function failure(error) { return { type: projectConstants.PROJECT_ADD_COMMENTS_FAILURE, error } }
 }
