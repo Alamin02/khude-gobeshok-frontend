@@ -65,8 +65,21 @@ class Navbar extends React.Component {
                                             onClick={this.handleItemClick}
                                         />
                                     </Link>
-                                    <Menu.Item icon='bell' />
-                                    <Menu.Item icon='envelope' />
+                                    <Link to="/notifications">
+                                        <Menu.Item
+                                            icon='bell'
+                                            active={activeItem === "notification"}
+                                            onClick={() => this.handleIconClick("notification")}
+                                        />
+                                    </Link>
+                                    <Link to="/messages">
+                                        <Menu.Item
+                                            icon='envelope'
+                                            active={activeItem === "message"}
+                                            onClick={() => this.handleIconClick("message")}
+                                        />
+                                    </Link>
+
                                     <Dropdown item icon="user" pointing="top right" className='link item'>
                                         <Dropdown.Menu active >
                                             <Link to={`/profile/` + this.props.username} style={{ textDecoration: "none" }}>

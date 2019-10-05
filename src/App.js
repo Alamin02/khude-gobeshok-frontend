@@ -13,6 +13,8 @@ import ProfilePage from "./components/profile/ProfilePage";
 import Footer from "./components/common/Footer";
 import ChallengesPage from "./components/challenges/ChallengesPage";
 import SquadsPage from "./components/squads/SquadsPage";
+import MessagesPage from "./components/messages/MessagesPage";
+import NotificationPage from "./components/notifications/NotificationsPage";
 
 import "./App.css";
 import { userActions, editorActions } from './_actions';
@@ -36,6 +38,8 @@ class App extends React.Component {
           <Route path="/profile/:profilename/" component={ProfilePage} />
           <Route path="/challenges/" component={ChallengesPage} />
           <Route path="/squads/" component={SquadsPage} />
+          <Route path="/messages/" component={MessagesPage} />
+          <Route path="/notifications/" component={NotificationPage} />
           <Route path="/login" render={() => (
             this.props.loggedIn ? (
               <Redirect to="/" />
