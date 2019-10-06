@@ -7,6 +7,7 @@ import { alert } from './alert.reducer';
 import { editor } from './editor.reducer';
 import { project } from './project.reducer';
 import { profile } from './profile.reducer';
+import { message } from './message.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     editor,
     project,
     profile,
+    message,
 });
 
 export default rootReducer;

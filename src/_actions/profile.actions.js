@@ -1,7 +1,7 @@
 import { toast } from 'react-semantic-toasts';
 
-import { profileConstants } from '../_constants'
-import { profileService } from '../_services'
+import { profileConstants } from '../_constants';
+import { profileService } from '../_services';
 
 export const profileActions = {
     setCurrentProfileName,

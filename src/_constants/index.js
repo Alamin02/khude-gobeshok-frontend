@@ -5,3 +5,4 @@ export * from './project.constants';
 export * from './editor.constants';
 export * from './image.constants';
 export * from './profile.constants';
+export * from './message.constants';
