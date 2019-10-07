@@ -15,18 +15,21 @@ class MessagesPage extends Component {
 
     render() {
         const { conversations, username } = this.props;
-        let conversationRender = conversations.map((message, index) => (
-            <List.Item key={index} as={Link} to="/messages">
-                <List.Content>
-                    <List.Header >{message.sender_name === username ? message.recipient_name : message.sender_name}</List.Header>
-                    <List.Description>
-                        {message.sender_name === username ? "You: " : message.sender_name + `: `} {message.content}
-                        <br />
-                        {message.sent_at}
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-        ))
+        let conversationRender = conversations.map((message, index) => {
+            let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
+            return (
+                <List.Item key={index} as={Link} to={`/messages/` + contact}>
+                    <List.Content>
+                        <List.Header >{contact}</List.Header>
+                        <List.Description>
+                            {message.sender_name === username ? "You: " : message.sender_name + `: `} {message.content}
+                            <br />
+                            {message.sent_at}
+                        </List.Description>
+                    </List.Content>
+                </List.Item>
+            )
+        })
 
         return (
             <React.Fragment>
