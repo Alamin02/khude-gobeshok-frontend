@@ -17,6 +17,11 @@ export function message(state = initialState, action) {
                 directMessages: action.directMessages.results,
             });
 
+        case messageConstants.MESSAGE_SEND_DIRECT_MESSAGES_SUCCESS:
+            return Object.assign({}, state, {
+                directMessages: [...state.directMessages, action.message],
+            });
+
         default:
             return state;
     }

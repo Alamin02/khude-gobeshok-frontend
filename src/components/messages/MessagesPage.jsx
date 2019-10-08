@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { messageActions } from "../../_actions";
 
+import moment from "moment";
+
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
 class MessagesPage extends Component {
@@ -17,6 +19,8 @@ class MessagesPage extends Component {
         const { conversations, username } = this.props;
         let conversationRender = conversations.map((message, index) => {
             let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
+            let relative_time = moment(message.sent_at).fromNow()
+
             return (
                 <List.Item key={index} as={Link} to={`/messages/` + contact}>
                     <List.Content>
@@ -24,7 +28,7 @@ class MessagesPage extends Component {
                         <List.Description>
                             {message.sender_name === username ? "You: " : message.sender_name + `: `} {message.content}
                             <br />
-                            {message.sent_at}
+                            <i>{relative_time} </i>
                         </List.Description>
                     </List.Content>
                 </List.Item>

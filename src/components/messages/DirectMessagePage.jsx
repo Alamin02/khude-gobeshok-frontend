@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Header, List } from "semantic-ui-react";
+import { Container, Header, List, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 import { messageActions } from "../../_actions";
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
@@ -14,19 +14,44 @@ class DirectMessagePage extends Component {
         this.props.getDirectMessages(contactname);
     }
 
+    state = {
+        messageContent: "",
+    }
+
+    handleChange = (e, { value }) => {
+        this.setState({
+            messageContent: value,
+        });
+    }
+
+    handleMessageSubmit = () => {
+        const { contactname, } = this.props.match.params;
+        const { username } = this.props;
+        let message = {
+            sender: username,
+            recipient: contactname,
+            content: this.state.messageContent,
+        }
+        this.setState({
+            messageContent: "",
+        });
+        this.props.sendDirectMessage(message);
+    }
+
+
     render() {
         const { directMessages, username } = this.props;
         const { contactname } = this.props.match.params;
 
         let conversationRender = directMessages.map((message, index) => {
-            let contact = message.sender_name === username ? message.recipient_name : message.sender_name
+            let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
+            let relative_time = moment(message.sent_at).fromNow();
             return (
                 <List.Item key={index}>
                     <List.Content>
                         <List.Description>
                             <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}
-                            <br />
-                            <i>{message.sent_at}</i>
+                            <i>{relative_time}</i>
                         </List.Description>
                     </List.Content>
                 </List.Item>
@@ -45,6 +70,12 @@ class DirectMessagePage extends Component {
                     <List relaxed>
                         {conversationRender}
                     </List>
+
+                    <Form onSubmit={this.handleMessageSubmit}>
+                        <Form.TextArea placeholder='Type your message...' value={this.state.messageContent} onChange={this.handleChange} />
+                        <Form.Button>Send</Form.Button>
+                    </Form>
+
                 </Container>
             </React.Fragment>
         )
@@ -63,6 +94,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getDirectMessages: (username) => dispatch(messageActions.getDirectMessages(username)),
+        sendDirectMessage: (message) => dispatch(messageActions.sendDirectMessage(message))
     }
 }
 
