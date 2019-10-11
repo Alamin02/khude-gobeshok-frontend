@@ -7,6 +7,14 @@
     background-color: #fcfbf7
 }
 
+.infoTextMobile {
+    font-family: 'Rancho', cursive !important;
+    font-size: 2em !important;
+    font-weight: 100 !important;
+    padding-right: 1em !important;
+    padding-left: 1em !important;
+}
+
 .infoText {
     font-family: 'Rancho', cursive !important;
     font-size: 2.5em !important;
