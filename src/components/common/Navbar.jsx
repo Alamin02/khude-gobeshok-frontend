@@ -1,125 +1,217 @@
 import React from "react";
-import { Menu, Container, Dropdown, Sidebar, Image } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Sidebar, Responsive, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-const rightItems = [
+const leftItems = [
     { icon: "", name: "Project Garage", link: "/projects", key: "projects" },
     { icon: "", name: "Challenges", link: "/challenges", key: "challenges" },
     { icon: "", name: "Make Squad", link: "/squads", key: "squads" },
 ]
 
-const NavBarMobile = ({ leftItems, visible, onPusherClick }) => (
-    <Sidebar.Pushable>
-        <Sidebar
-            as={Menu}
-            animation="overlay"
-            icon="labeled"
-            inverted
-            items={leftItems}
-            vertical
-            visible={visible}
-        />
+const NavBarMobile = ({
+    visible,
+    onPusherClick,
+    children,
+    onToggle,
+    loggedIn,
+    username,
+}) => (
+        <Sidebar.Pushable>
+            <Sidebar
+                as={Menu}
+                animation="overlay"
+                icon="labeled"
+                inverted
+                vertical
+                visible={visible}
+            >
+                <Menu.Item as={Link} icon="home" to="/" />
 
-        <Sidebar.Pusher
-            dimmed={visible}
-            onClick={onPusherClick}
-            style={{ minHeight: "100vh" }}
-        >
+                {leftItems.map((item) => (
+                    <Menu.Item
+                        key={item.key}
+                        name={item.name}
+                        as={Link}
+                        to={item.link}
+                    />
+                ))}
 
-        </Sidebar.Pusher>
-    </Sidebar.Pushable>
-);
+                {loggedIn ?
+                    <React.Fragment>
+                        <Menu.Item
+                            name="Add Project"
+                            as={Link}
+                            to="/new-project"
+                        />
+                        <Menu.Item
+                            name="Notifications"
+                            as={Link}
+                            to="/notifications"
+                        />
+                        <Menu.Item
+                            name="messages"
+                            as={Link}
+                            to="/messages"
+                        />
+                        <Menu.Item
+                            name="Profile"
+                            as={Link}
+                            to={`/profile/` + username}
+                        />
+                        <Menu.Item
+                            name="Logout"
+                            as={Link}
+                            to="/logout"
+                        />
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <Menu.Item
+                            name="Login"
+                            as={Link}
+                            to="/login"
+                        />
+                        <Menu.Item
+                            name="Sign Up"
+                            as={Link}
+                            to="/signup"
+                        />
+                    </React.Fragment>
+                }
+            </Sidebar>
 
-
-// TODO: Try NavLink over Link
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeItem: ""
-        };
-    }
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-    handleIconClick = (name) => this.setState({ activeItem: name })
-
-    render() {
-        const { activeItem } = this.state;
-
-        return (
-            <Menu fixed="top" >
-                <Container>
+            <Sidebar.Pusher
+                dimmed={visible}
+                onClick={onPusherClick}
+                style={{ minHeight: "100vh" }}
+            >
+                <Menu fixed="top">
                     <Menu.Item
                         icon="home"
                         as={Link}
                         to="/"
                     />
-                    {rightItems.map((item) => (
-                        <Menu.Item
-                            key={item.key}
-                            name={item.name}
-                            as={Link}
-                            to={item.link}
-                        />
-                    ))}
+                    <Menu.Item
+                        position="right"
+                        icon="sidebar"
+                        onClick={onToggle}
+                    />
 
-                    <Menu.Menu position="right">
-                        {
-                            this.props.loggedIn ?
-                                <React.Fragment>
 
-                                    <Menu.Item
-                                        name="Add Project"
-                                        active={activeItem === "Add Project"}
-                                        onClick={this.handleItemClick}
-                                        as={Link}
-                                        to="/new-project"
-                                    />
+                </Menu>
 
-                                    <Menu.Item
-                                        icon='bell'
-                                        active={activeItem === "notification"}
-                                        onClick={() => this.handleIconClick("notification")}
-                                        as={Link}
-                                        to="/notifications"
-                                    />
+                {children}
 
-                                    <Menu.Item
-                                        icon='envelope'
-                                        active={activeItem === "message"}
-                                        onClick={() => this.handleIconClick("message")}
-                                        as={Link}
-                                        to="/messages"
-                                    />
-                                    <Dropdown item icon="user" pointing="top right">
-                                        <Dropdown.Menu active >
-                                            <Dropdown.Item text='Your Profile' as={Link} to={`/profile/` + this.props.username} />
-                                            <Dropdown.Item text='Logout' to='/logout' />
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </React.Fragment>
-                                :
-                                <React.Fragment>
-                                    <Menu.Item
-                                        name="Login"
-                                        active={activeItem === "Login"}
-                                        onClick={this.handleItemClick}
-                                        as={Link}
-                                        to="/login"
-                                    />
-                                    <Menu.Item
-                                        name="Sign Up"
-                                        active={activeItem === "Sign Up"}
-                                        onClick={this.handleItemClick}
-                                        as={Link}
-                                        to="/signup"
-                                    />
-                                </React.Fragment>
-                        }
-                    </Menu.Menu>
-                </Container>
-            </Menu>
+            </Sidebar.Pusher>
+        </Sidebar.Pushable>
+    );
+
+const NavBarDesktop = ({ loggedIn, username }) => (
+    <Menu fixed="top" >
+        <Container>
+            <Menu.Item
+                icon="home"
+                as={Link}
+                to="/"
+            />
+            {leftItems.map((item) => (
+                <Menu.Item
+                    key={item.key}
+                    name={item.name}
+                    as={Link}
+                    to={item.link}
+                />
+            ))}
+
+            <Menu.Menu position="right">
+                {
+                    loggedIn ?
+                        <React.Fragment>
+                            <Menu.Item
+                                name="Add Project"
+                                as={Link}
+                                to="/new-project"
+                            />
+                            <Menu.Item
+                                icon='bell'
+                                as={Link}
+                                to="/notifications"
+                            />
+                            <Menu.Item
+                                icon='envelope'
+                                as={Link}
+                                to="/messages"
+                            />
+                            <Dropdown item icon="user" pointing="top right">
+                                <Dropdown.Menu active >
+                                    <Dropdown.Item text='Your Profile' as={Link} to={`/profile/` + username} />
+                                    <Dropdown.Item text='Logout' to='/logout' />
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </React.Fragment>
+                        :
+                        <React.Fragment>
+                            <Menu.Item
+                                name="Login"
+                                as={Link}
+                                to="/login"
+                            />
+                            <Menu.Item
+                                name="Sign Up"
+                                as={Link}
+                                to="/signup"
+                            />
+                        </React.Fragment>
+                }
+            </Menu.Menu>
+        </Container>
+    </Menu>
+)
+
+const NavBarChildren = ({ children }) => (
+    <Container >{children}</Container>
+)
+
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeItem: "",
+            sideBarVisible: false,
+        };
+    }
+
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    handleIconClick = (name) => this.setState({ activeItem: name })
+    toggleSideBar = () => this.setState({ sideBarVisible: !this.state.sideBarVisible })
+    handlePusher = () => {
+        const { sideBarVisible } = this.state;
+        if (sideBarVisible)
+            this.setState({ sideBarVisible: false })
+    }
+
+    render() {
+        const { activeItem, sideBarVisible } = this.state;
+        const { children } = this.props;
+        return (
+            <React.Fragment>
+                <Responsive {...Responsive.onlyMobile}>
+                    <NavBarMobile
+                        visible={sideBarVisible}
+                        onToggle={this.toggleSideBar}
+                        onPusherClick={this.handlePusher}
+                        loggedIn={this.props.loggedIn}
+                        username={this.props.username}
+                    >
+                        <NavBarChildren>{children}</NavBarChildren>
+                    </NavBarMobile>
+                </Responsive>
+                <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                    <NavBarDesktop loggedIn={this.props.loggedIn} username={this.props.username} />
+                    <NavBarChildren>{children}</NavBarChildren>
+                </Responsive>
+            </React.Fragment>
         );
     }
 }
