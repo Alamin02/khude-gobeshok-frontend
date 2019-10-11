@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Container } from "semantic-ui-react";
+import { Container, List, Header } from "semantic-ui-react";
 import { connect } from 'react-redux';
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
-
+import moment from 'moment';
 import { notificationActions } from '../../_actions';
 
 class NotificationsPage extends Component {
@@ -12,12 +12,34 @@ class NotificationsPage extends Component {
     }
 
     render() {
+        const { notifications } = this.props;
+        let notificationRender = notifications.map((notification, index) => {
+            let relative_time = moment(notification.timestamp).fromNow()
+
+            return (
+                <List.Item key={index}>
+                    <List.Content>
+                        <List.Description>
+                            {notification.actor} {notification.verb} <br />
+                            <i>{relative_time} </i>
+                        </List.Description>
+                    </List.Content>
+                </List.Item>
+            )
+        })
+
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
-                <Container style={{ minHeight: "85vh" }} >
+                <Container style={{ minHeight: "85vh" }} text >
                     <br /> <br /> <br />
-                    Functionality will be available soon...
+                    <Header as="h2" dividing>
+                        Notifications
+                    </Header>
+
+                    <List relaxed animated>
+                        {notificationRender}
+                    </List>
                 </Container>
             </React.Fragment>
         )

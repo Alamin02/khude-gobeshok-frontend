@@ -1,7 +1,35 @@
 import React from "react";
-import { Menu, Container, Dropdown } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Sidebar, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+
+const rightItems = [
+    { icon: "", name: "Project Garage", link: "/projects", key: "projects" },
+    { icon: "", name: "Challenges", link: "/challenges", key: "challenges" },
+    { icon: "", name: "Make Squad", link: "/squads", key: "squads" },
+]
+
+const NavBarMobile = ({ leftItems, visible, onPusherClick }) => (
+    <Sidebar.Pushable>
+        <Sidebar
+            as={Menu}
+            animation="overlay"
+            icon="labeled"
+            inverted
+            items={leftItems}
+            vertical
+            visible={visible}
+        />
+
+        <Sidebar.Pusher
+            dimmed={visible}
+            onClick={onPusherClick}
+            style={{ minHeight: "100vh" }}
+        >
+
+        </Sidebar.Pusher>
+    </Sidebar.Pushable>
+);
 
 
 // TODO: Try NavLink over Link
@@ -20,93 +48,73 @@ class Navbar extends React.Component {
         const { activeItem } = this.state;
 
         return (
-            <Menu pointing fixed="top" >
+            <Menu fixed="top" >
                 <Container>
-                    <Link to={"/"}>
+                    <Menu.Item
+                        icon="home"
+                        as={Link}
+                        to="/"
+                    />
+                    {rightItems.map((item) => (
                         <Menu.Item
-                            icon="home"
-                            name=""
-                            active={activeItem === "home"}
-                            onClick={() => this.handleIconClick("home")}
+                            key={item.key}
+                            name={item.name}
+                            as={Link}
+                            to={item.link}
                         />
-                    </Link>
-
-                    <Link to={"/projects"}>
-                        <Menu.Item
-                            name="Project Garage"
-                            active={activeItem === "Project Garage"}
-                            onClick={this.handleItemClick}
-                        />
-                    </Link>
-
-                    <Link to={"/challenges"}>
-                        <Menu.Item
-                            name="Challenges"
-                            active={activeItem === "Challenges"}
-                            onClick={this.handleItemClick}
-                        />
-                    </Link>
-                    <Link to={"/squads"}>
-                        <Menu.Item
-                            name="Make Squad"
-                            active={activeItem === "Make Squad"}
-                            onClick={this.handleItemClick}
-                        />
-                    </Link>
+                    ))}
 
                     <Menu.Menu position="right">
                         {
                             this.props.loggedIn ?
                                 <React.Fragment>
-                                    <Link to="/new-project">
-                                        <Menu.Item
-                                            name="Add Project"
-                                            active={activeItem === "Add Project"}
-                                            onClick={this.handleItemClick}
-                                        />
-                                    </Link>
-                                    <Link to="/notifications">
-                                        <Menu.Item
-                                            icon='bell'
-                                            active={activeItem === "notification"}
-                                            onClick={() => this.handleIconClick("notification")}
-                                        />
-                                    </Link>
-                                    <Link to="/messages">
-                                        <Menu.Item
-                                            icon='envelope'
-                                            active={activeItem === "message"}
-                                            onClick={() => this.handleIconClick("message")}
-                                        />
-                                    </Link>
 
-                                    <Dropdown item icon="user" pointing="top right" className='link item'>
+                                    <Menu.Item
+                                        name="Add Project"
+                                        active={activeItem === "Add Project"}
+                                        onClick={this.handleItemClick}
+                                        as={Link}
+                                        to="/new-project"
+                                    />
+
+                                    <Menu.Item
+                                        icon='bell'
+                                        active={activeItem === "notification"}
+                                        onClick={() => this.handleIconClick("notification")}
+                                        as={Link}
+                                        to="/notifications"
+                                    />
+
+                                    <Menu.Item
+                                        icon='envelope'
+                                        active={activeItem === "message"}
+                                        onClick={() => this.handleIconClick("message")}
+                                        as={Link}
+                                        to="/messages"
+                                    />
+                                    <Dropdown item icon="user" pointing="top right">
                                         <Dropdown.Menu active >
-                                            <Link to={`/profile/` + this.props.username} style={{ textDecoration: "none" }}>
-                                                <Dropdown.Item text='Your Profile' onClick={() => this.handleIconClick("")} />
-                                            </Link>
-                                            <Link to='/logout'>
-                                                <Dropdown.Item text='Logout' onClick={() => this.handleIconClick("")} />
-                                            </Link>
+                                            <Dropdown.Item text='Your Profile' as={Link} to={`/profile/` + this.props.username} />
+                                            <Dropdown.Item text='Logout' to='/logout' />
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </React.Fragment>
                                 :
                                 <React.Fragment>
-                                    <Link to="/login">
-                                        <Menu.Item
-                                            name="Login"
-                                            active={activeItem === "Login"}
-                                            onClick={this.handleItemClick}
-                                        />
-                                    </Link>
-                                    <Link to="/signup">
-                                        <Menu.Item
-                                            name="Sign Up"
-                                            active={activeItem === "Sign Up"}
-                                            onClick={this.handleItemClick}
-                                        />
-                                    </Link>
+                                    <Menu.Item
+                                        name="Login"
+                                        active={activeItem === "Login"}
+                                        onClick={this.handleItemClick}
+                                        as={Link}
+                                        to="/login"
+                                    />
+                                    <Menu.Item
+                                        name="Sign Up"
+                                        active={activeItem === "Sign Up"}
+                                        onClick={this.handleItemClick}
+                                        as={Link}
+                                        to="/signup"
+                                    />
                                 </React.Fragment>
                         }
                     </Menu.Menu>
