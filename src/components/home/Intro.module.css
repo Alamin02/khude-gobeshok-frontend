@@ -6,9 +6,15 @@
 
 .particleContainer {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
+}
+
+.introHeaderMobile {
+    padding-top: .75em !important;
+    font-size: 3em !important;
+    padding-bottom: .75em !important;
 }
 
 .introHeader {

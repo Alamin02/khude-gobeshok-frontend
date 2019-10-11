@@ -170,7 +170,7 @@ const NavBarDesktop = ({ loggedIn, username }) => (
 )
 
 const NavBarChildren = ({ children }) => (
-    <Container >{children}</Container>
+    <React.Fragment>{children}</React.Fragment>
 )
 
 class Navbar extends React.Component {

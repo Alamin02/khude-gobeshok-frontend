@@ -4,11 +4,11 @@ import Description from "./Description";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
 const HomePage = () => (
-    <div>
+    <React.Fragment>
         <ScrollToTopOnMount />
         <Intro />
         <Description />
-    </div>
+    </React.Fragment>
 )
 
 export default HomePage;
