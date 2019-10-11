@@ -8,6 +8,7 @@ import { editor } from './editor.reducer';
 import { project } from './project.reducer';
 import { profile } from './profile.reducer';
 import { message } from './message.reducer';
+import { notification } from './notification.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     project,
     profile,
     message,
+    notification,
 });
 
 export default rootReducer;

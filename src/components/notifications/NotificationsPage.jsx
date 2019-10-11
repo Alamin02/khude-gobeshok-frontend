@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Container } from "semantic-ui-react";
-
+import { connect } from 'react-redux';
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
-export default class NotificationsPage extends Component {
+import { notificationActions } from '../../_actions';
+
+class NotificationsPage extends Component {
+    constructor(props) {
+        super(props);
+        this.props.getNotifications();
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -16,3 +23,18 @@ export default class NotificationsPage extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    const { notifications } = state.notification;
+    return {
+        notifications,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getNotifications: () => dispatch(notificationActions.getNotifications()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationsPage);
