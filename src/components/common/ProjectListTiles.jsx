@@ -13,15 +13,14 @@ const ProjectListTiles = ({ projects, itemsPerRow }) => {
                     <Card.Header>{project.title}</Card.Header>
                     <Card.Meta>Shared by <i>{project.author}</i> {relative_time} </Card.Meta>
                 </Card.Content>
-            </Card>)
+            </Card>
+        )
     });
 
     return (
-        <div>
-            <Card.Group itemsPerRow={itemsPerRow} stackable >
-                {projectList}
-            </Card.Group>
-        </div>
+        <Card.Group itemsPerRow={itemsPerRow} stackable >
+            {projectList}
+        </Card.Group>
     )
 }
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Header } from "semantic-ui-react";
-
+import { connect } from "react-redux";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import styles from "./SquadsPage.module.css";
 
-export default class SquadsPage extends Component {
+class SquadsPage extends Component {
     render() {
         return (
             <React.Fragment>
@@ -20,3 +20,17 @@ export default class SquadsPage extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SquadsPage);

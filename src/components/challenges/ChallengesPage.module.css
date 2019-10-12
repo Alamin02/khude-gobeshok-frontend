@@ -9,3 +9,7 @@
     background-size: contain;
     background-repeat: repeat-x;
 }
+
+.messageContainer {
+    padding-top: 3em !important;
+}

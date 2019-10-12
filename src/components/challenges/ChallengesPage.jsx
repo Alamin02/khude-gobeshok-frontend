@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Message } from "semantic-ui-react";
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
@@ -16,6 +16,12 @@ export default class ChallengesPage extends Component {
                             <Header.Content>Challenges</Header.Content>
                         </Header>
                     </div>
+
+                    <Container text className={styles.messageContainer}>
+                        <Message floating>
+                            No Challenges Currently Running, We'll notify you!
+                        </Message>
+                    </Container>
                 </div>
             </React.Fragment>
         )

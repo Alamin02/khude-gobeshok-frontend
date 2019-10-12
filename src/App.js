@@ -16,6 +16,9 @@ import SquadsPage from "./components/squads/SquadsPage";
 import MessagesPage from "./components/messages/MessagesPage";
 import DirectMessagePage from "./components/messages/DirectMessagePage";
 import NotificationPage from "./components/notifications/NotificationsPage";
+import ContactPage from "./components/company/ContactPage";
+import AboutUsPage from "./components/company/AboutUsPage";
+import PrivacyPage from "./components/company/PrivacyPolicyPage";
 
 import "./App.css";
 import { userActions, editorActions } from './_actions';
@@ -42,6 +45,10 @@ class App extends React.Component {
             <Route path="/messages/" exact component={MessagesPage} />
             <Route path="/messages/:contactname" component={DirectMessagePage} />
             <Route path="/notifications/" component={NotificationPage} />
+            <Route path="/about/" component={AboutUsPage} />
+            <Route path="/contact/" component={ContactPage} />
+            <Route path="/privacy/" component={PrivacyPage} />
+
             <Route path="/login" render={() => (
               this.props.loggedIn ? (
                 <Redirect to="/" />
