@@ -97,8 +97,6 @@ const NavBarMobile = ({
                         icon="sidebar"
                         onClick={onToggle}
                     />
-
-
                 </Menu>
 
                 {children}
@@ -146,7 +144,7 @@ const NavBarDesktop = ({ loggedIn, username }) => (
                             <Dropdown item icon="user" pointing="top right">
                                 <Dropdown.Menu active >
                                     <Dropdown.Item text='Your Profile' as={Link} to={`/profile/` + username} />
-                                    <Dropdown.Item text='Logout' to='/logout' />
+                                    <Dropdown.Item text='Logout' as={Link} to='/logout' />
                                 </Dropdown.Menu>
                             </Dropdown>
                         </React.Fragment>

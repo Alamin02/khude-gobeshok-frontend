@@ -20,9 +20,11 @@ function login(username, password) {
                         type: 'success',
                         icon: 'user',
                         title: 'Login Success',
+                        size: 'small',
                         description: 'You have successfully Logged in as a KhudeGobeshok',
                         animation: 'bounce',
                         time: 5000,
+                        onDismiss: () => { }
                     });
                     dispatch(success({ username, authToken }));
                     localStorage.setItem('username', JSON.stringify(username));

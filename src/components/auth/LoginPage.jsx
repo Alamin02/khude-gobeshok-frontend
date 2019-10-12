@@ -63,7 +63,7 @@ class LoginPage extends Component {
             <Form size='large' onSubmit={this.handleSubmit}>
 
               <Segment raised textAlign="left">
-                <Form.Field fluid >
+                <Form.Field fluid="true" >
                   <Input
                     icon='user'
                     iconPosition='left'

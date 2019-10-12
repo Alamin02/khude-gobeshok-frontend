@@ -29,13 +29,11 @@ class ProjectsPage extends Component {
         return (
             <div className={styles.pageContainer}>
                 <ScrollToTopOnMount />
-                <Container className={styles.pageHeaderContainer} >
+                <div className={styles.pageHeaderContainer} >
                     <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                         <Header.Content>Project Garage</Header.Content>
                     </Header>
-                </Container>
-
-                <Search placeholder={"Search"} size="large" className={styles.projectSearch} />
+                </div>
 
                 <Container className={styles.projectListContainer}>
                     <ProjectListTiles projects={this.props.project_list} />

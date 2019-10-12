@@ -132,11 +132,11 @@ class ProjectEditor extends Component {
         return (
             <div>
                 <ScrollToTopOnMount />
-                <Container className={styles.pageHeaderContainer} >
+                <div className={styles.pageHeaderContainer} >
                     <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                         <Header.Content>Project Editor</Header.Content>
                     </Header>
-                </Container>
+                </div>
 
                 <Container text>
                     <EditorSteps currentStep={this.state.currentStep} />
