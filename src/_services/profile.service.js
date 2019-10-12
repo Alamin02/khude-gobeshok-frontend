@@ -56,12 +56,12 @@ function updateProfileBio(bio) {
         .then(updatedBio => updatedBio)
 }
 
-function updateProfilePic(imageUrl) {
+function updateProfilePic(propicId) {
     const requestOptions = {
         mode: 'cors',
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({ profile_picture: imageUrl }),
+        body: JSON.stringify({ avatar: propicId }),
     }
 
     let url = apiBaseUrl() + `users/profile-pic-update/`;

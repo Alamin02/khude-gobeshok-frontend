@@ -14,6 +14,7 @@ class ProfileRegularInfo extends Component {
     state = {
         bio: "",
         propicUrl: "",
+        propicId: null,
         editBio: false,
         proPicEditable: false,
     }
@@ -53,9 +54,10 @@ class ProfileRegularInfo extends Component {
     }
 
     handlePropicUpload = (image) => {
-        imageService.profilePicUpload(image).then(({ image, thumbnail }) => {
+        imageService.profilePicUpload(image).then(({ id, image, thumbnail }) => {
             this.setState({
-                propicUrl: thumbnail
+                propicUrl: thumbnail,
+                propicId: id
             });
         });
     }
@@ -63,19 +65,21 @@ class ProfileRegularInfo extends Component {
     cancelPropicChange = () => {
         this.setState({
             propicUrl: "",
+            propicId: null,
             proPicEditable: false,
         })
     }
 
     confirmPropicChange = () => {
-        const { propicUrl } = this.state;
+        const { propicId } = this.state;
 
-        if (propicUrl) {
-            this.props.updatePropic(propicUrl);
+        if (propicId) {
+            this.props.updatePropic(propicId);
         }
 
         this.setState({
             propicUrl: "",
+            propicId: null,
             proPicEditable: false,
         })
     }
@@ -92,7 +96,7 @@ class ProfileRegularInfo extends Component {
 
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
-        const { profile_picture } = this.props.profileDetails;
+        const { avatar } = this.props.profileDetails;
 
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
@@ -118,10 +122,10 @@ class ProfileRegularInfo extends Component {
                         dimmer={{ active: profileDimmerActive, content: profileImageDimmerContent }}
                         onMouseEnter={this.handleDimmerShow}
                         onMouseLeave={this.handleDimmerHide}
-                        src={profile_picture || '/Logo.png'}
+                        src={avatar.thumbnail || '/Logo.png'}
                         circular
                         size="small"
-                    /> : <Image src={profile_picture || '/Logo.png'} size="small" circular centered />
+                    /> : <Image src={avatar.thumbnail || '/Logo.png'} size="small" circular centered />
                     }
 
                     <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>
@@ -202,7 +206,7 @@ function mapStateToProps(state) {
 function mapDipatchToProps(dispatch) {
     return {
         updateBio: (bio) => dispatch(profileActions.updateBio(bio)),
-        updatePropic: (propicUrl) => dispatch(profileActions.updatePropic(propicUrl)),
+        updatePropic: (propicId) => dispatch(profileActions.updatePropic(propicId)),
     }
 }
 

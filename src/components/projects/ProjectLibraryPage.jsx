@@ -36,7 +36,10 @@ class ProjectsPage extends Component {
                 </div>
 
                 <Container className={styles.projectListContainer}>
-                    <ProjectListTiles projects={this.props.project_list} />
+                    <ProjectListTiles
+                        projects={this.props.project_list}
+                        itemsPerRow={4}
+                    />
                 </Container>
 
                 <Container className={styles.pagination}>

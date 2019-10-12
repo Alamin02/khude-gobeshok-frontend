@@ -3,7 +3,7 @@ import { profileConstants } from "../_constants";
 const initialProfileDetails = {
     full_name: '',
     bio: '',
-    profile_picture: '',
+    avatar: {},
     specialized_in: '',
     software_skills: '',
     phone_number: '',

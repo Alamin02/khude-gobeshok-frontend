@@ -124,9 +124,9 @@ function updateSoftwareSkill(username, softwareSkill) {
 }
 
 
-function updatePropic(propicUrl) {
+function updatePropic(propicId) {
     return dispatch => {
-        profileService.updateProfilePic(propicUrl)
+        profileService.updateProfilePic(propicId)
             .then(
                 updatedProfilePic => dispatch(success(updatedProfilePic)),
                 error => dispatch(failure(error))

@@ -62,7 +62,11 @@ class ProfilePage extends Component {
                 menuItem: 'Projects',
                 render: () => (
                     <Tab.Pane attached>
-                        <ProjectListTiles projects={this.props.projectList} own={ownProfile} public={publicMode} />
+                        <ProjectListTiles
+                            projects={this.props.projectList}
+                            own={ownProfile} public={publicMode}
+                            itemsPerRow={3}
+                        />
 
                         <Container className={styles.pagination}>
                             <Pagination
