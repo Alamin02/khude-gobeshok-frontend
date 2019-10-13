@@ -97,13 +97,7 @@ class ProfileRegularInfo extends Component {
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
         const { avatar } = this.props.profileDetails;
-
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        let d = new Date(date_joined);
-        let join_month = monthNames[d.getMonth()];
-        let join_year = d.getFullYear();
+        let formattedJoinDate = moment(date_joined).format("MMM Do YYYY")
 
         const profileImageDimmerContent = (
             <div>
@@ -177,7 +171,7 @@ class ProfileRegularInfo extends Component {
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column textAlign="left">Member Since:</Grid.Column>
-                            <Grid.Column textAlign="right">{join_month} {join_year}</Grid.Column>
+                            <Grid.Column textAlign="right">{formattedJoinDate}</Grid.Column>
                         </Grid.Row>
                     </Grid>
 

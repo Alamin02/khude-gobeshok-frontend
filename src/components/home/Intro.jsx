@@ -129,7 +129,7 @@ const MobileIntro = () => (
             </Typist>
 
             <Link to="/projects">
-                <Button size="medium" color="blue">Explore</Button>
+                <Button size="medium" color="blue">EXPLORE</Button>
             </Link>
         </Container>
     </div>
@@ -147,7 +147,7 @@ const DesktopIntro = () => (
                 <h1 className={styles.introHeaderText}>OpenSource Platform for Tiny Curious Minds</h1>
             </Typist>
             <Link to="/projects">
-                <Button size="big" color="blue">Explore</Button>
+                <Button size="big" color="blue">EXPLORE</Button>
             </Link>
         </Container>
     </div>

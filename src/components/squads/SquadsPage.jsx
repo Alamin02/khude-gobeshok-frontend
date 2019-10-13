@@ -3,7 +3,7 @@ import { Header, Container, Grid, Image, Item, Card } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import styles from "./SquadsPage.module.css";
-
+import moment from "moment";
 import { squadActions } from "../../_actions";
 
 class SquadsPage extends Component {
@@ -17,6 +17,7 @@ class SquadsPage extends Component {
         let peopleList = people.map((person) => {
             let imageUrl = `/Logo.png`;
             if (person.profile.avatar) imageUrl = person.profile.avatar.thumbnail;
+            let formattedJoinDate = moment(person.date_joined).format("MMM Do YYYY")
             return (
                 <Card key={person.username} href={`/profile/` + person.username} >
                     <Card.Content>
@@ -25,6 +26,7 @@ class SquadsPage extends Component {
                                 <Item.Image src={imageUrl} size="tiny" />
                                 <Item.Content>
                                     <Item.Header>{person.username}</Item.Header>
+                                    <Item.Meta>Joined on {formattedJoinDate}</Item.Meta>
                                 </Item.Content>
                             </Item>
                         </Item.Group>
