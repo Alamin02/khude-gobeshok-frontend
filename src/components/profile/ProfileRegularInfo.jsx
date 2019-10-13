@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal, Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
-
+import moment from "moment";
 import { profileActions } from "../../_actions";
 import { imageService } from "../../_services";
 
@@ -109,8 +109,10 @@ class ProfileRegularInfo extends Component {
             <div>
                 <Button primary size="tiny" onClick={this.enableProPicEdit}>Change</Button>
             </div>
-
         );
+
+        let avatarThumbnailUrl = '/Logo.png';
+        if (avatar) avatarThumbnailUrl = avatar.thumbnail;
 
         return (
             <div>
@@ -122,10 +124,10 @@ class ProfileRegularInfo extends Component {
                         dimmer={{ active: profileDimmerActive, content: profileImageDimmerContent }}
                         onMouseEnter={this.handleDimmerShow}
                         onMouseLeave={this.handleDimmerHide}
-                        src={avatar.thumbnail || '/Logo.png'}
+                        src={avatarThumbnailUrl}
                         circular
                         size="small"
-                    /> : <Image src={avatar.thumbnail || '/Logo.png'} size="small" circular centered />
+                    /> : <Image src={avatarThumbnailUrl} size="small" circular centered />
                     }
 
                     <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>

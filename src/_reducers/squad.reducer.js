@@ -1,7 +1,14 @@
 import { squadConstants } from "../_constants";
 
 const initialState = {
-    people: []
+    people: [
+        {
+            profile: {
+                avatar: {
+                }
+            }
+        }
+    ]
 }
 
 export function squad(state = initialState, action) {

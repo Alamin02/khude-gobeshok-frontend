@@ -9,3 +9,7 @@
     background-size: contain;
     background-repeat: repeat-x;
 }
+
+.peopleListContainer {
+    margin-top: 2em;
+}
