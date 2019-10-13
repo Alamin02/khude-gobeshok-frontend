@@ -56,12 +56,10 @@ export function profile(state = initialState, action) {
                 profileDetails: { ...state.profileDetails, profile_picture: action.updatedProfilePic.profile_picture },
             });
         case profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS:
-            console.log(action.educationList);
             return Object.assign({}, state, {
                 educationList: action.educationList.results,
             });
         case profileConstants.PROFILE_ADD_EDUCATION_SUCCESS:
-            console.log(state.educationList);
             return Object.assign({}, state, {
                 educationList: [...state.educationList, action.education],
             });

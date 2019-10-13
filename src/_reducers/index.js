@@ -9,6 +9,7 @@ import { project } from './project.reducer';
 import { profile } from './profile.reducer';
 import { message } from './message.reducer';
 import { notification } from './notification.reducer';
+import { squad } from './squad.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     profile,
     message,
     notification,
+    squad,
 });
 
 export default rootReducer;

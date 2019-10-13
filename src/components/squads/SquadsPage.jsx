@@ -4,8 +4,16 @@ import { connect } from "react-redux";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import styles from "./SquadsPage.module.css";
 
+import { squadActions } from "../../_actions";
+
 class SquadsPage extends Component {
+    constructor(props) {
+        super(props);
+        this.props.getPeople();
+    }
     render() {
+        const { people } = this.props;
+
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
@@ -22,14 +30,15 @@ class SquadsPage extends Component {
 }
 
 function mapStateToProps(state) {
+    const { people } = state.squad;
     return {
-
+        people,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        getPeople: () => dispatch(squadActions.getPeople()),
     }
 }
 

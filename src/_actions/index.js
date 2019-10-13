@@ -5,3 +5,4 @@ export * from './editor.actions';
 export * from './profile.actions';
 export * from './message.actions';
 export * from './notification.actions';
+export * from './squad.actions';
