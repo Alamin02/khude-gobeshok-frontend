@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Header, Container, Icon, Pagination } from "semantic-ui-react";
+import { Search, Header, Container, Icon, Pagination, Responsive } from "semantic-ui-react";
 import { projectActions } from '../../_actions';
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import ProjectListTiles from '../common/ProjectListTiles';
 import styles from "./ProjectLibraryPage.module.css";
+
+
+const ResponsiveProjectList = ({ mobile, projects }) => (
+    <Container className={styles.projectListContainer}>
+        <ProjectListTiles
+            projects={projects}
+            itemsPerRow={mobile ? 2 : 4}
+        />
+    </Container>
+)
+
 
 class ProjectsPage extends Component {
     state = {
@@ -23,7 +34,7 @@ class ProjectsPage extends Component {
     }
 
     render() {
-        const { projectCount } = this.props;
+        const { projectCount, project_list } = this.props;
         let numberOfPages = Math.ceil(projectCount / 12); // Retrieved Page Size (Number of Projects per page) is 12.
 
         return (
@@ -35,12 +46,12 @@ class ProjectsPage extends Component {
                     </Header>
                 </div>
 
-                <Container className={styles.projectListContainer}>
-                    <ProjectListTiles
-                        projects={this.props.project_list}
-                        itemsPerRow={4}
-                    />
-                </Container>
+                <Responsive {...Responsive.onlyMobile}>
+                    <ResponsiveProjectList mobile projects={project_list} />
+                </Responsive>
+                <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                    <ResponsiveProjectList projects={project_list} />
+                </Responsive>
 
                 <Container className={styles.pagination}>
                     <Pagination

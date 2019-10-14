@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, List } from "semantic-ui-react";
+import { Container, Header, List, Image } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -23,6 +23,7 @@ class MessagesPage extends Component {
 
             return (
                 <List.Item key={index} as={Link} to={`/messages/` + contact}>
+                    <Image avatar src={message.avatar || `/Logo.png`} />
                     <List.Content>
                         <List.Header >{contact}</List.Header>
                         <List.Description>

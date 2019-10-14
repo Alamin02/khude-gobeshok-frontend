@@ -3,17 +3,17 @@
 .projectPageContainer {
     background-color: #fcfbf7;
     min-block-size: 80vh;
-}
-
-.projectTextContainer {
-    padding: 5em 1em;
+    padding-top: 5em;
+    padding-bottom: 1em; 
 }
 
 .projectHeadingContainer {
     margin-bottom: 2em !important;
 }
 
-.projectHeading {
-    font-family: 'Oswald', sans-serif !important;
-    font-size: 2em !important;
+.coverImage {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid #ddd;
 }

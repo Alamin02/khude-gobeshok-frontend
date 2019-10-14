@@ -48,10 +48,13 @@ class DirectMessagePage extends Component {
             let relative_time = moment(message.sent_at).fromNow();
             return (
                 <List.Item key={index}>
+                    <List.Content floated="right">
+                        <i>{relative_time}</i>
+                    </List.Content>
                     <List.Content>
                         <List.Description>
                             <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}
-                            <i>{relative_time}</i>
+
                         </List.Description>
                     </List.Content>
                 </List.Item>

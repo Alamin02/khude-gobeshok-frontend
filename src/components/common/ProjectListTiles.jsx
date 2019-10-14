@@ -10,7 +10,7 @@ const ProjectListTiles = ({ projects, itemsPerRow }) => {
             <Card key={key} href={`/projects/` + project.id}>
                 <Image src={project.thumbnail} wrapped ui={false} />
                 <Card.Content>
-                    <Card.Header>{project.title}</Card.Header>
+                    <Card.Header style={{ fontSize: "1em" }}>{project.title}</Card.Header>
                     <Card.Meta>Shared by <i>{project.author}</i> {relative_time} </Card.Meta>
                 </Card.Content>
             </Card>
@@ -18,7 +18,7 @@ const ProjectListTiles = ({ projects, itemsPerRow }) => {
     });
 
     return (
-        <Card.Group itemsPerRow={itemsPerRow} stackable >
+        <Card.Group itemsPerRow={itemsPerRow} >
             {projectList}
         </Card.Group>
     )

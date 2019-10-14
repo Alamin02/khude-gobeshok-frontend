@@ -17,6 +17,8 @@ import createResizePlugin from 'draft-js-resizeable-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import 'draft-js-alignment-plugin/lib/plugin.css';
 
+import moment from "moment";
+
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
 import styles from "./ProjectViewerPage.module.css";
@@ -74,38 +76,41 @@ class ProjectViewer extends Component {
     }
 
     render() {
-        const { description, author, teammates } = this.props.project;
+        const { description, author, teammates, start_date, end_date, created_at } = this.props.project;
+
         const editorState = (description
             && EditorState.createWithContent(convertFromRaw(description)))
             || EditorState.createEmpty();
 
+        let subheader = "From " + moment(start_date).format('LL') + " to " + moment(end_date).format('LL');
+
         const comments = this.props.comments.map((comment, index) =>
             <Comment key={index}>
+                <Comment.Avatar src={comment.avatar || `/Logo.png`} />
                 <Comment.Content>
                     <Comment.Author as={Link} to={`/profile/` + comment.commenter}>{comment.commenter}</Comment.Author>
                     <Comment.Metadata>
-                        <div>{comment.time}</div>
+                        <div>{moment(comment.time).fromNow()}</div>
                     </Comment.Metadata>
                     <Comment.Text>{comment.description}</Comment.Text>
                 </Comment.Content>
             </Comment>
-        )
+        );
 
         return (
             <div className={styles.projectPageContainer}>
                 <ScrollToTopOnMount />
-                <Container text className={styles.projectTextContainer}>
-                    <Grid className={styles.projectHeadingContainer}>
-                        <Grid.Row>
-                            <Grid.Column width={4}>
-                                <Image src={this.props.project.thumbnail} rounded bordered />
-                            </Grid.Column>
-                            <Grid.Column width={12}>
-                                <Header as="h1" content={this.props.project.title} className={styles.projectHeading} />
-                                <p>Started: {this.props.project.start_date} || Finished: {this.props.project.start_date}</p>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                <Container text as={Segment} padded>
+
+                    <img src={this.props.project.thumbnail} className={styles.coverImage} />
+
+                    <Header
+                        as="h1"
+                        content={this.props.project.title}
+                        className={styles.projectHeading}
+                        subheader={subheader}
+                        dividing
+                    />
 
                     <Editor
                         editorState={editorState}
@@ -116,7 +121,7 @@ class ProjectViewer extends Component {
 
                     <Segment padded>
                         <p>
-                            <i>Author: <Link to={`/profile/` + author}>{author}</Link></i>
+                            <i>Shared by <Link to={`/profile/` + author}>{author}</Link> on {moment(created_at).format('LL')}</i>
                         </p>
                         {teammates &&
                             <p><i>Teammates: {teammates}</i></p>
