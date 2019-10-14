@@ -5,3 +5,4 @@ export * from './profile.service';
 export * from './message.service';
 export * from './notification.service';
 export * from './squad.service';
+export * from './contact.service';
