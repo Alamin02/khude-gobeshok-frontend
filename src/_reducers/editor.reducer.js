@@ -1,16 +1,21 @@
 import { editorConstants } from "../_constants";
 
-export function editor(state = {}, action) {
+const initialState = {
+    title: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    author: "",
+    teammates: "",
+    tags: "",
+    coverImage: {},
+}
+
+export function editor(state = initialState, action) {
     switch (action.type) {
         case editorConstants.EDITOR_INIT:
-            return {
-                title: "",
-                startDate: new Date(),
-                endDate: new Date(),
-                author: action.author,
-                teammates: "",
-                tags: "",
-            };
+            return Object.assign({}, state, {
+                author: action.author
+            });
         case editorConstants.EDITOR_START_DATE_CHANGE:
             return Object.assign({}, state, {
                 startDate: action.date,
@@ -25,7 +30,7 @@ export function editor(state = {}, action) {
             });
         case editorConstants.EDITOR_THUMBNAIL_CHANGE:
             return Object.assign({}, state, {
-                thumbnail: action.thumbnail,
+                coverImage: action.image,
             });
         case editorConstants.EDITOR_META_DATA_CHANGE:
             return Object.assign({}, state, {

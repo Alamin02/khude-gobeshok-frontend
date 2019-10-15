@@ -35,7 +35,7 @@ const img = {
 };
 
 
-export default function Previews(props) {
+export default function ImageDragnDrop(props) {
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {

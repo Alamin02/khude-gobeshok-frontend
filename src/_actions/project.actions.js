@@ -11,19 +11,19 @@ export const projectActions = {
 }
 
 function create_project(project) {
-    const new_project = {
+    const newProject = {
         author: project.author,
         title: project.title,
         tags: project.tags,
         teammates: project.teammates,
         start_date: moment(project.startDate).format('YYYY-MM-DD'),
         end_date: moment(project.endDate).format('YYYY-MM-DD'),
-        thumbnail: project.thumbnail,
+        cover_image: project.coverImage.id,
         description: project.description,
     }
 
     return dispatch => {
-        projectService.create(new_project)
+        projectService.create(newProject)
             .then(
                 project => {
                     dispatch(success(project));

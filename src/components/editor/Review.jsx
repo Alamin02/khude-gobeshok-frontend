@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { EditorState, convertFromRaw } from 'draft-js';
-
-import { Container, Button, Header, Image, Grid } from 'semantic-ui-react'
-
+import { Container, Button, Header, Image, Grid, Segment } from 'semantic-ui-react'
+import moment from "moment";
 import { projectActions } from "../../_actions";
+
+import styles from "./Review.module.css";
+
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -42,29 +44,41 @@ class ProjectViewer extends Component {
     };
 
     render() {
-        const description = this.props.description;
-        const editorState = (description && EditorState.createWithContent(convertFromRaw(description))) || EditorState.createEmpty();
+        const { description, title, startDate, endDate, coverImage } = this.props;
+
+        const editorState = (
+            description &&
+            EditorState.createWithContent(
+                convertFromRaw(description)
+            )
+        ) || EditorState.createEmpty();
+
+        let subheader = "From " + moment(startDate).format('LL') + " to " + moment(endDate).format('LL');
+
         return (
             <div >
-                <Container text >
-                    <Grid style={{ marginBottom: "20px" }}>
-                        <Grid.Row>
-                            <Grid.Column width={4}>
-                                <Image src={this.props.project.thumbnail} />
-                            </Grid.Column>
-                            <Grid.Column width={12}>
-                                <Header as="h1" content={this.props.project.title} />
-                                <p>Started: {this.props.project.startDate.toLocaleDateString("en-US")} || Finished: {this.props.project.endDate.toLocaleDateString("en-US")}</p>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                <Container text as={Segment} padded >
+
+                    <img src={coverImage.image} className={styles.coverImage} />
+
+                    <Header as="h1" dividing>
+                        <Header.Content className={styles.projectHeader}>
+                            {title}
+                        </Header.Content>
+                        <Header.Subheader className={styles.projectSubheader}>
+                            {subheader}
+                        </Header.Subheader>
+                    </Header>
+
                     <Editor
                         editorState={editorState}
                         plugins={plugins}
                         onChange={this.onChange}
                         readOnly
                     />
+
                 </Container>
+
                 <div style={{
                     textAlign: "center",
                     margin: "20px",
@@ -78,12 +92,15 @@ class ProjectViewer extends Component {
 }
 
 function mapStateToProps(state) {
-    let { description } = state.editor;
-    let { editor } = state;
+    let { description, title, startDate, endDate, coverImage } = state.editor;
 
     return {
-        description: description,
-        project: editor,
+        description,
+        title,
+        startDate,
+        endDate,
+        coverImage,
+        project: state.editor,
     }
 }
 

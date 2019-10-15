@@ -25,8 +25,8 @@ function endDateChange(date) {
 
 function thumbnailChange(image) {
     return dispatch => imageService.thumbnail_upload(image)
-        .then(({ image, thumbnail }) => {
-            dispatch({ type: editorConstants.EDITOR_THUMBNAIL_CHANGE, thumbnail });
+        .then(image => {
+            dispatch({ type: editorConstants.EDITOR_THUMBNAIL_CHANGE, image });
         });
 }
 

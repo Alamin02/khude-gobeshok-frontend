@@ -35,6 +35,7 @@ class App extends React.Component {
         <Router>
           <Navbar >
             <SemanticToastContainer />
+
             <Route path="/" exact component={HomePage} />
             <Route path="/projects" exact component={ProjectsPage} />
             <Route path="/new-project" component={ProjectEditor} />

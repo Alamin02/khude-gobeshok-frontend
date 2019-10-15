@@ -3,7 +3,7 @@ import { Container, Form, Header, Grid, Select, Button, Transition, Label, Popup
 
 import { connect } from 'react-redux';
 
-import Previews from "../common/ImageDragnDrop";
+import ImageDragnDrop from "../common/ImageDragnDrop";
 import ProjectDetails from "./ProjectDetails";
 import EditorSteps from "./EditorSteps";
 import Review from "./Review";
@@ -42,7 +42,6 @@ class ProjectEditor extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
     }
 
     handleNext = () => {
@@ -99,7 +98,7 @@ class ProjectEditor extends Component {
                 });
                 return 0;
             }
-            else if (!this.props.thumbnail) {
+            else if (!this.props.coverImage.thumbnail) {
                 this.setState({
                     thumbnailEmptyWarning: true,
                 });
@@ -161,11 +160,11 @@ class ProjectEditor extends Component {
                                 <Grid.Row>
                                     <Grid.Column>
                                         <Form.Field>
-                                            <label>Thumbnail</label>
-                                            <Previews
+                                            <label>Cover Image</label>
+                                            <ImageDragnDrop
                                                 key="1"
                                                 imageChange={this.props.thumbnailChange}
-                                                url={this.props.thumbnail}
+                                                url={this.props.coverImage.thumbnail}
                                             />
                                             {this.state.thumbnailEmptyWarning && <Label key="thumbnail" basic color='red' pointing> Please upload a thumbnail </Label>}
                                         </Form.Field>
@@ -266,17 +265,17 @@ class ProjectEditor extends Component {
 }
 
 function mapStateToProps(state) {
-    let { editor } = state;
+    let { title, startDate, endDate, coverImage, teammates, tags } = state.editor;
     let { username } = state.users;
 
     return {
-        title: editor.title,
-        startDate: editor.startDate,
-        endDate: editor.endDate,
-        thumbnail: editor.thumbnail,
+        title,
+        startDate,
+        endDate,
+        coverImage,
         author: username,
-        teammates: editor.teammates,
-        tags: editor.tags,
+        teammates,
+        tags,
     }
 }
 

@@ -76,7 +76,16 @@ class ProjectViewer extends Component {
     }
 
     render() {
-        const { description, author, teammates, start_date, end_date, created_at } = this.props.project;
+        const {
+            description,
+            author,
+            teammates,
+            start_date,
+            end_date,
+            created_at,
+        } = this.props.project;
+
+        const { loggedIn, } = this.props;
 
         const editorState = (description
             && EditorState.createWithContent(convertFromRaw(description)))
@@ -102,7 +111,7 @@ class ProjectViewer extends Component {
                 <ScrollToTopOnMount />
                 <Container text as={Segment} padded>
 
-                    <img src={this.props.project.cover_image.thumbnail} className={styles.coverImage} />
+                    <img src={this.props.project.cover_image_obj.thumbnail} className={styles.coverImage} />
 
                     <Header
                         as="h1"
@@ -140,10 +149,13 @@ class ProjectViewer extends Component {
                         {comments}
                     </Comment.Group>
 
-                    <Form onSubmit={this.handleCommentSubmit}>
-                        <Form.TextArea placeholder='Type your comment...' value={this.state.commentDescription} onChange={this.handleChange} />
-                        <Form.Button>Submit</Form.Button>
-                    </Form>
+                    {loggedIn ?
+                        <Form onSubmit={this.handleCommentSubmit}>
+                            <Form.TextArea placeholder='Type your comment...' value={this.state.commentDescription} onChange={this.handleChange} />
+                            <Form.Button>Submit</Form.Button>
+                        </Form> :
+                        <p>Please <Link to="/login">login</Link> or <Link to="/signup">register</Link> to comment here!</p>
+                    }
 
                 </Container>
             </div>
@@ -154,11 +166,13 @@ class ProjectViewer extends Component {
 function mapStateToProps(state) {
     let { project_loaded, project, comments } = state.project;
     const { username } = state.users;
+    const { loggedIn } = state.authentication;
     return {
         project,
         project_loaded,
         comments,
         username,
+        loggedIn,
     }
 }
 

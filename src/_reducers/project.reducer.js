@@ -4,7 +4,8 @@ const initalState = {
     project_list: [],
     project_loaded: false,
     project: {
-        cover_image: {}
+        cover_image: {}, // Only key of the serializer.
+        cover_image_obj: {}, // Nested Serializer.
     },
     projectCount: 1,
     comments: [],

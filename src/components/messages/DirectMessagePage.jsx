@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Header, List, Form } from "semantic-ui-react";
+import { Container, Header, List, Form, Image } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { messageActions } from "../../_actions";
+
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
@@ -51,6 +52,7 @@ class DirectMessagePage extends Component {
                     <List.Content floated="right">
                         <i>{relative_time}</i>
                     </List.Content>
+                    <Image avatar src={message.avatar || `/Logo.png`} />
                     <List.Content>
                         <List.Description>
                             <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}
@@ -66,6 +68,7 @@ class DirectMessagePage extends Component {
                 <Container style={{ minHeight: "85vh" }} text>
                     <br /> <br /> <br />
                     <Header as="h2" dividing>
+                        <Image />
                         {contactname}
                     </Header>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Container, Grid, Image, Item, Card } from "semantic-ui-react";
+import { Header, Container, Grid, Image, Item, Card, Tab, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import styles from "./SquadsPage.module.css";
@@ -26,7 +26,12 @@ class SquadsPage extends Component {
                                 <Item.Image src={imageUrl} size="tiny" />
                                 <Item.Content>
                                     <Item.Header>{person.username}</Item.Header>
-                                    <Item.Meta>Joined on {formattedJoinDate}</Item.Meta>
+                                    <Item.Meta>
+                                        Joined on {formattedJoinDate}
+                                    </Item.Meta>
+                                    <Item.Description>
+                                        <Icon name="map marker alternate" /> {person.profile.address || "Not provided"} <br />
+                                    </Item.Description>
                                 </Item.Content>
                             </Item>
                         </Item.Group>
@@ -34,6 +39,27 @@ class SquadsPage extends Component {
                 </Card>
             )
         });
+
+        const panes = [
+            {
+                menuItem: 'Find Member',
+                render: () => (
+                    <Tab.Pane attached>
+                        <Card.Group itemsPerRow={3} stackable >
+                            {peopleList}
+                        </Card.Group>
+                    </Tab.Pane>
+                ),
+            },
+            {
+                menuItem: 'Join Squad',
+                render: () => <Tab.Pane attached>Functionalily not available yet.</Tab.Pane>,
+            },
+            {
+                menuItem: 'Create Squad',
+                render: () => <Tab.Pane attached>Functionalily not available yet.</Tab.Pane>,
+            },
+        ]
 
         return (
             <React.Fragment>
@@ -44,10 +70,9 @@ class SquadsPage extends Component {
                             <Header.Content>Make Squad</Header.Content>
                         </Header>
                     </div>
+
                     <Container className={styles.peopleListContainer}>
-                        <Card.Group itemsPerRow={3} stackable >
-                            {peopleList}
-                        </Card.Group>
+                        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
                     </Container>
                 </div>
             </React.Fragment >
