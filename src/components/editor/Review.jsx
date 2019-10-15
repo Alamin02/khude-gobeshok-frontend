@@ -39,8 +39,6 @@ class ProjectViewer extends Component {
 
     handleSubmit = () => {
         this.props.createProject(this.props.project);
-        let path = `/projects`;
-        this.props.history.push(path);
     };
 
     render() {

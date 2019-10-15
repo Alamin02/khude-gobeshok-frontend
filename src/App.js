@@ -1,7 +1,8 @@
 import React from 'react';
 import Navbar from './components/common/Navbar'
-import { BrowserRouter as Router, Route, Redirect, } from "react-router-dom";
+import { Router, Route, Redirect, } from "react-router-dom";
 import { connect } from 'react-redux';
+import { history } from "./_helpers";
 
 import LoginForm from './components/auth/LoginPage';
 import SignupForm from './components/auth/SignupPage';
@@ -21,6 +22,7 @@ import AboutUsPage from "./components/company/AboutUsPage";
 import PrivacyPage from "./components/company/PrivacyPolicyPage";
 
 import "./App.css";
+
 import { userActions, editorActions } from './_actions';
 import { SemanticToastContainer } from 'react-semantic-toasts';
 import 'react-semantic-toasts/styles/react-semantic-alert.css';
@@ -29,49 +31,48 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
-      <div className="App">
-        <Router>
-          <Navbar >
-            <SemanticToastContainer />
+      <Router history={history}>
+        <Navbar >
+          <SemanticToastContainer />
 
-            <Route path="/" exact component={HomePage} />
-            <Route path="/projects" exact component={ProjectsPage} />
-            <Route path="/new-project" component={ProjectEditor} />
-            <Route path="/projects/:id/" component={ProjectView} />
-            <Route path="/profile/:profilename/" component={ProfilePage} />
-            <Route path="/challenges/" component={ChallengesPage} />
-            <Route path="/squads/" component={SquadsPage} />
-            <Route path="/messages/" exact component={MessagesPage} />
-            <Route path="/messages/:contactname" component={DirectMessagePage} />
-            <Route path="/notifications/" component={NotificationPage} />
-            <Route path="/about/" component={AboutUsPage} />
-            <Route path="/contact/" component={ContactPage} />
-            <Route path="/privacy/" component={PrivacyPage} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/projects" exact component={ProjectsPage} />
+          <Route path="/new-project" component={ProjectEditor} />
+          <Route path="/projects/:id/" component={ProjectView} />
+          <Route path="/profile/:profilename/" component={ProfilePage} />
+          <Route path="/challenges/" component={ChallengesPage} />
+          <Route path="/squads/" component={SquadsPage} />
+          <Route path="/messages/" exact component={MessagesPage} />
+          <Route path="/messages/:contactname" component={DirectMessagePage} />
+          <Route path="/notifications/" component={NotificationPage} />
+          <Route path="/about/" component={AboutUsPage} />
+          <Route path="/contact/" component={ContactPage} />
+          <Route path="/privacy/" component={PrivacyPage} />
 
-            <Route path="/login" render={() => (
-              this.props.loggedIn ? (
-                <Redirect to="/" />
-              ) : (
-                  <LoginForm />
-                )
-            )} />
-            <Route path="/signup" render={() => (
-              this.props.loggedIn ? (
-                <Redirect to="/" />
-              ) : (
-                  <SignupForm />
-                )
-            )} />
-            <Route path="/logout" render={() => {
-              this.props.logout();
-              return (<Redirect to="/" />)
-            }} />
-          </Navbar>
-          <Footer />
-        </Router>
-      </div>
+          <Route path="/login" render={() => (
+            this.props.loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+                <LoginForm />
+              )
+          )} />
+          <Route path="/signup" render={() => (
+            this.props.loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+                <SignupForm />
+              )
+          )} />
+          <Route path="/logout" render={() => {
+            this.props.logout();
+            return (<Redirect to="/" />)
+          }} />
+        </Navbar>
+        <Footer />
+      </Router>
     );
   }
 }

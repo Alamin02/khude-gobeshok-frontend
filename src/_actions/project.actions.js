@@ -1,5 +1,6 @@
 import { projectConstants } from '../_constants'
 import { projectService } from '../_services'
+import { history } from "../_helpers";
 import moment from 'moment';
 
 export const projectActions = {
@@ -26,6 +27,7 @@ function create_project(project) {
         projectService.create(newProject)
             .then(
                 project => {
+                    history.push('/projects');
                     dispatch(success(project));
                 },
                 error => {
