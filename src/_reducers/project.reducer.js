@@ -3,7 +3,9 @@ import { projectConstants } from '../_constants'
 const initalState = {
     project_list: [],
     project_loaded: false,
-    project: {},
+    project: {
+        cover_image: {}
+    },
     projectCount: 1,
     comments: [],
 }

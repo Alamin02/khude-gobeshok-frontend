@@ -102,15 +102,19 @@ class ProjectViewer extends Component {
                 <ScrollToTopOnMount />
                 <Container text as={Segment} padded>
 
-                    <img src={this.props.project.thumbnail} className={styles.coverImage} />
+                    <img src={this.props.project.cover_image.thumbnail} className={styles.coverImage} />
 
                     <Header
                         as="h1"
-                        content={this.props.project.title}
-                        className={styles.projectHeading}
-                        subheader={subheader}
                         dividing
-                    />
+                    >
+                        <Header.Content className={styles.projectHeader}>
+                            {this.props.project.title}
+                        </Header.Content>
+                        <Header.Subheader className={styles.projectSubheader}>
+                            {subheader}
+                        </Header.Subheader>
+                    </Header>
 
                     <Editor
                         editorState={editorState}

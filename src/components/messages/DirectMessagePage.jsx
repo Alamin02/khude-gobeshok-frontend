@@ -54,7 +54,6 @@ class DirectMessagePage extends Component {
                     <List.Content>
                         <List.Description>
                             <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}
-
                         </List.Description>
                     </List.Content>
                 </List.Item>

@@ -8,7 +8,7 @@ const ProjectListTiles = ({ projects, itemsPerRow }) => {
 
         return (
             <Card key={key} href={`/projects/` + project.id}>
-                <Image src={project.thumbnail} wrapped ui={false} />
+                <Image src={project.cover_image.image} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header style={{ fontSize: "1em" }}>{project.title}</Card.Header>
                     <Card.Meta>Shared by <i>{project.author}</i> {relative_time} </Card.Meta>

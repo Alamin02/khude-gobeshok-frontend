@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px&display=swap');
 
 .projectPageContainer {
     background-color: #fcfbf7;
@@ -11,9 +11,18 @@
     margin-bottom: 2em !important;
 }
 
+.projectHeader {
+    font-family: 'Slabo 27px', serif;
+    font-size: 1.5em;
+    line-height: 1.25em;
+}
+
 .coverImage {
     height: 250px;
     width: 100%;
     object-fit: cover;
     border: 1px solid #ddd;
+    -webkit-box-shadow: 3px 3px 21px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 21px -5px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 21px -5px rgba(0,0,0,0.75);
 }
