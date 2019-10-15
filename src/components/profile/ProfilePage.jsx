@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Grid, Tab, Pagination, Image, Segment, Header, Divider, Button, Icon, Dimmer } from "semantic-ui-react";
+import { Container, Grid, Tab, Pagination, Message } from "semantic-ui-react";
 import { connect } from "react-redux";
 import memoize from "memoize-one";
 import { profileActions } from "../../_actions";
@@ -62,11 +62,21 @@ class ProfilePage extends Component {
                 menuItem: 'Projects',
                 render: () => (
                     <Tab.Pane attached>
-                        <ProjectListTiles
-                            projects={this.props.projectList}
-                            own={ownProfile} public={publicMode}
-                            itemsPerRow={3}
-                        />
+                        <div className={styles.projectListContainer}>
+                            {
+                                (projectCount === 0) ?
+                                    <Message floating>
+                                        No projects added yet!
+                                     </Message>
+                                    :
+                                    <ProjectListTiles
+                                        projects={this.props.projectList}
+                                        own={ownProfile} public={publicMode}
+                                        itemsPerRow={3}
+                                    />
+                            }
+                        </div>
+
 
                         <Container className={styles.pagination}>
                             <Pagination

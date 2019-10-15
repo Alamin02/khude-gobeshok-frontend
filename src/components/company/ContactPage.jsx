@@ -32,7 +32,7 @@ export default class ContactPage extends Component {
 
             contactServices.sendMessage(formattedMessage)
                 .then(
-                    success => handleSuccess(),
+                    success => handleSuccess(success),
                     error => handleError(error),
                 )
         }
@@ -78,7 +78,7 @@ export default class ContactPage extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <Container style={{ marginTop: "6em", minHeight: "85vh" }}>
-                    <Grid columns={2} relaxed>
+                    <Grid columns={2} relaxed stackable>
                         <Grid.Row>
                             <Grid.Column>
                                 <Header as="h2">
