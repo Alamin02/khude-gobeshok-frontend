@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { profileActions } from "../../_actions";
 import { Segment, Header, Button } from "semantic-ui-react";
+import moment from "moment";
 
 class EducationList extends Component {
 
@@ -15,18 +16,6 @@ class EducationList extends Component {
             const { editable } = this.props;
 
             const { start_date, end_date } = education;
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            let d = new Date(start_date);
-            let start_month = monthNames[d.getMonth()];
-            let start_year = d.getFullYear();
-
-            let d2 = new Date(end_date);
-            let end_month = monthNames[d2.getMonth()];
-            let end_year = d2.getFullYear().toString();
-
-            let end_date_string = end_month + " " + end_year;
 
             return (
                 <Segment vertical key={key}>
@@ -41,14 +30,14 @@ class EducationList extends Component {
                     }
 
                     <p>{education.degree} - {education.major}</p>
-                    <p>{start_month} {start_year} - {education.currently_enrolled ? "Continuing" : end_date_string}</p>
+                    <p>{moment(start_date).format("MMM YYYY")} - {education.currently_enrolled ? "Continuing" : moment(end_date).format("MMM YYYY")}</p>
                 </Segment>
             )
         });
 
         return (
             <div>
-                {renderEducationList}
+                {(renderEducationList.length === 0) ? <p>No education info added.</p> : renderEducationList}
             </div>
         )
     }

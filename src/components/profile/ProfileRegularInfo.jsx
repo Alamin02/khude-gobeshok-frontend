@@ -97,7 +97,7 @@ class ProfileRegularInfo extends Component {
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
         const { avatar } = this.props.profileDetails;
-        let formattedJoinDate = moment(date_joined).format("MMM Do YYYY")
+        let formattedJoinDate = moment(date_joined).format("LL")
 
         const profileImageDimmerContent = (
             <div>
@@ -148,10 +148,10 @@ class ProfileRegularInfo extends Component {
                     />
 
                     <p>
-                        {this.props.profileDetails.bio || "Hello World!"}
+                        {this.props.profileDetails.bio || "Hello World!"} &nbsp;
                         {own &&
                             <span onClick={this.handleBioPenClick}>
-                                <Icon name="pencil alternate" />
+                                <Icon circular name="pencil alternate" />
                             </span>
                         }
                     </p>
@@ -181,12 +181,11 @@ class ProfileRegularInfo extends Component {
                 <Segment>
                     <Header as="h3" dividing content="Your Badges" />
                     <p>No badges yet</p>
-
                 </Segment>
 
-                <Segment>
-                    <Skills own={own} />
-                </Segment>
+
+                <Skills own={own} />
+
             </div >
         )
     }

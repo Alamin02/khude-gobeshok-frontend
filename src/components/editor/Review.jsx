@@ -24,12 +24,14 @@ const decorator = composeDecorators(
     resizePlugin.decorator,
     alignmentPlugin.decorator,
 );
+
 const imagePlugin = createImagePlugin({
     decorator,
     theme: {
         image: "editor-image-content"
     }
 });
+
 const videoPlugin = createVideoPlugin({});
 
 const plugins = [imagePlugin, videoPlugin, resizePlugin, alignmentPlugin];

@@ -9,8 +9,6 @@ class Skills extends Component {
     state = {
         specializedEditable: false,
         softwareSkillEditable: false,
-        specializedIn: "",
-        softwareSkills: "",
     }
 
     toggleSpecializedEdit = () => {
@@ -49,7 +47,7 @@ class Skills extends Component {
 
         let specializedInList =
             profileDetails.specialized_in
-                .split(';')
+                .split(',')
                 .filter(d => (d !== ""));
 
         let specializedInRender = specializedInList.map((specializedIn) => (
@@ -58,7 +56,7 @@ class Skills extends Component {
 
         let softwareSkillsList =
             profileDetails.software_skills
-                .split(';')
+                .split(',')
                 .filter(d => (d !== ""));
 
         let softwareSkillsRender = softwareSkillsList.map((softwareSkills) => (
@@ -68,65 +66,70 @@ class Skills extends Component {
         ))
 
         return (
-            <div>
-                <Segment clearing vertical className={styles.headerHolder}>
-                    <Header as="h3" floated="left" className={styles.skillHeader} >
-                        Specialized In
+            <React.Fragment>
+                <Segment clearing>
+
+                    <Header as="h3" dividing >
+                        <Header.Content className={styles.skillHeader}>
+                            Skillset
+                         </Header.Content>
                     </Header>
+
+                    {(specializedInRender.length === 0) ? <p>No skills added</p>
+                        : specializedInRender
+                    }
+
                     {own &&
-                        <Button icon circular floated="right" size="tiny" onClick={this.toggleSpecializedEdit}>
-                            <Icon name='edit outline' />
+                        <Button icon color="black" size="tiny" onClick={this.toggleSpecializedEdit}>
+                            EDIT
                         </Button>
                     }
-                </Segment>
 
-                {specializedInRender
-                    ||
-                    <p>No specialties added</p>
-                }
-
-                {specializedEditable &&
-                    <Form onSubmit={this.handleSpecializedInUpdate}>
-                        <Form.TextArea
-                            name="specializedIn"
-                            onChange={this.handleChange}
-                            label='Add specailties (Separate with ; )'
-                            value={this.state.specializedIn}
-                            placeholder="Add your specialties"
-                        />
-                        <Form.Button>Submit</Form.Button>
-                    </Form>
-                }
-
-                <Segment clearing vertical className={styles.headerHolder}>
-                    <Header as="h3" floated="left" className={styles.skillHeader} >
-                        Software Skills
-                    </Header>
-                    {own &&
-                        <Button icon circular floated="right" size="tiny" onClick={this.toggleSoftwareEdit}>
-                            <Icon name='edit outline' />
-                        </Button>
+                    {specializedEditable &&
+                        <Form onSubmit={this.handleSpecializedInUpdate}>
+                            <Form.TextArea
+                                name="specializedIn"
+                                onChange={this.handleChange}
+                                label='Add specailties - Separate with comma'
+                                value={this.state.specializedIn}
+                                placeholder="Add your specialties"
+                            />
+                            <Form.Button>UPDATE</Form.Button>
+                        </Form>
                     }
                 </Segment>
+                <Segment clearing>
+                    <Header as="h3" dividing >
+                        <Header.Content className={styles.skillHeader}>
+                            Software Skills
+                        </Header.Content>
+                    </Header>
+                    {
+                        (softwareSkillsRender.length === 0) ?
+                            <p>No skills added</p>
+                            : softwareSkillsRender
+                    }
+                    {own &&
+                        <Button icon color="black" size="tiny" onClick={this.toggleSoftwareEdit}>
+                            EDIT
+                        </Button>
+                    }
 
-                {softwareSkillsRender
-                    ||
-                    <p>No skills added</p>
-                }
-
-                {softwareSkillEditable &&
-                    <Form onSubmit={this.handleSoftwareSkillsUpdate}>
-                        <Form.TextArea
-                            name="softwareSkills"
-                            onChange={this.handleChange}
-                            label='Add specailties (Separate with ; )'
-                            placeholder="Add your specialties"
-                            value={this.state.softwareSkills}
-                        />
-                        <Form.Button>Submit</Form.Button>
-                    </Form>
-                }
-            </div>
+                    {
+                        softwareSkillEditable &&
+                        <Form onSubmit={this.handleSoftwareSkillsUpdate}>
+                            <Form.TextArea
+                                name="softwareSkills"
+                                onChange={this.handleChange}
+                                label='Add specailties - Separate with comma'
+                                placeholder="Add your specialties"
+                                value={this.state.softwareSkills}
+                            />
+                            <Form.Button>UPDATE</Form.Button>
+                        </Form>
+                    }
+                </Segment>
+            </React.Fragment >
         )
     }
 }
