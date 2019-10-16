@@ -13,3 +13,9 @@
 .peopleListContainer {
     margin-top: 2em;
 }
+
+.pagination {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: .5em;
+}

@@ -83,6 +83,7 @@ class ProfilePage extends Component {
                                 activePage={this.state.activePage}
                                 totalPages={numberOfPages}
                                 onPageChange={this.handlePageChange}
+                                boundaryRange={1}
                             />
                         </Container>
                     </Tab.Pane>

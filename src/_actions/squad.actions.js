@@ -5,10 +5,10 @@ export const squadActions = {
     getPeople,
 }
 
-function getPeople() {
+function getPeople(pageNumber) {
     return dispatch => {
         dispatch(request());
-        squadService.getPeople()
+        squadService.getPeople(pageNumber)
             .then(
                 people => dispatch(success(people)),
                 error => dispatch(failure(error))

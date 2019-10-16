@@ -4,12 +4,21 @@ export const squadService = {
     getPeople,
 }
 
-function getPeople() {
+function getPeople(pageNumber) {
     let requestOptions = {
         mode: 'cors',
         headers: { ...authHeader() }
     }
-    let url = apiBaseUrl() + `api/squads/`;
+
+    let queryString = "";
+
+    if (pageNumber) {
+        let offset = (12 * (pageNumber - 1));
+        let limit = "12";
+        queryString = `?limit=` + limit.toString() + `&offset=` + offset;
+    }
+
+    let url = apiBaseUrl() + `api/squads/` + queryString;
 
     return fetch(url, requestOptions)
         .then(handleResponse)

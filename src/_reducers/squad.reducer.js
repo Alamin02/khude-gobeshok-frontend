@@ -8,7 +8,8 @@ const initialState = {
                 }
             }
         }
-    ]
+    ],
+    peopleCount: 1,
 }
 
 export function squad(state = initialState, action) {
@@ -16,6 +17,7 @@ export function squad(state = initialState, action) {
         case squadConstants.SQUAD_GET_PEOPLE_SUCCESS:
             return Object.assign({}, state, {
                 people: action.people.results,
+                peopleCount: action.people.count,
             });
 
         default:

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Container, Grid, Image, Item, Card, Tab, Icon } from "semantic-ui-react";
+import { Header, Container, Pagination, Item, Card, Tab, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import styles from "./SquadsPage.module.css";
@@ -9,17 +9,29 @@ import { squadActions } from "../../_actions";
 class SquadsPage extends Component {
     constructor(props) {
         super(props);
-        this.props.getPeople();
+        this.props.getPeople(1);
     }
-    render() {
-        const { people } = this.props;
 
-        let peopleList = people.map((person) => {
+    state = {
+        activePeoplePage: 1
+    }
+
+    handlePageChange = (e, { activePage }) => {
+        this.setState({ activePage });
+        this.props.getPeople(activePage);
+        window.scrollTo(0, 0);
+    }
+
+    render() {
+        const { people, peopleCount } = this.props;
+        let numberOfPages = Math.ceil(peopleCount / 12); // Retrieved Page Size (Number of Projects per page) is 12.
+
+        let peopleList = people.map((person, index) => {
             let imageUrl = `/Logo.png`;
             if (person.profile.avatar) imageUrl = person.profile.avatar.thumbnail;
             let formattedJoinDate = moment(person.date_joined).format("MMM Do YYYY")
             return (
-                <Card key={person.username} href={`/profile/` + person.username} >
+                <Card key={index} href={`/profile/` + person.username} >
                     <Card.Content>
                         <Item.Group>
                             <Item>
@@ -45,19 +57,26 @@ class SquadsPage extends Component {
                 menuItem: 'Find Member',
                 render: () => (
                     <Tab.Pane attached>
-                        <Card.Group itemsPerRow={3} stackable >
+                        <Card.Group key="people" itemsPerRow={3} stackable >
                             {peopleList}
                         </Card.Group>
+                        <Container className={styles.pagination}>
+                            <Pagination
+                                activePage={this.state.activePage}
+                                totalPages={numberOfPages}
+                                onPageChange={this.handlePageChange}
+                            />
+                        </Container>
                     </Tab.Pane>
                 ),
             },
             {
                 menuItem: 'Join Squad',
-                render: () => <Tab.Pane attached>Functionalily not available yet.</Tab.Pane>,
+                render: () => <Tab.Pane key="join" attached>Functionalily not available yet.</Tab.Pane>,
             },
             {
                 menuItem: 'Create Squad',
-                render: () => <Tab.Pane attached>Functionalily not available yet.</Tab.Pane>,
+                render: () => <Tab.Pane key="create" attached>Functionalily not available yet.</Tab.Pane>,
             },
         ]
 
@@ -81,15 +100,16 @@ class SquadsPage extends Component {
 }
 
 function mapStateToProps(state) {
-    const { people } = state.squad;
+    const { people, peopleCount } = state.squad;
     return {
         people,
+        peopleCount,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getPeople: () => dispatch(squadActions.getPeople()),
+        getPeople: (pageNumber) => dispatch(squadActions.getPeople(pageNumber)),
     }
 }
 
