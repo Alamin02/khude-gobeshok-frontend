@@ -46,7 +46,7 @@ class MessagesPage extends Component {
                     </Header>
 
                     <List relaxed animated>
-                        {conversationRender}
+                        {(conversationRender.length === 0) ? <p>No conversations yet..</p> : conversationRender}
                     </List>
                 </Container>
             </React.Fragment>

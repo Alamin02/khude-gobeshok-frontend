@@ -38,7 +38,7 @@ class NotificationsPage extends Component {
                     </Header>
 
                     <List relaxed animated>
-                        {notificationRender}
+                        {(notificationRender.length === 0) ? <p>No notifications</p> : notificationRender}
                     </List>
                 </Container>
             </React.Fragment>
