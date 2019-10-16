@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Form, Button, Icon, Header, Label, Segment } from "semantic-ui-react";
+import { Form, Button, Icon, Header, Label, Segment, Message } from "semantic-ui-react";
 import { profileActions } from '../../_actions';
 
 import styles from "./Skills.module.css";
@@ -72,17 +72,14 @@ class Skills extends Component {
                     <Header as="h3" dividing >
                         <Header.Content className={styles.skillHeader}>
                             Skillset
-                         </Header.Content>
+                            {own && <span style={{ float: 'right' }}>
+                                <Icon name="plus" onClick={this.toggleSpecializedEdit} />
+                            </span>}
+                        </Header.Content>
                     </Header>
 
                     {(specializedInRender.length === 0) ? <p>No skills added</p>
                         : specializedInRender
-                    }
-
-                    {own &&
-                        <Button icon color="black" size="tiny" onClick={this.toggleSpecializedEdit}>
-                            EDIT
-                        </Button>
                     }
 
                     {specializedEditable &&
@@ -90,10 +87,11 @@ class Skills extends Component {
                             <Form.TextArea
                                 name="specializedIn"
                                 onChange={this.handleChange}
-                                label='Add specailties - Separate with comma'
+                                label='Add specailties'
                                 value={this.state.specializedIn}
                                 placeholder="Add your specialties"
                             />
+                            <Message size="mini">Separate with comma</Message>
                             <Form.Button>UPDATE</Form.Button>
                         </Form>
                     }
@@ -102,17 +100,15 @@ class Skills extends Component {
                     <Header as="h3" dividing >
                         <Header.Content className={styles.skillHeader}>
                             Software Skills
+                            {own && <span style={{ float: 'right' }}>
+                                <Icon name="plus" onClick={this.toggleSoftwareEdit} />
+                            </span>}
                         </Header.Content>
                     </Header>
                     {
                         (softwareSkillsRender.length === 0) ?
                             <p>No skills added</p>
                             : softwareSkillsRender
-                    }
-                    {own &&
-                        <Button icon color="black" size="tiny" onClick={this.toggleSoftwareEdit}>
-                            EDIT
-                        </Button>
                     }
 
                     {
@@ -121,10 +117,11 @@ class Skills extends Component {
                             <Form.TextArea
                                 name="softwareSkills"
                                 onChange={this.handleChange}
-                                label='Add specailties - Separate with comma'
+                                label='Add specailties'
                                 placeholder="Add your specialties"
                                 value={this.state.softwareSkills}
                             />
+                            <Message size="mini">Separate with comma</Message>
                             <Form.Button>UPDATE</Form.Button>
                         </Form>
                     }

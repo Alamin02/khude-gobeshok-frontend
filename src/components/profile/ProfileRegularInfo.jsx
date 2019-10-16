@@ -179,7 +179,7 @@ class ProfileRegularInfo extends Component {
                 </Segment>
 
                 <Segment>
-                    <Header as="h3" dividing content="Your Badges" />
+                    <Header as="h3" dividing content="Badges" />
                     <p>No badges yet</p>
                 </Segment>
 
