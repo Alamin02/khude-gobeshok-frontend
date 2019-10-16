@@ -1,7 +1,7 @@
 .coverImage {
     height: 250px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border: 1px solid #ddd;
     -webkit-box-shadow: 3px 3px 21px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 21px -5px rgba(0,0,0,0.75);

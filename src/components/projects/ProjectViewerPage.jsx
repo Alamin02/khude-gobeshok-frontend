@@ -111,7 +111,7 @@ class ProjectViewer extends Component {
                 <ScrollToTopOnMount />
                 <Container text as={Segment} padded>
 
-                    <img src={this.props.project.cover_image_obj.thumbnail} className={styles.coverImage} />
+                    <img src={this.props.project.cover_image_obj.image} className={styles.coverImage} />
 
                     <Header
                         as="h1"
