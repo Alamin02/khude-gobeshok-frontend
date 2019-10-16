@@ -7,7 +7,8 @@ export default class AddVideo extends Component {
         super(props);
 
         this.state = {
-            videoUrl: ""
+            videoUrl: "",
+            diagOpen: false,
         }
     }
 
@@ -17,9 +18,19 @@ export default class AddVideo extends Component {
             [name]: value
         });
     }
+    handleDiagClose = () => {
+        this.setState({ diagOpen: false })
+    }
+    handleDiagOpen = () => {
+        this.setState({ diagOpen: true })
+    }
 
     handleSubmit = () => {
         this.props.onChange(this.props.modifier(this.props.editorState, { src: this.state.videoUrl }));
+        this.setState({
+            videoUrl: "",
+            diagOpen: false
+        })
     }
 
     render() {
@@ -29,6 +40,9 @@ export default class AddVideo extends Component {
                     <Button icon='file video outline' content='Add Video' />
                 }
                 on='click'
+                open={this.state.diagOpen}
+                onClose={this.handleDiagClose}
+                onOpen={this.handleDiagOpen}
             >
                 <Form>
                     <Form.Input icon='linkify' iconPosition='left' label='URL' placeholder='URL' name="videoUrl" onChange={this.handleChange} value={this.state.videoUrl} />

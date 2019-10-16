@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Container, Dropdown, Sidebar, Responsive, Image } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Sidebar, Responsive, Label, Icon, Popup } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -106,13 +106,25 @@ const NavBarMobile = ({
     );
 
 const NavBarDesktop = ({ loggedIn, username }) => (
+
     <Menu fixed="top" >
+        <Label corner="left" size="tiny" color="red">
+            <Popup
+                trigger={<Icon name='bug' />}
+                size="mini"
+                content='BETA'
+                position='bottom left'
+            />
+        </Label>
         <Container>
             <Menu.Item
                 icon="home"
                 as={Link}
                 to="/"
-            />
+            >
+                <Icon name="home" />
+            </Menu.Item>
+
             {leftItems.map((item) => (
                 <Menu.Item
                     key={item.key}

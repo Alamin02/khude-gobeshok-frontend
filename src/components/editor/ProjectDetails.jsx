@@ -83,12 +83,6 @@ class ProjectDetails extends Component {
         this.editor.focus();
     };
 
-    handleSubmit = () => {
-        this.props.createProject(this.props.project);
-        let path = `/projects`;
-        this.props.history.push(path);
-    }
-
     render() {
 
         return (
@@ -121,9 +115,7 @@ class ProjectDetails extends Component {
                                 </div>
                             )
                         }
-
                     </Toolbar>
-
                 </div>
                 <AddImage editorState={this.state.editorState} onChange={this.onChange} modifier={imagePlugin.addImage} />
                 <AddVideo editorState={this.state.editorState} onChange={this.onChange} modifier={videoPlugin.addVideo} />
