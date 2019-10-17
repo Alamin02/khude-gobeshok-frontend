@@ -27,6 +27,7 @@ function setCurrentProfileName(username) {
 
 function getDetails(username) {
     return dispatch => {
+        dispatch(request());
         profileService.profileDetails(username)
             .then(
                 profileDetails => {
@@ -42,6 +43,7 @@ function getDetails(username) {
 
 function getUserDetails(username) {
     return dispatch => {
+        dispatch(request());
         profileService.profileUserDetails(username)
             .then(
                 profileUserDetails => {
@@ -58,6 +60,7 @@ function getUserDetails(username) {
 
 function updateDetails(username, updatedProfileData) {
     return dispatch => {
+        dispatch(request());
         profileService.updateProfileDetails(username, updatedProfileData)
             .then(
                 profileDetails => {
@@ -83,6 +86,7 @@ function updateDetails(username, updatedProfileData) {
 
 function updateBio(bio) {
     return dispatch => {
+        dispatch(request());
         profileService.updateProfileBio(bio)
             .then(
                 updatedBio => dispatch(success(updatedBio)),
@@ -97,6 +101,7 @@ function updateBio(bio) {
 
 function updateSpecializedIn(username, specializedIn) {
     return dispatch => {
+        dispatch(request());
         profileService.updateSpecializedIn(username, specializedIn)
             .then(
                 updatedSpecializedIn => dispatch(success(updatedSpecializedIn)),
@@ -111,6 +116,7 @@ function updateSpecializedIn(username, specializedIn) {
 
 function updateSoftwareSkill(username, softwareSkill) {
     return dispatch => {
+        dispatch(request());
         profileService.updateSoftwareSkill(username, softwareSkill)
             .then(
                 updatedSoftwareSkill => dispatch(success(updatedSoftwareSkill)),
@@ -126,6 +132,7 @@ function updateSoftwareSkill(username, softwareSkill) {
 
 function updatePropic(propicId) {
     return dispatch => {
+        dispatch(request());
         profileService.updateProfilePic(propicId)
             .then(
                 updatedProfilePic => dispatch(success(updatedProfilePic)),
@@ -140,6 +147,7 @@ function updatePropic(propicId) {
 
 function getEducationList(username) {
     return dispatch => {
+        dispatch(request());
         profileService.getEducationList(username)
             .then(
                 educationList => {
@@ -159,6 +167,7 @@ function getEducationList(username) {
 function addEducation(education) {
 
     return dispatch => {
+        dispatch(request());
         profileService.addEducation(education)
             .then(
                 education => {
@@ -177,6 +186,7 @@ function addEducation(education) {
 
 function deleteEducation(id) {
     return dispatch => {
+        dispatch(request());
         profileService.deleteEducation(id)
             .then(
                 deleted => {
@@ -196,6 +206,7 @@ function deleteEducation(id) {
 
 function getJobList(username) {
     return dispatch => {
+        dispatch(request());
         profileService.getJobList(username)
             .then(
                 jobList => {
@@ -216,6 +227,7 @@ function getJobList(username) {
 function addJob(job) {
 
     return dispatch => {
+        dispatch(request());
         profileService.addJob(job)
             .then(
                 job => {
@@ -234,6 +246,7 @@ function addJob(job) {
 
 function deleteJob(id) {
     return dispatch => {
+        dispatch(request());
         profileService.deleteJob(id)
             .then(
                 deleted => {
@@ -253,6 +266,7 @@ function deleteJob(id) {
 
 function getProjects(username, pageNumber) {
     return dispatch => {
+        dispatch(request());
         profileService.listProjects(username, pageNumber)
             .then(
                 projectList => {

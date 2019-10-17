@@ -1,4 +1,4 @@
-import { editorConstants } from "../_constants";
+import { editorConstants, projectConstants, userConstants } from "../_constants";
 
 const initialState = {
     title: "",
@@ -38,7 +38,9 @@ export function editor(state = initialState, action) {
                 title: action.metadata.title,
                 tags: action.metadata.tags,
             });
-
+        case projectConstants.PROJECT_CREATE_SUCCESS:
+        case userConstants.LOGOUT:
+            return state = initialState;
         default:
             return state;
     }

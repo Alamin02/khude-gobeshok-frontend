@@ -1,4 +1,4 @@
-import { notificationConstants } from "../_constants";
+import { notificationConstants, userConstants } from "../_constants";
 
 const initialState = {
     notifications: [],
@@ -10,6 +10,8 @@ export function notification(state = initialState, action) {
             return Object.assign({}, state, {
                 notifications: action.notifications.results,
             });
+        case userConstants.LOGOUT:
+            return state = initialState;
         default:
             return state;
     }

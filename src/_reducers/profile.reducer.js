@@ -1,4 +1,4 @@
-import { profileConstants } from "../_constants";
+import { profileConstants, userConstants } from "../_constants";
 
 const initialProfileDetails = {
     full_name: '',
@@ -22,19 +22,37 @@ const initialState = {
 
 export function profile(state = initialState, action) {
     switch (action.type) {
+        // Make project list for a profile empty and then load new
+        case profileConstants.PROFILE_PROJECT_LIST_REQUEST:
+            return Object.assign({}, state, {
+                projectList: [],
+                projectCount: 1,
+            });
         case profileConstants.PROFILE_PROJECT_LIST_SUCCESS:
             return Object.assign({}, state, {
                 projectList: action.projectList.results,
                 projectCount: action.projectList.count,
             });
+
+        // Make user for a profile empty and then load new
+        case profileConstants.PROFILE_USER_DETAILS_REQUEST:
+            return Object.assign({}, state, {
+                profileUserDetails: {},
+            });
         case profileConstants.PROFILE_USER_DETAILS_SUCCESS:
             return Object.assign({}, state, {
                 profileUserDetails: action.profileUserDetails,
+            });
+        case profileConstants.PROFILE_DETAILS_REQUEST:
+            return Object.assign({}, state, {
+                profileDetails: initialProfileDetails,
             });
         case profileConstants.PROFILE_DETAILS_SUCCESS:
             return Object.assign({}, state, {
                 profileDetails: action.profileDetails,
             });
+
+        // Handle update in profile details
         case profileConstants.PROFILE_DETAILS_UPDATE_SUCCESS:
             return Object.assign({}, state, {
                 profileDetails: action.profileDetails,
@@ -55,6 +73,12 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 profileDetails: { ...state.profileDetails, profile_picture: action.updatedProfilePic.profile_picture },
             });
+
+        // Load and update education list
+        case profileConstants.PROFILE_GET_EDUCATION_LIST_REQUEST:
+            return Object.assign({}, state, {
+                educationList: [],
+            });
         case profileConstants.PROFILE_GET_EDUCATION_LIST_SUCCESS:
             return Object.assign({}, state, {
                 educationList: action.educationList.results,
@@ -62,6 +86,12 @@ export function profile(state = initialState, action) {
         case profileConstants.PROFILE_ADD_EDUCATION_SUCCESS:
             return Object.assign({}, state, {
                 educationList: [...state.educationList, action.education],
+            });
+
+        // Load and update job list
+        case profileConstants.PROFILE_GET_JOB_LIST_REQUEST:
+            return Object.assign({}, state, {
+                jobList: [],
             });
         case profileConstants.PROFILE_GET_JOB_LIST_SUCCESS:
             return Object.assign({}, state, {
@@ -71,6 +101,7 @@ export function profile(state = initialState, action) {
             return Object.assign({}, state, {
                 jobList: [...state.jobList, action.job],
             });
+
         case profileConstants.PROFILE_DELETE_EDUCATION_SUCCESS:
             return Object.assign({}, state, {
                 educationList: state.educationList.filter((education) => {
@@ -83,6 +114,8 @@ export function profile(state = initialState, action) {
                     return job.id !== action.id;
                 }),
             });
+        case userConstants.LOGOUT:
+            return state = initialState;
         default:
             return state;
     }

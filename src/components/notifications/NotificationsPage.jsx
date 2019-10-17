@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import { Container, List, Header } from "semantic-ui-react";
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import moment from 'moment';
 import { notificationActions } from '../../_actions';
+
+
+function notificationBuilder(segment) {
+    if (segment) {
+        switch (segment.type) {
+            case "user":
+                return <Link to={"/profile/" + segment.data.username}>{segment.data.username}</Link>
+            case "project":
+                return <Link to={`/projects/` + segment.data.id}>your project</Link>
+            default:
+                return "Segment bla bla bla"
+        }
+    }
+}
+
 
 class NotificationsPage extends Component {
     constructor(props) {
@@ -14,13 +30,15 @@ class NotificationsPage extends Component {
     render() {
         const { notifications } = this.props;
         let notificationRender = notifications.map((notification, index) => {
-            let relative_time = moment(notification.timestamp).fromNow()
+            let relative_time = moment(notification.timestamp).fromNow();
+            let actor = notificationBuilder(notification.actor);
+            let target = notificationBuilder(notification.target);
 
             return (
                 <List.Item key={index}>
                     <List.Content>
                         <List.Description>
-                            {notification.actor} {notification.verb} <br />
+                            {actor} {notification.verb} {target} <br />
                             <i>{relative_time} </i>
                         </List.Description>
                     </List.Content>

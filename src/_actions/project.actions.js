@@ -24,6 +24,7 @@ function create_project(project) {
     }
 
     return dispatch => {
+        dispatch(request());
         projectService.create(newProject)
             .then(
                 project => {
@@ -43,6 +44,7 @@ function create_project(project) {
 
 function getProject(project_id) {
     return dispatch => {
+        dispatch(request());
         projectService.retrieve(project_id)
             .then(
                 project => {
@@ -59,6 +61,7 @@ function getProject(project_id) {
 
 function get_project_list(pageNumber) {
     return dispatch => {
+        dispatch(request());
         projectService.list(pageNumber)
             .then(
                 project_list => {
@@ -76,6 +79,7 @@ function get_project_list(pageNumber) {
 
 function getComments(projectId) {
     return dispatch => {
+        dispatch(request());
         projectService.getComments(projectId)
             .then(
                 comments => dispatch(success(comments)),
@@ -91,6 +95,7 @@ function getComments(projectId) {
 function postComment(comment) {
 
     return dispatch => {
+        dispatch(request());
         projectService.postComment(comment)
             .then(
                 comment => dispatch(success(comment)),

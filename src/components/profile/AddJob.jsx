@@ -105,21 +105,21 @@ class AddJob extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Field>
                                 <label>Company</label>
-                                <input placeholder='Company Name' name="company" onChange={this.handleChange} />
+                                <input placeholder='Company Name' autoComplete="off" name="company" onChange={this.handleChange} />
                             </Form.Field>
                             <Form.Field>
                                 <label>Position/Designation</label>
-                                <input placeholder='Position/Designation Name' name="position" onChange={this.handleChange} />
+                                <input placeholder='Position/Designation Name' autoComplete="off" name="position" onChange={this.handleChange} />
                             </Form.Field>
                             <Form.Group inline>
                                 <label>Start Date</label>
-                                <MonthInput name="start_month" value={this.state.start_month} onChange={this.handleDateChange} placeholder="Month" />
-                                <YearInput name="start_year" value={this.state.start_year} onChange={this.handleDateChange} placeholder="Year" />
+                                <MonthInput name="start_month" autoComplete="off" value={this.state.start_month} onChange={this.handleDateChange} placeholder="Month" />
+                                <YearInput name="start_year" autoComplete="off" value={this.state.start_year} onChange={this.handleDateChange} placeholder="Year" />
                             </Form.Group>
                             <Form.Group inline>
                                 <label>End Date</label>
-                                <MonthInput name="end_month" value={this.state.end_month} onChange={this.handleDateChange} placeholder="Month" />
-                                <YearInput name="end_year" value={this.state.end_year} onChange={this.handleDateChange} placeholder="Year" />
+                                <MonthInput name="end_month" autoComplete="off" value={this.state.end_month} onChange={this.handleDateChange} placeholder="Month" />
+                                <YearInput name="end_year" autoComplete="off" value={this.state.end_year} onChange={this.handleDateChange} placeholder="Year" />
                             </Form.Group>
                             <Form.Field>
                                 <Checkbox label='Currently Working' name="currently_working" checked={this.state.currently_enrolled} onChange={this.handleEnrolledChange} />
