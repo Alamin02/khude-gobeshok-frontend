@@ -5,13 +5,22 @@ export const messageService = {
     sendDirectMessage,
 }
 
-function getConversations() {
+function getConversations(pageNumber) {
     const requestOptions = {
         mode: 'cors',
         headers: { ...authHeader() },
     };
 
-    let url = apiBaseUrl() + `api/conversations/`;
+    let queryString = "";
+
+    if (pageNumber) {
+        let offset = (12 * (pageNumber - 1));
+        let limit = "12";
+        queryString = `?limit=` + limit.toString() + `&offset=` + offset;
+    }
+
+    let url = apiBaseUrl() + `api/conversations/` + queryString;
+
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(conversations => conversations)

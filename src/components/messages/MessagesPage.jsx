@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, List, Image } from "semantic-ui-react";
+import { Container, Header, List, Image, Pagination } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -12,11 +12,23 @@ import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 class MessagesPage extends Component {
     constructor(props) {
         super(props);
-        this.props.getConversations();
+        this.props.getConversations(1);
+    }
+
+    state = {
+        activePage: 1
+    }
+
+    handlePageChange = (e, { activePage }) => {
+        this.setState({ activePage });
+        this.props.getConversations(activePage);
+        window.scrollTo(0, 0);
     }
 
     render() {
-        const { conversations, username } = this.props;
+        const { conversations, conversationCount, username } = this.props;
+        let numberOfPages = Math.ceil(conversationCount / 12);
+
         let conversationRender = conversations.map((message, index) => {
             let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
             let relative_time = moment(message.sent_at).fromNow()
@@ -48,6 +60,19 @@ class MessagesPage extends Component {
                     <List relaxed animated>
                         {(conversationRender.length === 0) ? <p>No conversations yet..</p> : conversationRender}
                     </List>
+
+                    <Container style={{ paddingTop: "3em" }} textAlign="center">
+                        <Pagination
+                            defaultActivePage={1}
+                            firstItem={null}
+                            lastItem={null}
+                            pointing
+                            secondary
+                            totalPages={numberOfPages}
+                            onPageChange={this.handlePageChange}
+                        />
+                    </Container>
+
                 </Container>
             </React.Fragment>
         )
@@ -55,17 +80,18 @@ class MessagesPage extends Component {
 }
 
 function mapStateToProps(state) {
-    const { conversations } = state.message;
+    const { conversations, conversationCount } = state.message;
     const { username } = state.users;
     return {
         conversations,
-        username
+        conversationCount,
+        username,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getConversations: () => dispatch(messageActions.getConversations()),
+        getConversations: (pageNumber) => dispatch(messageActions.getConversations(pageNumber)),
     }
 }
 

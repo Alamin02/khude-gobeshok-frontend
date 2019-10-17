@@ -7,10 +7,10 @@ export const messageActions = {
     sendDirectMessage,
 }
 
-function getConversations() {
+function getConversations(pageNumber) {
     return dispatch => {
         dispatch(request());
-        messageService.getConversations()
+        messageService.getConversations(pageNumber)
             .then(
                 conversations => dispatch(success(conversations)),
                 error => dispatch(failure(error)),
