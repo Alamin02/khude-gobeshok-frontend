@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, List, Header } from "semantic-ui-react";
+import { Container, List, Header, Button, Message } from "semantic-ui-react";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
@@ -24,11 +24,25 @@ function notificationBuilder(segment) {
 class NotificationsPage extends Component {
     constructor(props) {
         super(props);
-        this.props.getNotifications();
+        this.props.getNotifications(1);
+    }
+
+    state = {
+        activePage: 1
+    }
+
+    handleLoadMore = () => {
+        let { activePage } = this.state;
+        this.props.getNotifications(activePage + 1);
+
+        this.setState({ activePage: activePage + 1 });
     }
 
     render() {
-        const { notifications } = this.props;
+        const { notifications, notificationCount } = this.props;
+
+        let numberOfPages = Math.ceil(notificationCount / 12);
+
         let notificationRender = notifications.map((notification, index) => {
             let relative_time = moment(notification.timestamp).fromNow();
             let actor = notificationBuilder(notification.actor);
@@ -38,18 +52,18 @@ class NotificationsPage extends Component {
                 <List.Item key={index}>
                     <List.Content>
                         <List.Description>
-                            {actor} {notification.verb} {target} <br />
+                            {actor} {notification.verb} {target}. <br />
                             <i>{relative_time} </i>
                         </List.Description>
                     </List.Content>
                 </List.Item>
             )
-        })
+        });
 
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
-                <Container style={{ minHeight: "85vh" }} text >
+                <Container style={{ minHeight: "85vh", marginBottom: "2em" }} text >
                     <br /> <br /> <br />
                     <Header as="h2" dividing>
                         Notifications
@@ -58,6 +72,8 @@ class NotificationsPage extends Component {
                     <List relaxed animated>
                         {(notificationRender.length === 0) ? <p>No notifications</p> : notificationRender}
                     </List>
+
+                    {(numberOfPages <= this.state.activePage) ? <Message size='mini'>End of notifications.</Message> : <Button fluid onClick={this.handleLoadMore}>LOAD MORE</Button>}
                 </Container>
             </React.Fragment>
         )
@@ -65,15 +81,16 @@ class NotificationsPage extends Component {
 }
 
 function mapStateToProps(state) {
-    const { notifications } = state.notification;
+    const { notifications, notificationCount } = state.notification;
     return {
         notifications,
+        notificationCount,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getNotifications: () => dispatch(notificationActions.getNotifications()),
+        getNotifications: (pageNumber) => dispatch(notificationActions.getNotifications(pageNumber)),
     }
 }
 
