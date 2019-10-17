@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Header, Container, Icon, Pagination, Responsive } from "semantic-ui-react";
+import { Image, Header, Container, Icon, Pagination, Responsive } from "semantic-ui-react";
 import { projectActions } from '../../_actions';
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
@@ -41,8 +41,7 @@ class ProjectsPage extends Component {
             <div className={styles.pageContainer}>
                 <ScrollToTopOnMount />
                 <div className={styles.pageHeaderContainer} >
-                    <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
-                        <Header.Content>Project Garage</Header.Content>
+                    <Header as='h1' textAlign="center" className={styles.pageHeader} icon>Project Garage
                     </Header>
                 </div>
 

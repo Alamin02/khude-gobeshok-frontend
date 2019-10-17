@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Header, List, Image, Pagination } from "semantic-ui-react";
+import { Container, Header, List, Image, Pagination, Button, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { messageActions } from "../../_actions";
-
 import moment from "moment";
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
+import NewMessageModal from "./NewMessageModal";
 
 class MessagesPage extends Component {
     constructor(props) {
@@ -16,7 +16,16 @@ class MessagesPage extends Component {
     }
 
     state = {
-        activePage: 1
+        activePage: 1,
+        messageModalOpen: false,
+    }
+
+    openMessageModal = () => {
+        this.setState({ messageModalOpen: true });
+    }
+
+    onMessageModalClose = () => {
+        this.setState({ messageModalOpen: false });
     }
 
     handlePageChange = (e, { activePage }) => {
@@ -54,8 +63,15 @@ class MessagesPage extends Component {
                 <Container style={{ minHeight: "85vh" }} text>
                     <br /> <br /> <br />
                     <Header as="h2" dividing>
-                        Conversations
+                        <Header.Content style={{ width: "100%" }}>
+                            Conversations
+                            <span style={{ float: "right" }}>
+                                <Button onClick={this.openMessageModal}> <Icon name='envelope' /> NEW</Button>
+                            </span>
+                        </Header.Content>
                     </Header>
+
+                    <NewMessageModal open={this.state.messageModalOpen} onClose={this.onMessageModalClose} />
 
                     <List relaxed animated>
                         {(conversationRender.length === 0) ? <p>No conversations yet..</p> : conversationRender}

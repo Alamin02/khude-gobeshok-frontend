@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { profileActions } from "../../_actions";
-import { Segment, Header, Button } from "semantic-ui-react";
+import { Segment, Header, Button, Icon } from "semantic-ui-react";
 import moment from "moment";
 
 class EducationList extends Component {
@@ -25,7 +25,9 @@ class EducationList extends Component {
 
                     {editable &&
                         <Button floated="right" onClick={() => { this.handleDelete(education.id) }}>
-                            Delete
+                            <Button.Content >
+                                <Icon name="trash alternate" />
+                            </Button.Content>
                         </Button>
                     }
 

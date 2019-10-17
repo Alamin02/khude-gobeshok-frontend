@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Segment, Header, Button } from "semantic-ui-react";
+import { Segment, Header, Button, Icon } from "semantic-ui-react";
 import { profileActions } from "../../_actions";
 import moment from "moment";
 
@@ -20,7 +20,9 @@ class JobList extends Component {
                     <Header as="h4">{job.company}</Header>
                     {editable &&
                         <Button floated="right" onClick={() => { this.handleDelete(job.id) }}>
-                            Delete
+                            <Button.Content >
+                                <Icon name="trash alternate" />
+                            </Button.Content>
                         </Button>
                     }
                     <p>{job.position}</p>
