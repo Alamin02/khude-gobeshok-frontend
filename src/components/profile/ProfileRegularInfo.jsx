@@ -90,14 +90,12 @@ class ProfileRegularInfo extends Component {
             profileDimmerActive,
             editBio,
             proPicEditable,
-            specializedEditable,
-            softwareSkillEditable
         } = this.state;
 
         const { own } = this.props;
         const { username, email, date_joined } = this.props.profileUserDetails;
         const { avatar } = this.props.profileDetails;
-        let formattedJoinDate = moment(date_joined).format("LL")
+        let formattedJoinDate = moment(date_joined).format("MMM D, YYYY")
 
         const profileImageDimmerContent = (
             <div>
@@ -162,19 +160,12 @@ class ProfileRegularInfo extends Component {
                         onChange={this.handleBioEdit}
                         placeholder='Single line about you..'
                     />}
-
                     <Divider />
-                    <Grid columns={2}>
-                        <Grid.Row className={styles.textRow}>
-                            <Grid.Column textAlign="left" >Email:</Grid.Column>
-                            <Grid.Column textAlign="right">{email || "No email"}</Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column textAlign="left">Member Since:</Grid.Column>
-                            <Grid.Column textAlign="right">{formattedJoinDate}</Grid.Column>
-                        </Grid.Row>
-                    </Grid>
 
+                    <p className={styles.metaInfoContainer}>
+                        <b>Email:</b> <span className={styles.rightFloatedText}>{email || "No email"}</span> <br />
+                        <b>Member Since:</b> <span className={styles.rightFloatedText}>{formattedJoinDate}</span>
+                    </p>
                     <Divider />
                 </Segment>
 
