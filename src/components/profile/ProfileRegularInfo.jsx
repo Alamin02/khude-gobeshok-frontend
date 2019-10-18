@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Segment, Divider, Dimmer, Image, Button, Icon, Input, Modal, Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import { profileActions } from "../../_actions";
 import { imageService } from "../../_services";
@@ -167,6 +168,8 @@ class ProfileRegularInfo extends Component {
                         <b>Member Since:</b> <span className={styles.rightFloatedText}>{formattedJoinDate}</span>
                     </p>
                     <Divider />
+
+                    {own || <Button fluid as={Link} to={`/messages/` + username} color="blue" size="small">MESSAGE</Button>}
                 </Segment>
 
                 <Segment>

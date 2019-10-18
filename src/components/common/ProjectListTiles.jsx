@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import moment from "moment";
 
-const ProjectListTiles = ({ projects, itemsPerRow }) => {
+const ProjectListTiles = ({ projects, itemsPerRow, stackable }) => {
     const projectList = projects.map((project, key) => {
         let relative_time = moment(project.created_at).fromNow();
 
@@ -18,7 +18,7 @@ const ProjectListTiles = ({ projects, itemsPerRow }) => {
     });
 
     return (
-        <Card.Group itemsPerRow={itemsPerRow} >
+        <Card.Group itemsPerRow={itemsPerRow} stackable={stackable}>
             {projectList}
         </Card.Group>
     )

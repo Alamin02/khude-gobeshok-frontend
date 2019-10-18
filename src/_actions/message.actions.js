@@ -22,10 +22,13 @@ function getConversations(pageNumber) {
     function failure(error) { return { type: messageConstants.MESSAGE_GET_CONVERSATIONS_FAILURE, error } }
 }
 
-function getDirectMessages(username) {
+function getDirectMessages(username, pageNumber) {
     return dispatch => {
         dispatch(request());
-        messageService.getDirectMessages(username)
+        if (pageNumber === 1)
+            dispatch(reset());
+
+        messageService.getDirectMessages(username, pageNumber)
             .then(
                 directMessages => dispatch(success(directMessages)),
                 error => dispatch(failure(error))
@@ -33,6 +36,7 @@ function getDirectMessages(username) {
     }
 
     function request() { return { type: messageConstants.MESSAGE_GET_DIRECT_MESSAGES_REQUEST } }
+    function reset() { return { type: messageConstants.MESSAGE_RESET_DIRECT_MESSAGE } }
     function success(directMessages) { return { type: messageConstants.MESSAGE_GET_DIRECT_MESSAGES_SUCCESS, directMessages } }
     function failure(error) { return { type: messageConstants.MESSAGE_GET_DIRECT_MESSAGES_FAILURE, error } }
 }

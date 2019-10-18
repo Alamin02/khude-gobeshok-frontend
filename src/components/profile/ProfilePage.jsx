@@ -73,6 +73,7 @@ class ProfilePage extends Component {
                                         projects={this.props.projectList}
                                         own={ownProfile} public={publicMode}
                                         itemsPerRow={3}
+                                        stackable
                                     />
                             }
                         </div>

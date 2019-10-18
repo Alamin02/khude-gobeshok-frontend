@@ -1,4 +1,6 @@
 import { authHeader, apiBaseUrl, handleResponse } from '../_helpers';
+import { paginationConstants } from "../_constants";
+
 export const messageService = {
     getConversations,
     getDirectMessages,
@@ -26,13 +28,22 @@ function getConversations(pageNumber) {
         .then(conversations => conversations)
 }
 
-function getDirectMessages(contact) {
+function getDirectMessages(contact, pageNumber) {
     const requestOptions = {
         mode: 'cors',
         headers: { ...authHeader() },
     };
 
-    let url = apiBaseUrl() + `api/conversations/?username=` + contact;
+    let paginationQuery = ``;
+
+    if (pageNumber) {
+        let offset = (paginationConstants.MESSAGES_PER_PAGE * (pageNumber - 1));
+        let limit = paginationConstants.MESSAGES_PER_PAGE;
+        paginationQuery = `&limit=` + limit.toString() + `&offset=` + offset.toString();
+    }
+    console.log(paginationQuery, pageNumber);
+
+    let url = apiBaseUrl() + `api/conversations/?username=` + contact + paginationQuery;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
