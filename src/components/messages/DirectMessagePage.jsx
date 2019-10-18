@@ -52,7 +52,7 @@ class DirectMessagePage extends Component {
                     <List.Content floated="right">
                         <i>{relative_time}</i>
                     </List.Content>
-                    <Image avatar src={message.avatar || `/Logo.png`} />
+                    <Image avatar src={message.sender_avatar || `/Logo.png`} />
                     <List.Content>
                         <List.Description>
                             <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}

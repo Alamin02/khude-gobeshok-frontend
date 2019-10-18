@@ -40,11 +40,12 @@ class MessagesPage extends Component {
 
         let conversationRender = conversations.map((message, index) => {
             let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
-            let relative_time = moment(message.sent_at).fromNow()
+            let relative_time = moment(message.sent_at).fromNow();
+            let avatar = message.sender_name === username ? message.recipient_avatar : message.sender_avatar;
 
             return (
                 <List.Item key={index} as={Link} to={`/messages/` + contact}>
-                    <Image avatar src={message.avatar || `/Logo.png`} />
+                    <Image avatar src={avatar || `/Logo.png`} />
                     <List.Content>
                         <List.Header >{contact}</List.Header>
                         <List.Description>
