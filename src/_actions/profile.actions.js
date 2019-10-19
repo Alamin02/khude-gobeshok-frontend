@@ -132,12 +132,12 @@ function updateSoftwareSkill(username, softwareSkill) {
 }
 
 
-function updatePropic(propicId) {
+function updatePropic(propicId, propic) {
     return dispatch => {
         dispatch(request());
         profileService.updateProfilePic(propicId)
             .then(
-                updatedProfilePic => dispatch(success(updatedProfilePic)),
+                () => dispatch(success(propic)),
                 error => dispatch(failure(error))
             );
     };

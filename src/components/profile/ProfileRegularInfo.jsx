@@ -18,6 +18,7 @@ class ProfileRegularInfo extends Component {
         propicId: null,
         editBio: false,
         proPicEditable: false,
+        propic: {}
     }
 
     handleDimmerShow = () => {
@@ -55,10 +56,11 @@ class ProfileRegularInfo extends Component {
     }
 
     handlePropicUpload = (image) => {
-        imageService.profilePicUpload(image).then(({ id, image, thumbnail }) => {
+        imageService.profilePicUpload(image).then((propic) => {
             this.setState({
-                propicUrl: thumbnail,
-                propicId: id
+                propicUrl: propic.thumbnail,
+                propicId: propic.id,
+                propic: propic
             });
         });
     }
@@ -68,14 +70,15 @@ class ProfileRegularInfo extends Component {
             propicUrl: "",
             propicId: null,
             proPicEditable: false,
+            propic: {},
         })
     }
 
     confirmPropicChange = () => {
-        const { propicId } = this.state;
+        const { propicId, propic } = this.state;
 
         if (propicId) {
-            this.props.updatePropic(propicId);
+            this.props.updatePropic(propicId, propic);
         }
 
         this.setState({
@@ -195,7 +198,7 @@ function mapStateToProps(state) {
 function mapDipatchToProps(dispatch) {
     return {
         updateBio: (bio) => dispatch(profileActions.updateBio(bio)),
-        updatePropic: (propicId) => dispatch(profileActions.updatePropic(propicId)),
+        updatePropic: (propicId, propic) => dispatch(profileActions.updatePropic(propicId, propic)),
     }
 }
 

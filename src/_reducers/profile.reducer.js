@@ -71,7 +71,7 @@ export function profile(state = initialState, action) {
             });
         case profileConstants.PROFILE_PIC_UPDATE_SUCCESS:
             return Object.assign({}, state, {
-                profileDetails: { ...state.profileDetails, profile_picture: action.updatedProfilePic.updated_avatar },
+                profileDetails: { ...state.profileDetails, avatar: action.updatedProfilePic },
             });
 
         // Load and update education list
