@@ -19,9 +19,9 @@ function login(username, password) {
                     toast({
                         type: 'success',
                         icon: 'user',
-                        title: 'Login Success',
+                        title: 'Login Successful',
                         size: 'small',
-                        description: 'You have successfully Logged in as a KhudeGobeshok',
+                        description: 'Welcome back mate!',
                         animation: 'bounce',
                         time: 5000,
                         onDismiss: () => { }

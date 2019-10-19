@@ -1,4 +1,4 @@
-import { authHeader, apiBaseUrl, handleResponse } from '../_helpers';
+import { authHeader, apiBaseUrl, } from '../_helpers';
 import { paginationConstants } from "../_constants";
 
 export const messageService = {
@@ -63,4 +63,18 @@ function sendDirectMessage(message) {
     return fetch(url, requestOptions)
         .then(handleResponse)
         .then(message => message)
+}
+
+
+function handleResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+
+        if (!response.ok) {
+            const error = (data && JSON.stringify(data)) || response.statusText;
+            return Promise.reject(error);
+        }
+
+        return data;
+    });
 }

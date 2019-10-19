@@ -93,9 +93,9 @@ class DirectMessagePage extends Component {
                     <Header as="h2" dividing>
                         {contactname}
                     </Header>
-                    <Segment style={{ overflow: "auto", maxHeight: "50vh" }} >
+                    <Segment style={{ overflow: "auto", height: "50vh", }} >
                         {(numberOfPages <= this.state.activePage) ?
-                            <Message size='mini'>End of messages.</Message>
+                            <Message size='mini'>No earlier messages beyond this point.</Message>
                             :
                             <Button fluid onClick={this.handleLoadMore}>LOAD MORE</Button>
                         }

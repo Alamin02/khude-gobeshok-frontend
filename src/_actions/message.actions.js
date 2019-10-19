@@ -1,5 +1,6 @@
 import { messageConstants } from "../_constants";
 import { messageService } from "../_services";
+import { toast } from "react-semantic-toasts";
 
 export const messageActions = {
     getConversations,
@@ -47,7 +48,19 @@ function sendDirectMessage(message) {
         messageService.sendDirectMessage(message)
             .then(
                 message => dispatch(success(message)),
-                error => dispatch(failure(error))
+                error => {
+                    toast({
+                        type: 'error',
+                        icon: 'envelope',
+                        title: 'Message failed',
+                        size: 'small',
+                        description: JSON.parse(error)[0],
+                        animation: 'bounce',
+                        time: 5000,
+                        onDismiss: () => { }
+                    });
+                    dispatch(failure(error));
+                }
             );
     }
 
