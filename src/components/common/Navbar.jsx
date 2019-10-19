@@ -184,12 +184,9 @@ const NavBarChildren = ({ children }) => (
 )
 
 class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sideBarVisible: false,
-        };
-    }
+    state = {
+        sideBarVisible: false,
+    };
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     handleIconClick = (name) => this.setState({ activeItem: name })

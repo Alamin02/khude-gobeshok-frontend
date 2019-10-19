@@ -6,7 +6,7 @@ import { profileActions } from "../../_actions";
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 import ProjectListTiles from "../common/ProjectListTiles";
-import ProfileTab from "./ProfileTab";
+import ProfileTab from "./tabs/ProfileTab";
 import ProfileRegularInfo from "./ProfileRegularInfo";
 import styles from "./ProfilePage.module.css";
 

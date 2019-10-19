@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { profileActions } from "../../_actions";
+import { profileActions } from "../../../_actions";
 import { Segment, Header, Button, Icon } from "semantic-ui-react";
 import moment from "moment";
 
