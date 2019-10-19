@@ -13,6 +13,14 @@ class DirectMessagePage extends Component {
         super(props);
         const { contactname } = this.props.match.params;
         this.props.getDirectMessages(contactname, 1);
+
+        this.messageEndRef = React.createRef();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.directMessages[0] !== prevProps.directMessages[0]) {
+            this.messageEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" })
+        }
     }
 
     state = {
@@ -24,6 +32,10 @@ class DirectMessagePage extends Component {
         this.setState({
             messageContent: value,
         });
+    }
+
+    scrollToEnd = () => {
+        this.messageEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" })
     }
 
     handleMessageSubmit = () => {
@@ -54,22 +66,23 @@ class DirectMessagePage extends Component {
         const { contactname } = this.props.match.params;
         let numberOfPages = Math.ceil(directMessagesCount / paginationConstants.MESSAGES_PER_PAGE);
 
-        console.log(numberOfPages);
 
         let conversationRender = directMessages.map((message, index) => {
             let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
             let relative_time = moment(message.sent_at).fromNow();
             return (
                 <List.Item key={index}>
-                    <List.Content floated="right">
-                        <i>{relative_time}</i>
-                    </List.Content>
                     <Image avatar src={message.sender_avatar || `/Logo.png`} />
                     <List.Content>
+                        <List.Header>
+                            {message.sender_name === username ? "You: " : message.sender_name + `: `}
+                        </List.Header>
                         <List.Description>
-                            <b>{message.sender_name === username ? "You: " : message.sender_name + `: `}</b> {message.content}
+                            {message.content} <br />
+                            <i>{relative_time}</i>
                         </List.Description>
                     </List.Content>
+
                 </List.Item>
             )
         });
@@ -92,6 +105,8 @@ class DirectMessagePage extends Component {
                         <List relaxed>
                             {conversationRender.reverse()}
                         </List>
+
+                        <div ref={this.messageEndRef}> </div>
                     </Segment>
                     <Form onSubmit={this.handleMessageSubmit}>
                         <Form.TextArea placeholder='Type your message...' value={this.state.messageContent} onChange={this.handleChange} />
