@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { EditorState, convertFromRaw } from 'draft-js';
-import { Container, Button, Header, Image, Grid, Segment } from 'semantic-ui-react'
+import { Container, Button, Header, Segment } from 'semantic-ui-react'
 import moment from "moment";
 import { projectActions } from "../../_actions";
-
 import styles from "./Review.module.css";
-
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -59,7 +57,7 @@ class ProjectViewer extends Component {
             <div >
                 <Container text as={Segment} padded >
 
-                    <img src={coverImage.image} className={styles.coverImage} />
+                    <img alt="" src={coverImage.image} className={styles.coverImage} />
 
                     <Header as="h1" dividing>
                         <Header.Content className={styles.projectHeader}>

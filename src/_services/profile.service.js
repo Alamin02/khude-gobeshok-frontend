@@ -9,7 +9,6 @@ export const profileService = {
     updateSpecializedIn,
     updateSoftwareSkill,
     updateProfilePic,
-    updateSpecializedIn,
     getEducationList,
     addEducation,
     deleteEducation,

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-
 import { EditorState, convertFromRaw } from 'draft-js';
-
 import { projectActions } from '../../_actions';
-
-import { Container, Grid, Image, Header, Segment, Form, Comment } from 'semantic-ui-react'
+import { Container, Header, Segment, Form, Comment } from 'semantic-ui-react'
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin'
@@ -111,7 +108,7 @@ class ProjectViewer extends Component {
                 <ScrollToTopOnMount />
                 <Container text as={Segment} padded>
 
-                    <img src={this.props.project.cover_image_obj.image} className={styles.coverImage} />
+                    <img alt="" src={this.props.project.cover_image_obj.image} className={styles.coverImage} />
 
                     <Header
                         as="h1"

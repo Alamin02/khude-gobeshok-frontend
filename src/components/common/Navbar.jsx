@@ -187,7 +187,6 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: "",
             sideBarVisible: false,
         };
     }
@@ -202,7 +201,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        const { activeItem, sideBarVisible } = this.state;
+        const { sideBarVisible } = this.state;
         const { children } = this.props;
         return (
             <React.Fragment>

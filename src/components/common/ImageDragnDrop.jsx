@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
-
 
 const thumbsContainer = {
     display: 'flex',
@@ -33,7 +32,6 @@ const img = {
     width: 'auto',
     height: '100%'
 };
-
 
 export default function ImageDragnDrop(props) {
     const { getRootProps, getInputProps } = useDropzone({

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Form, Button, Icon, Header, Label, Segment, Message } from "semantic-ui-react";
+import { Form, Icon, Header, Label, Segment, Message } from "semantic-ui-react";
 import { profileActions } from '../../_actions';
 
 import styles from "./Skills.module.css";

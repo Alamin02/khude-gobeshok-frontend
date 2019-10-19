@@ -32,7 +32,8 @@ function getDetails(username) {
             .then(
                 profileDetails => {
                     dispatch(success(profileDetails));
-                }
+                },
+                error => dispatch(failure(error)),
             )
     }
 
@@ -48,7 +49,8 @@ function getUserDetails(username) {
             .then(
                 profileUserDetails => {
                     dispatch(success(profileUserDetails));
-                }
+                },
+                error => dispatch(failure(error)),
             )
     }
 

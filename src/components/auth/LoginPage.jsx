@@ -39,13 +39,15 @@ class LoginPage extends Component {
 
   render() {
     const { username, password, submitted } = this.state;
-    const { alert, error } = this.props;
+    const { error } = this.props;
     const error_list = [];
 
-    const errors = error && JSON.parse(error, (key, value) => {
-      if (typeof value === "string")
-        error_list.push(value);
-    });
+    if (error) {
+      JSON.parse(error, (key, value) => {
+        if (typeof value === "string")
+          error_list.push(value);
+      });
+    }
 
     return (
       <div>
@@ -110,10 +112,8 @@ class LoginPage extends Component {
 
 function mapStateToProps(state) {
   const { loggingIn, error } = state.authentication;
-  const { alert } = state;
   return {
     loggingIn,
-    alert,
     error
   };
 }

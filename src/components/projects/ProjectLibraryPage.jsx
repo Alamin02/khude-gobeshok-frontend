@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image, Header, Container, Icon, Pagination, Responsive } from "semantic-ui-react";
+import { Header, Container, Pagination, Responsive } from "semantic-ui-react";
 import { projectActions } from '../../_actions';
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, List, Form, Image, Message, Button, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import moment from "moment";
 import { messageActions } from "../../_actions";
 import { paginationConstants } from "../../_constants";
@@ -68,7 +67,6 @@ class DirectMessagePage extends Component {
 
 
         let conversationRender = directMessages.map((message, index) => {
-            let contact = message.sender_name === username ? message.recipient_name : message.sender_name;
             let relative_time = moment(message.sent_at).fromNow();
             return (
                 <List.Item key={index}>

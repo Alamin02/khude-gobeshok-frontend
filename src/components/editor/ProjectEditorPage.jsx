@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Header, Grid, Select, Button, Transition, Label, Popup } from "semantic-ui-react";
+import { Container, Form, Header, Grid, Button, Transition, Label, Popup } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
 

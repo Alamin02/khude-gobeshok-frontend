@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
-import styles from "./SignupPage.module.css"
+import styles from "./SignupPage.module.css";
 
 class SignupPage extends React.Component {
   constructor(props) {
@@ -54,14 +54,16 @@ class SignupPage extends React.Component {
 
   render() {
     const { username, email, password1, password2, submitted } = this.state.user;
-    const { alert, error } = this.props;
+    const { error } = this.props;
 
     const error_list = [];
 
-    const errors = error && JSON.parse(error, (key, value) => {
-      if (typeof value === "string")
-        error_list.push(value);
-    });
+    if (error) {
+      JSON.parse(error, (key, value) => {
+        if (typeof value === "string")
+          error_list.push(value);
+      });
+    }
 
     return (
       <div>
@@ -148,10 +150,8 @@ class SignupPage extends React.Component {
 
 function mapStateToProps(state) {
   const { registering, error } = state.registration;
-  const { alert, } = state;
   return {
     registering,
-    alert,
     error
   };
 }

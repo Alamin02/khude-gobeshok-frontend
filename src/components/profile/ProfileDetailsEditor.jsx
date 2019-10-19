@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from "react-redux";
 import { Form, Transition, Button } from "semantic-ui-react";
-
-import { profileActions, userActions } from "../../_actions";
+import { profileActions, } from "../../_actions";
 
 class ProfileDetailsEditor extends Component {
 

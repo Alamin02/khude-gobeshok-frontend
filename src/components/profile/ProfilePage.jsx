@@ -26,16 +26,16 @@ class ProfilePage extends Component {
             const { username } = this.props;
 
             if (profilename === username) {
-                this.state = {
+                this.setState({
                     ownProfile: true,
                     publicMode: false,
-                }
+                })
             }
             else {
-                this.state = {
+                this.setState({
                     ownProfile: false,
                     publicMode: true,
-                }
+                })
             }
         }
     )

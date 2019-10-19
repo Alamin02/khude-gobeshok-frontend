@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Item } from "semantic-ui-react";
+import { Container, Header, } from "semantic-ui-react";
 import ScrollToTopOnMount from "../common/ScrollToTopOnMount";
 
 export default class PrivacyPolicyPage extends Component {

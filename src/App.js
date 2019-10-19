@@ -23,15 +23,11 @@ import PrivacyPage from "./components/company/PrivacyPolicyPage";
 
 import "./App.css";
 
-import { userActions, editorActions } from './_actions';
+import { userActions } from './_actions';
 import { SemanticToastContainer } from 'react-semantic-toasts';
 import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Router history={history}>
