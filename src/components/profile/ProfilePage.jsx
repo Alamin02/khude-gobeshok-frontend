@@ -77,8 +77,6 @@ class ProfilePage extends Component {
                                     />
                             }
                         </div>
-
-
                         <Container className={styles.pagination}>
                             <Pagination
                                 activePage={this.state.activePage}

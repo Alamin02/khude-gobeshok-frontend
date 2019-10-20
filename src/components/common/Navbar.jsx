@@ -118,12 +118,10 @@ const NavBarDesktop = ({ loggedIn, username }) => (
         </Label>
         <Container>
             <Menu.Item
-                icon="home"
                 as={Link}
+                icon="home"
                 to="/"
-            >
-                <Icon name="home" />
-            </Menu.Item>
+            />
 
             {leftItems.map((item) => (
                 <Menu.Item
@@ -154,7 +152,7 @@ const NavBarDesktop = ({ loggedIn, username }) => (
                                 to="/messages"
                             />
                             <Dropdown item icon="user" pointing="top right">
-                                <Dropdown.Menu active >
+                                <Dropdown.Menu >
                                     <Dropdown.Item text='Your Profile' as={Link} to={`/profile/` + username} />
                                     <Dropdown.Item text='Logout' as={Link} to='/logout' />
                                 </Dropdown.Menu>

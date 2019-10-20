@@ -109,9 +109,10 @@ class ProfileRegularInfo extends Component {
 
         let avatarThumbnailUrl = '/Logo.png';
         if (avatar) avatarThumbnailUrl = avatar.thumbnail;
+        let messageLink = "/messages/" + username;
 
         return (
-            <div>
+            <React.Fragment>
                 <Segment textAlign="center">
 
                     {own ? <Dimmer.Dimmable
@@ -125,23 +126,6 @@ class ProfileRegularInfo extends Component {
                         size="small"
                     /> : <Image src={avatarThumbnailUrl} size="small" circular centered />
                     }
-
-                    <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>
-                        <Modal.Header>Update Profile Photo</Modal.Header>
-                        <Modal.Content>
-                            <ImageDragNDrop imageChange={this.handlePropicUpload} url={this.state.propicUrl} />
-                        </Modal.Content>
-                        <Modal.Actions>
-                            <Button negative onClick={this.cancelPropicChange}>Cancel</Button>
-                            <Button
-                                positive
-                                onClick={this.confirmPropicChange}
-                                icon='checkmark'
-                                labelPosition='right'
-                                content='Yes'
-                            />
-                        </Modal.Actions>
-                    </Modal>
 
                     <Header
                         as="h3"
@@ -164,15 +148,17 @@ class ProfileRegularInfo extends Component {
                         onChange={this.handleBioEdit}
                         placeholder='Single line about you..'
                     />}
+
                     <Divider />
 
                     <p className={styles.metaInfoContainer}>
                         <b>Email:</b> <span className={styles.rightFloatedText}>{email || "No email"}</span> <br />
                         <b>Member Since:</b> <span className={styles.rightFloatedText}>{formattedJoinDate}</span>
                     </p>
+
                     <Divider />
 
-                    {own || <Button fluid as={Link} to={`/messages/` + username} color="blue" size="small">MESSAGE</Button>}
+                    <Button fluid as={Link} to={messageLink} color="blue" size="small">MESSAGE</Button>
                 </Segment>
 
                 <Segment>
@@ -180,10 +166,24 @@ class ProfileRegularInfo extends Component {
                     <p>No badges yet</p>
                 </Segment>
 
-
+                <Modal size='tiny' open={proPicEditable} onClose={this.disableProPicEdit}>
+                    <Modal.Header>Update Profile Photo</Modal.Header>
+                    <Modal.Content>
+                        <ImageDragNDrop imageChange={this.handlePropicUpload} url={this.state.propicUrl} />
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button negative onClick={this.cancelPropicChange}>Cancel</Button>
+                        <Button
+                            positive
+                            onClick={this.confirmPropicChange}
+                            icon='checkmark'
+                            labelPosition='right'
+                            content='Yes'
+                        />
+                    </Modal.Actions>
+                </Modal>
                 <Skills own={own} />
-
-            </div >
+            </React.Fragment>
         )
     }
 }

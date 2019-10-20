@@ -149,6 +149,7 @@ function deleteEducation(id) {
     const requestOptions = {
         mode: 'cors',
         method: 'DELETE',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
     }
 
     let url = apiBaseUrl() + `users/delete-education/` + id;
@@ -195,6 +196,7 @@ function deleteJob(id) {
     const requestOptions = {
         mode: 'cors',
         method: 'DELETE',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
     }
 
     let url = apiBaseUrl() + `users/delete-job/` + id;
@@ -220,7 +222,7 @@ function listProjects(username, pageNumber) {
         queryString = `?limit=` + limit.toString() + `&offset=` + offset;
     }
 
-    let url = apiBaseUrl() + `projects/list/` + username + queryString;
+    let url = apiBaseUrl() + `api/projects/?username=` + username + queryString;
 
     return fetch(url, requestOptions)
         .then(handleResponse)
