@@ -69,10 +69,12 @@ export default class ContactPage extends Component {
         const { errors, validationError } = this.state;
         const error_list = [];
 
-        errors && JSON.parse(errors, (key, value) => {
-            if (typeof value === "string")
-                error_list.push(value);
-        });
+        if (errors) {
+            JSON.parse(errors, (key, value) => {
+                if (typeof value === "string")
+                    error_list.push(value);
+            });
+        }
 
         return (
             <React.Fragment>
