@@ -3,6 +3,6 @@ export const apiBaseUrl = () => {
         return "http://localhost:8000/";
     }
     else {
-        return "http://khudegobeshok.com/";
+        return "https://www.khudegobeshok.com/";
     }
 }
