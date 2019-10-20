@@ -19,6 +19,7 @@
     "draft-js-video-plugin": "^2.0.1",
     "history": "^4.9.0",
     "immutable": "^4.0.0-rc.12",
+    "memoize-one": "^5.1.1",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-datepicker": "^2.8.0",
