@@ -158,7 +158,7 @@ class ProfileRegularInfo extends Component {
 
                     <Divider />
 
-                    <Button fluid as={Link} to={messageLink} color="blue" size="small">MESSAGE</Button>
+                    {own && <Button fluid as={Link} to={messageLink} color="blue" size="small">MESSAGE</Button>}
                 </Segment>
 
                 <Segment>
