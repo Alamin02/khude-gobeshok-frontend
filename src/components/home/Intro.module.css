@@ -2,6 +2,7 @@
 
 .introContainer {
     padding-bottom: 5em;
+    min-height: 85vh;
 }
 
 .particleContainer {

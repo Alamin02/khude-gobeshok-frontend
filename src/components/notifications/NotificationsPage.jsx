@@ -63,7 +63,7 @@ class NotificationsPage extends Component {
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
-                <Container style={{ minHeight: "85vh", marginBottom: "2em" }} text >
+                <Container style={{ minHeight: "90vh", marginBottom: "2em" }} text >
                     <br /> <br /> <br />
                     <Header as="h2" dividing>
                         Notifications

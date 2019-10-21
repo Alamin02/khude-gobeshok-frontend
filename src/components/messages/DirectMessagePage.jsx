@@ -88,7 +88,7 @@ class DirectMessagePage extends Component {
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
-                <Container style={{ minHeight: "85vh" }} text>
+                <Container style={{ minHeight: "90vh" }} text>
                     <br /> <br /> <br />
                     <Header as="h2" dividing>
                         {contactname}

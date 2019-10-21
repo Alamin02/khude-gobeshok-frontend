@@ -10,7 +10,7 @@ export default class ChallengesPage extends Component {
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
-                <div style={{ minHeight: "85vh" }} >
+                <div className={styles.challengesSectionContainer} >
                     <div className={styles.pageHeaderContainer} >
                         <Header as='h1' textAlign="center" className={styles.pageHeader} icon>
                             <Header.Content>Challenges</Header.Content>

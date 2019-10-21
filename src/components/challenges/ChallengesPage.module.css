@@ -10,6 +10,10 @@
     background-repeat: repeat-x;
 }
 
+.challengesSectionContainer {
+    min-height: 90vh;
+}
+
 .messageContainer {
     padding-top: 3em !important;
 }
