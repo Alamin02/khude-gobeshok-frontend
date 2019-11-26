@@ -45,7 +45,7 @@ class ProjectsPage extends Component {
                     </Header>
                 </div>
 
-                <Responsive {...Responsive.onlyMobile}>
+                <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                     <ResponsiveProjectList mobile projects={project_list} />
                 </Responsive>
                 <Responsive minWidth={Responsive.onlyTablet.minWidth}>

@@ -156,7 +156,7 @@ const DesktopIntro = () => (
 export default function Intro() {
     return (
         <React.Fragment>
-            <Responsive {...Responsive.onlyMobile}>
+            <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <MobileIntro />
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>

@@ -200,7 +200,7 @@ class Navbar extends React.Component {
         const { children } = this.props;
         return (
             <React.Fragment>
-                <Responsive {...Responsive.onlyMobile}>
+                <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                     <NavBarMobile
                         visible={sideBarVisible}
                         onToggle={this.toggleSideBar}

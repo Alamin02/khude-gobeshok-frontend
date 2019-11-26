@@ -72,7 +72,7 @@ const ResponsiveDescription = ({ mobile }) => (
 export default function Description() {
     return (
         <React.Fragment>
-            <Responsive {...Responsive.onlyMobile}>
+            <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <ResponsiveDescription mobile />
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
