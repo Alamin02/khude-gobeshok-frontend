@@ -104,7 +104,7 @@ function updateProfileDetails(username, updatedProfileData) {
     const requestOptions = {
         mode: 'cors',
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedProfileData),
     }
 
