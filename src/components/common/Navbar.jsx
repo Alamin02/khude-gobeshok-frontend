@@ -7,6 +7,7 @@ const leftItems = [
     { icon: "", name: "Project Garage", link: "/projects", key: "projects" },
     { icon: "", name: "Challenges", link: "/challenges", key: "challenges" },
     { icon: "", name: "Make Squad", link: "/squads", key: "squads" },
+    { icon: "", name: "Khio Lab", link: "/khio-lab", key: "khio-lab" },
 ]
 
 const NavBarMobile = ({

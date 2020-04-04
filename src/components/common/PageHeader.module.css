@@ -1,0 +1,11 @@
+.pageHeader {
+    font-family: 'Red Hat Display', sans-serif !important;
+    font-size: 3em !important;
+}
+
+.pageHeaderContainer {
+    padding: 5em 0 2em 0;
+    background-image: url("/img/banner-projects.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+}

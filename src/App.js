@@ -20,6 +20,7 @@ import NotificationPage from "./components/notifications/NotificationsPage";
 import ContactPage from "./components/company/ContactPage";
 import AboutUsPage from "./components/company/AboutUsPage";
 import PrivacyPage from "./components/company/PrivacyPolicyPage";
+import KhioLabPage from "./components/khio-lab/KhioLabPage";
 
 import "./App.css";
 
@@ -41,6 +42,7 @@ class App extends React.Component {
           <Route path="/profile/:profilename/" component={ProfilePage} />
           <Route path="/challenges/" component={ChallengesPage} />
           <Route path="/squads/" component={SquadsPage} />
+          <Route path="/khio-lab" component={KhioLabPage} />
           <Route path="/messages/" exact component={MessagesPage} />
           <Route path="/messages/:contactname" component={DirectMessagePage} />
           <Route path="/notifications/" component={NotificationPage} />
